@@ -49,7 +49,7 @@ const socialLinks = [
 
 export function Footer() {
   return (
-    <footer className="bg-[#fffae6] text-[var(--roshogolpo-hover)] border-t border-[#b39402]/20 relative overflow-hidden">
+    <footer className="bg-[var(--roshogolpo-cream)] text-[var(--roshogolpo-hover)] border-t border-[#b39402]/20 relative overflow-hidden">
       <div className="absolute inset-0 pointer-events-none">
         <Image
           src="/footer/bird.png"
@@ -97,7 +97,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 mb-8">
           {/* Navigation Sections */}
           {navigationLinks.map((section, index) => (
-            <div key={index} className="space-y-4">
+            <div key={index} className="space-y-4 pb-4 sm:pb-0">
               <h4 className="text-lg font-semibold text-[var(--roshogolpo-footer)]">
                 {section.title}
               </h4>
@@ -106,7 +106,7 @@ export function Footer() {
                   <Link
                     key={linkIndex}
                     href={link.href}
-                    className="text-md text-black hover:text-[var(--roshogolpo-hover)] transition-colors duration-200 w-fit relative after:content-[''] after:absolute after:w-full after:h-[2px] after:bg-[var(--roshogolpo-hover)] after:left-0 after:-bottom-1 after:rounded-full after:origin-left after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:ease-out"
+                    className="text-sm text-gray-700 hover:text-[var(--roshogolpo-hover)] transition-colors duration-200 w-fit relative after:content-[''] after:absolute after:w-full after:h-[2px] after:bg-[var(--roshogolpo-hover)] after:left-0 after:-bottom-1 after:rounded-full after:origin-left after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:ease-out"
                   >
                     {link.label}
                   </Link>
@@ -139,7 +139,7 @@ export function Footer() {
                   Timing :
                 </p>
                 {timingInfo.map((time, index) => (
-                  <p key={index} className="text-md text-black">
+                  <p key={index} className="text-sm text-gray-700">
                     {time}
                   </p>
                 ))}
@@ -150,7 +150,7 @@ export function Footer() {
                 </p>
                 <a
                   href={`mailto:${emailInfo}`}
-                  className="text-md text-black hover:text-[var(--roshogolpo-footer)] transition-colors"
+                  className="text-sm text-gray-700 transition-colors"
                 >
                   {emailInfo}
                 </a>
@@ -160,7 +160,7 @@ export function Footer() {
         </div>
 
         {/* Payment Methods and Social Media */}
-        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center space-y-6 lg:space-y-0 py-6 border-t border-[#b39402]/20">
+        <div className="flex flex-col md:flex-row justify-between items-start lg:items-center space-y-6 lg:space-y-0 py-6 border-t border-[#b39402]/20">
           <div>
             <p className="text-md font-medium text-[var(--roshogolpo-hover)] mb-3">
               Payment Methods

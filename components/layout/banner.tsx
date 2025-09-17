@@ -40,7 +40,7 @@ export function Banner() {
       <div className="container mx-auto px-4">
         <div className="relative overflow-hidden">
           <div
-            className={`text-white text-center text-xs md:text-sm font-medium transition-all duration-500 ease-in-out 
+            className={`text-white text-center text-xs font-medium transition-all duration-500 ease-in-out 
               ${isSliding ? 'opacity-0 transform translate-y-4' : 'opacity-100 transform translate-y-0'}`}
           >
             {bannerMessages[currentMessageIndex]}

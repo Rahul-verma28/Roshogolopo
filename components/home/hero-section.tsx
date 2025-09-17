@@ -89,7 +89,7 @@ export function HeroSection() {
                 asChild
                 variant="outline"
                 size="lg"
-                className="border-[var(--roshogolpo-footer)] text-[var(--roshogolpo-footer)] hover:bg-[var(--roshogolpo-footer)] hover:text-white px-8 py-3 text-lg font-semibold bg-transparent"
+                className="border-[var(--roshogolpo-footer)] text-[var(--roshogolpo-footer)] hover:bg-[var(--roshogolpo-hover)] hover:text-white px-8 py-3 text-lg font-semibold bg-transparent"
               >
                 <Link href="/about">Our Story</Link>
               </Button>
@@ -134,7 +134,7 @@ export function HeroSection() {
                 src="/beautiful-bengali-sweets-display-with-rasgulla-san.jpg"
                 alt="Authentic Bengali Sweets Collection"
                 fill
-                className="object-cover rounded-3xl shadow-2xl"
+                className="object-cover rounded-3xl"
                 priority
               />
 
@@ -146,7 +146,7 @@ export function HeroSection() {
                 className="absolute -top-4 -right-4 bg-white rounded-2xl p-4 shadow-lg border border-[var(--roshogolpo-light)]"
               >
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-[var(--roshogolpo-footer)]">50+</div>
+                  <div className="text-2xl font-bold text-[var(--roshogolpo-hover)]">50+</div>
                   <div className="text-sm text-gray-600">Sweet Varieties</div>
                 </div>
               </motion.div>
@@ -168,7 +168,7 @@ export function HeroSection() {
       </div>
 
       {/* Scroll Indicator */}
-      <motion.div
+      {/* <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2, duration: 0.6 }}
@@ -185,7 +185,7 @@ export function HeroSection() {
             className="w-1 h-3 bg-[var(--roshogolpo-footer)] rounded-full mt-2"
           />
         </motion.div>
-      </motion.div>
+      </motion.div> */}
     </section>
   )
 }
