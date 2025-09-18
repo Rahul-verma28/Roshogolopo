@@ -7,7 +7,7 @@ import { Card, CardContent } from "@/components/ui/card"
 export function StorySection() {
   return (
     <section className="py-5 sm:py-10 bg-white">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 overflow-hidden">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -32,7 +32,7 @@ export function StorySection() {
           >
             <div className="relative w-full h-[400px] rounded-2xl overflow-hidden">
               <Image
-                src="/traditional-bengali-sweet-making-heritage.jpg"
+                src="/about/story.png"
                 alt="Traditional Bengali Sweet Making Heritage"
                 fill
                 className="object-cover"
@@ -71,22 +71,22 @@ export function StorySection() {
         </div>
 
         {/* Heritage Cards */}
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-3 gap-8 pb-10">
           {[
             {
               title: "Traditional Recipes",
               description: "Authentic recipes passed down through generations, carefully preserved and perfected.",
-              image: "/traditional-recipes-bengali-sweets.jpg",
+              image: "/placeholder.svg",
             },
             {
               title: "Modern Innovation",
               description: "Contemporary techniques and fusion flavors that appeal to today's taste preferences.",
-              image: "/modern-fusion-bengali-sweets.jpg",
+              image: "/placeholder.svg",
             },
             {
               title: "Quality Ingredients",
               description: "Only the finest ingredients sourced from trusted suppliers across Bengal and beyond.",
-              image: "/quality-ingredients-bengali-sweets.jpg",
+              image: "/placeholder.svg",
             },
           ].map((item, index) => (
             <motion.div
@@ -96,13 +96,13 @@ export function StorySection() {
               transition={{ delay: index * 0.1, duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <Card className="h-full border-0 shadow-lg hover:shadow-xl transition-shadow duration-300">
+              <Card className="h-full border-0 shadow-lg hover:shadow-xl transition-shadow duration-300 p-0">
                 <CardContent className="p-0">
                   <div className="relative h-48 overflow-hidden rounded-t-lg">
                     <Image src={item.image || "/placeholder.svg"} alt={item.title} fill className="object-cover" />
                   </div>
                   <div className="p-6">
-                    <h4 className="text-xl font-bold text-[var(--roshogolpo-gold)] mb-3 font-playfair">
+                    <h4 className="text-xl font-bold text-[var(--roshogolpo-active)] mb-3 font-playfair">
                       {item.title}
                     </h4>
                     <p className="text-gray-600 leading-relaxed">{item.description}</p>

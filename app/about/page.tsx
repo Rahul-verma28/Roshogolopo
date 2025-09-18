@@ -8,6 +8,7 @@ import { ValuesSection } from "@/components/about/values-section"
 import { StructuredData } from "@/components/seo/structured-data"
 import { generateMetadata } from "@/lib/seo/metadata"
 import { generateBreadcrumbSchema } from "@/lib/seo/structured-data"
+import QualityDelights from "@/components/about/quality-delights"
 
 export const metadata: Metadata = generateMetadata({
   title: "About Us - Our Sweet Story",
@@ -27,9 +28,10 @@ export default function AboutPage() {
       <StructuredData data={breadcrumbSchema} />
       <AboutHero />
       <StorySection />
+      <QualityDelights />
       <MissionSection />
       <TeamSection />
-      <TimelineSection />
+      {/* <TimelineSection /> */}
       <ValuesSection />
     </div>
   )

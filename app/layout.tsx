@@ -46,8 +46,8 @@ export default function RootLayout({
         <StructuredData
           data={[organizationSchema, localBusinessSchema, websiteSchema]}
         />
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="icon" href="/images/roshogolpo-logo.png" />
+        <link rel="apple-touch-icon" href="/images/roshogolpo-logo.png" />
         <meta name="theme-color" content="#fffae6" />
         <meta name="msapplication-TileColor" content="#b39402" />
       </head>

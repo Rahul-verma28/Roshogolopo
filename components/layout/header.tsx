@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ShoppingCart, Search, User } from "lucide-react";
+import { Menu, X, ShoppingCart, Search, User, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { CartDrawer } from "@/components/cart/cart-drawer";
@@ -64,6 +64,16 @@ export function Header() {
                 {item.name}
               </Link>
             ))}
+            <Button
+              asChild
+              size="lg"
+              className="bg-[var(--roshogolpo-hover)] hover:bg-[var(--roshogolpo-gold)] text-white px-6 sm:px-8 py-2.5 sm:py-3 text-xs sm:text-sm font-semibold group rounded-full transition-all duration-300 shadow-lg hover:shadow-xl"
+            >
+              <Link href="/products" className="flex items-center gap-2">
+                Order Now
+                <ArrowRight className="h-4 w-4 sm:h-5 sm:w-5 group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </Button>
           </nav>
 
           {/* Search and Cart */}

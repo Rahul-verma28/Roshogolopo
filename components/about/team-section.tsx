@@ -26,7 +26,7 @@ const teamMembers = [
 
 export function TeamSection() {
   return (
-    <section className="py-5 sm:py-10 bg-gradient-to-br from-[var(--roshogolpo-light)] to-[var(--roshogolpo-cream)]">
+    <section className="py-6 sm:py-12 bg-gradient-to-br from-[var(--roshogolpo-light)] to-[var(--roshogolpo-cream)]">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -57,7 +57,7 @@ export function TeamSection() {
                   <div className="flex flex-col md:flex-row gap-6">
                     <div className="relative w-32 h-32 mx-auto md:mx-0 flex-shrink-0">
                       <Image
-                        src={member.image || "/placeholder.svg"}
+                        src="/placeholder.svg"
                         alt={member.name}
                         fill
                         className="object-cover rounded-full"

@@ -3,7 +3,7 @@ import React from 'react'
 
 const MakingTrendy = () => {
   return (
-    <section className="py-10 bg-white">
+    <section className="py-10">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="relative w-full h-14">
           <Image 

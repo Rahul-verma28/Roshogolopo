@@ -50,7 +50,7 @@ export function MissionSection() {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-8">
           {missions.map((mission, index) => {
             const IconComponent = mission.icon
             return (
@@ -61,15 +61,15 @@ export function MissionSection() {
                 transition={{ delay: index * 0.1, duration: 0.6 }}
                 viewport={{ once: true }}
               >
-                <Card className="h-full border-0 shadow-lg hover:shadow-xl transition-all duration-300 text-center group">
-                  <CardContent className="p-8">
-                    <div className="bg-[var(--roshogolpo-light)] rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-6 group-hover:bg-[var(--roshogolpo-gold)] transition-colors duration-300">
+                <Card className="h-full border-0 shadow-lg hover:shadow-xl transition-all duration-300 text-center group p-0">
+                  <CardContent className="p-2 pb-4">
+                    <div className="bg-[var(--roshogolpo-light)] rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-3 group-hover:bg-[var(--roshogolpo-gold)] transition-colors duration-300">
                       <IconComponent className="h-8 w-8 text-[var(--roshogolpo-gold)] group-hover:text-white transition-colors duration-300" />
                     </div>
-                    <h3 className="text-xl font-bold text-[var(--roshogolpo-gold)] mb-4 font-playfair">
+                    <h3 className="text-xl font-bold text-[var(--roshogolpo-gold)] mb-3 font-playfair">
                       {mission.title}
                     </h3>
-                    <p className="text-gray-600 leading-relaxed">{mission.description}</p>
+                    <p className="text-xs sm:text-lg text-gray-600">{mission.description}</p>
                   </CardContent>
                 </Card>
               </motion.div>
