@@ -42,7 +42,7 @@ const timelineEvents = [
 
 export function TimelineSection() {
   return (
-    <section className="py-20 bg-gradient-to-br from-[var(--roshogolpo-light)] to-[var(--roshogolpo-cream)]">
+    <section className="py-5 sm:py-10 bg-gradient-to-br from-[var(--roshogolpo-light)] to-[var(--roshogolpo-cream)]">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -51,17 +51,17 @@ export function TimelineSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl lg:text-5xl font-bold text-[var(--roshogolpo-footer)] mb-6 font-playfair">
+          <h2 className="text-2xl lg:text-4xl font-bold text-[var(--roshogolpo-gold)] mb-6 font-playfair">
             Our Journey
           </h2>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-sm sm:text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
             From a simple idea to a growing community of sweet lovers - the Roshogolpo timeline
           </p>
         </motion.div>
 
         <div className="relative">
           {/* Timeline Line */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-[var(--roshogolpo-footer)] opacity-20"></div>
+          <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-[var(--roshogolpo-gold)] opacity-20"></div>
 
           <div className="space-y-12">
             {timelineEvents.map((event, index) => (
@@ -76,8 +76,8 @@ export function TimelineSection() {
                 <div className={`w-1/2 ${index % 2 === 0 ? "pr-8" : "pl-8"}`}>
                   <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow duration-300 bg-white">
                     <CardContent className="p-6">
-                      <div className="text-2xl font-bold text-[var(--roshogolpo-footer)] mb-2">{event.year}</div>
-                      <h3 className="text-xl font-bold text-[var(--roshogolpo-footer)] mb-3 font-playfair">
+                      <div className="text-2xl font-bold text-[var(--roshogolpo-gold)] mb-2">{event.year}</div>
+                      <h3 className="text-xl font-bold text-[var(--roshogolpo-gold)] mb-3 font-playfair">
                         {event.title}
                       </h3>
                       <p className="text-gray-600 leading-relaxed">{event.description}</p>
@@ -87,7 +87,7 @@ export function TimelineSection() {
 
                 {/* Timeline Dot */}
                 <div className="relative z-10">
-                  <div className="w-4 h-4 bg-[var(--roshogolpo-footer)] rounded-full border-4 border-white shadow-lg"></div>
+                  <div className="w-4 h-4 bg-[var(--roshogolpo-gold)] rounded-full border-4 border-white shadow-lg"></div>
                 </div>
 
                 <div className="w-1/2"></div>

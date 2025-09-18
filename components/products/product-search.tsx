@@ -37,7 +37,7 @@ export function ProductSearch() {
           placeholder="Search for sweets, ingredients..."
           value={localQuery}
           onChange={(e) => handleSearch(e.target.value)}
-          className="pl-10 pr-10 py-3 text-base border-2 border-gray-200 focus:border-[var(--roshogolpo-footer)] rounded-full"
+          className="pl-10 pr-10 py-3 text-base border-2 border-gray-200 focus:border-[var(--roshogolpo-gold)] rounded-full"
         />
         {localQuery && (
           <Button

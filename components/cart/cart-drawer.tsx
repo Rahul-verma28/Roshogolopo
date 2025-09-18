@@ -46,7 +46,7 @@ export function CartDrawer({ children }: CartDrawerProps) {
           {itemCount > 0 && (
             <Badge
               variant="destructive"
-              className="absolute -top-2 -right-2 h-5 w-5 flex items-center justify-center p-0 text-xs bg-[var(--roshogolpo-footer)] hover:bg-[var(--roshogolpo-hover)]"
+              className="absolute -top-2 -right-2 h-5 w-5 flex items-center justify-center p-0 text-xs bg-[var(--roshogolpo-gold)] hover:bg-[var(--roshogolpo-hover)]"
             >
               {itemCount}
             </Badge>
@@ -55,7 +55,7 @@ export function CartDrawer({ children }: CartDrawerProps) {
       </SheetTrigger>
       <SheetContent className="w-full sm:max-w-lg">
         <SheetHeader>
-          <SheetTitle className="flex items-center gap-2 text-[var(--roshogolpo-footer)]">
+          <SheetTitle className="flex items-center gap-2 text-[var(--roshogolpo-gold)]">
             <ShoppingCart className="h-5 w-5" />
             Your Cart ({itemCount} items)
           </SheetTitle>
@@ -65,9 +65,9 @@ export function CartDrawer({ children }: CartDrawerProps) {
           {items.length === 0 ? (
             <div className="flex-1 flex flex-col items-center justify-center text-center py-8">
               <ShoppingCart className="h-16 w-16 text-gray-300 mb-4" />
-              <h3 className="text-lg font-semibold text-gray-600 mb-2">Your cart is empty</h3>
+              <h3 className="text-sm sm:text-lg font-semibold text-gray-600 mb-2">Your cart is empty</h3>
               <p className="text-gray-500 mb-6">Add some delicious Bengali sweets to get started!</p>
-              <Button asChild className="bg-[var(--roshogolpo-footer)] hover:bg-[var(--roshogolpo-hover)]">
+              <Button asChild className="bg-[var(--roshogolpo-gold)] hover:bg-[var(--roshogolpo-hover)]">
                 <Link href="/products" onClick={() => setIsOpen(false)}>
                   Browse Products
                 </Link>
@@ -90,9 +90,9 @@ export function CartDrawer({ children }: CartDrawerProps) {
                       </div>
 
                       <div className="flex-1 min-w-0">
-                        <h4 className="font-medium text-sm text-gray-900 truncate">{item.name}</h4>
+                        <h4 className="font-medium text-xs sm:text-sm text-gray-900 truncate">{item.name}</h4>
                         <p className="text-xs text-gray-500 capitalize">{item.category}</p>
-                        <p className="text-sm font-semibold text-[var(--roshogolpo-footer)] mt-1">₹{item.price}</p>
+                        <p className="text-xs sm:text-sm font-semibold text-[var(--roshogolpo-gold)] mt-1">₹{item.price}</p>
                       </div>
 
                       <div className="flex items-center gap-2">
@@ -104,7 +104,7 @@ export function CartDrawer({ children }: CartDrawerProps) {
                         >
                           <Minus className="h-3 w-3" />
                         </Button>
-                        <span className="w-8 text-center text-sm font-medium">{item.quantity}</span>
+                        <span className="w-8 text-center text-xs sm:text-sm font-medium">{item.quantity}</span>
                         <Button
                           variant="outline"
                           size="sm"
@@ -129,13 +129,13 @@ export function CartDrawer({ children }: CartDrawerProps) {
 
               <div className="border-t pt-4 space-y-4">
                 <div className="flex justify-between items-center">
-                  <span className="text-lg font-semibold">Total:</span>
-                  <span className="text-xl font-bold text-[var(--roshogolpo-footer)]">₹{total.toFixed(2)}</span>
+                  <span className="text-sm sm:text-lg font-semibold">Total:</span>
+                  <span className="text-xl font-bold text-[var(--roshogolpo-gold)]">₹{total.toFixed(2)}</span>
                 </div>
 
                 <div className="space-y-2">
                   <Button
-                    className="w-full bg-[var(--roshogolpo-footer)] hover:bg-[var(--roshogolpo-hover)] text-white"
+                    className="w-full bg-[var(--roshogolpo-gold)] hover:bg-[var(--roshogolpo-hover)] text-white"
                     onClick={() => setIsOpen(false)}
                   >
                     <Link href="/checkout" className="w-full">

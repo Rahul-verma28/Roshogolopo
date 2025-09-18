@@ -40,16 +40,16 @@ function TrustUs() {
         transition={{ delay: 0.2, duration: 0.5 }}
         className="mb-8"
       >
-        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+        <p className="text-sm sm:text-lg text-gray-600 max-w-2xl mx-auto">
           You Can Trust Us
         </p>
 
-        <h2 className="text-4xl lg:text-5xl font-bold text-[var(--roshogolpo-footer)] mb-6 font-playfair">
+        <h2 className="text-2xl lg:text-4xl font-bold text-[var(--roshogolpo-gold)] mb-6 font-playfair">
           Clean, Authentic And Sustainable
         </h2>
       </motion.div>
 
-      <div className="flex justify-center items-center space-x-8 md:space-x-28">
+      <div className="flex justify-center items-center gap-3 sm:gap-16">
         {trustBadges.map((badge, index) => (
           <motion.div
             key={badge.id}
@@ -66,7 +66,7 @@ function TrustUs() {
                 className="object-contain"
               />
             </div>
-            <span className="text-sm text-gray-600 font-medium">
+            <span className="text-xs sm:text-sm text-gray-600 font-medium">
               {badge.name}
             </span>
           </motion.div>

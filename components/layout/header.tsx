@@ -44,7 +44,7 @@ export function Header() {
               />
             </div>
             <div className="">
-              <h1 className="text-xl sm:text-3xl font-bold text-[var(--roshogolpo-footer)] font-playfair">
+              <h1 className="text-xl sm:text-3xl font-bold text-[var(--roshogolpo-gold)] font-playfair">
                 Roshogolpo
               </h1>
               <p className="text-[0.6rem] text-[var(--roshogolpo-hover)] font-medium">
@@ -92,7 +92,7 @@ export function Header() {
                     variant="ghost"
                     size="sm"
                     onClick={() => setIsSearchOpen(true)}
-                    className="text-[var(--roshogolpo-footer)] hover:text-[var(--roshogolpo-hover)] hover:cursor-pointer hover:bg-[var(--bg-roshogolpo-gold)]"
+                    className="text-[var(--roshogolpo-gold)] hover:text-[var(--roshogolpo-hover)] hover:cursor-pointer hover:bg-[var(--bg-roshogolpo-gold)]"
                   >
                     <Search className="size-md" />
                   </Button>
@@ -103,7 +103,7 @@ export function Header() {
             <Button
               variant="ghost"
               size="sm"
-              className="relative text-[var(--roshogolpo-footer)] hover:text-[var(--roshogolpo-hover)] hover:cursor-pointer hover:bg-[var(--bg-roshogolpo-gold)]"
+              className="relative text-[var(--roshogolpo-gold)] hover:text-[var(--roshogolpo-hover)] hover:cursor-pointer hover:bg-[var(--bg-roshogolpo-gold)]"
             >
               <User className="size-md" />
             </Button>
@@ -111,7 +111,7 @@ export function Header() {
               <Button
                 variant="ghost"
                 size="sm"
-                className="relative text-[var(--roshogolpo-footer)] hover:text-[var(--roshogolpo-hover)] hover:cursor-pointer hover:bg-[var(--bg-roshogolpo-gold)]"
+                className="relative text-[var(--roshogolpo-gold)] hover:text-[var(--roshogolpo-hover)] hover:cursor-pointer hover:bg-[var(--bg-roshogolpo-gold)]"
               >
                 <ShoppingCart className="size-md" />
               </Button>
@@ -121,7 +121,7 @@ export function Header() {
             <Button
               variant="ghost"
               size="sm"
-              className="md:hidden text-[var(--roshogolpo-footer)] hover:text-[var(--roshogolpo-hover)] hover:cursor-pointer hover:bg-[var(--bg-roshogolpo-gold)]"
+              className="md:hidden text-[var(--roshogolpo-gold)] hover:text-[var(--roshogolpo-hover)] hover:cursor-pointer hover:bg-[var(--bg-roshogolpo-gold)]"
               onClick={() => dispatch(toggleMobileMenu())}
             >
               {isMobileMenuOpen ? (
@@ -148,7 +148,7 @@ export function Header() {
                   <Link
                     key={item.name}
                     href={item.href}
-                    className="text-sm font-medium text-[var(--roshogolpo-footer)] hover:text-[var(--roshogolpo-hover)] hover:cursor-pointer transition-colors duration-200"
+                    className="text-xs sm:text-sm font-medium text-[var(--roshogolpo-gold)] hover:text-[var(--roshogolpo-hover)] hover:cursor-pointer transition-colors duration-200"
                     onClick={() => dispatch(closeMobileMenu())}
                   >
                     {item.name}

@@ -16,12 +16,11 @@
 :root {
   /* Custom Roshogolpo brand colors */
   --roshogolpo-header: #fffae6;
-  --roshogolpo-footer: #b39402;
+  --roshogolpo-gold: #b39402;
   --roshogolpo-active: #af2037;
   --roshogolpo-hover: #710014;
   --roshogolpo-light: #ede9dd;
-  --roshogolpo-gold: #d4af37;
-  --roshogolpo-cream: #f5f5dc;
+  --roshogolpo-cream: #EDE9DD;
 
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
@@ -135,7 +134,6 @@
 
   /* Adding custom Roshogolpo colors to theme */
   --color-roshogolpo-header: var(--roshogolpo-header);
-  --color-roshogolpo-footer: var(--roshogolpo-footer);
   --color-roshogolpo-hover: var(--roshogolpo-hover);
   --color-roshogolpo-light: var(--roshogolpo-light);
   --color-roshogolpo-gold: var(--roshogolpo-gold);

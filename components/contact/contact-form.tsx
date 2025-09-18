@@ -62,7 +62,7 @@ export function ContactForm() {
         >
           <Card className="border-0 shadow-lg">
             <CardContent className="p-8">
-              <h2 className="text-3xl font-bold text-[var(--roshogolpo-footer)] mb-6 font-playfair">
+              <h2 className="text-3xl font-bold text-[var(--roshogolpo-gold)] mb-6 font-playfair">
                 Send us a Message
               </h2>
               <p className="text-gray-600 mb-8">
@@ -73,7 +73,7 @@ export function ContactForm() {
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label htmlFor="name" className="block text-xs sm:text-sm font-medium text-gray-700 mb-2">
                       Full Name *
                     </label>
                     <Input
@@ -83,11 +83,11 @@ export function ContactForm() {
                       required
                       value={formData.name}
                       onChange={handleChange}
-                      className="border-2 border-gray-200 focus:border-[var(--roshogolpo-footer)]"
+                      className="border-2 border-gray-200 focus:border-[var(--roshogolpo-gold)]"
                     />
                   </div>
                   <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label htmlFor="email" className="block text-xs sm:text-sm font-medium text-gray-700 mb-2">
                       Email Address *
                     </label>
                     <Input
@@ -97,14 +97,14 @@ export function ContactForm() {
                       required
                       value={formData.email}
                       onChange={handleChange}
-                      className="border-2 border-gray-200 focus:border-[var(--roshogolpo-footer)]"
+                      className="border-2 border-gray-200 focus:border-[var(--roshogolpo-gold)]"
                     />
                   </div>
                 </div>
 
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
-                    <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label htmlFor="phone" className="block text-xs sm:text-sm font-medium text-gray-700 mb-2">
                       Phone Number
                     </label>
                     <Input
@@ -113,11 +113,11 @@ export function ContactForm() {
                       type="tel"
                       value={formData.phone}
                       onChange={handleChange}
-                      className="border-2 border-gray-200 focus:border-[var(--roshogolpo-footer)]"
+                      className="border-2 border-gray-200 focus:border-[var(--roshogolpo-gold)]"
                     />
                   </div>
                   <div>
-                    <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label htmlFor="subject" className="block text-xs sm:text-sm font-medium text-gray-700 mb-2">
                       Subject *
                     </label>
                     <Input
@@ -127,13 +127,13 @@ export function ContactForm() {
                       required
                       value={formData.subject}
                       onChange={handleChange}
-                      className="border-2 border-gray-200 focus:border-[var(--roshogolpo-footer)]"
+                      className="border-2 border-gray-200 focus:border-[var(--roshogolpo-gold)]"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="message" className="block text-xs sm:text-sm font-medium text-gray-700 mb-2">
                     Message *
                   </label>
                   <Textarea
@@ -143,7 +143,7 @@ export function ContactForm() {
                     rows={6}
                     value={formData.message}
                     onChange={handleChange}
-                    className="border-2 border-gray-200 focus:border-[var(--roshogolpo-footer)]"
+                    className="border-2 border-gray-200 focus:border-[var(--roshogolpo-gold)]"
                     placeholder="Tell us about your inquiry, custom order requirements, or just say hello..."
                   />
                 </div>
@@ -151,7 +151,7 @@ export function ContactForm() {
                 <Button
                   type="submit"
                   disabled={isSubmitting || isSubmitted}
-                  className="w-full bg-[var(--roshogolpo-footer)] hover:bg-[var(--roshogolpo-hover)] text-white py-3 text-lg font-semibold"
+                  className="w-full bg-[var(--roshogolpo-gold)] hover:bg-[var(--roshogolpo-hover)] text-white py-3 text-sm sm:text-lg font-semibold"
                 >
                   {isSubmitted ? (
                     <>

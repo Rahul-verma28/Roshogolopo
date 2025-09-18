@@ -32,7 +32,7 @@ const collections = [
     id: "snacks",
     title: "Morning & Evening Snacks",
     description: "Soul of Kolkata street food culture",
-    image: "/placeholder-38mbw.png",
+    image: "/radha-ballavi-bengali-snack.jpg",
     icon: Coffee,
     color: "from-green-100 to-teal-100",
     items: ["Radha Ballavi", "Kachori", "Singara", "Chop"],
@@ -42,7 +42,7 @@ const collections = [
     id: "packages",
     title: "Package Items",
     description: "Curated selection of authentic Bengal flavors",
-    image: "/placeholder-3h072.png",
+    image: "/traditional-sandesh-bengali-sweet.jpg",
     icon: Gift,
     color: "from-blue-100 to-indigo-100",
     items: ["Darjeeling Tea", "Sundarban Honey", "Nabadwip Ghee", "Traditional Snacks"],
@@ -52,7 +52,7 @@ const collections = [
 
 export function CollectionsSection() {
   return (
-    <section className="py-20 bg-white">
+    <section className="py-5 sm:py-10 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
@@ -60,19 +60,19 @@ export function CollectionsSection() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-6"
         >
-          <h2 className="text-4xl lg:text-5xl font-bold text-[var(--roshogolpo-footer)] mb-6 font-playfair">
+          <h2 className="text-2xl lg:text-4xl font-bold text-[var(--roshogolpo-gold)] mb-3 font-playfair">
             Our Sweet Collections
           </h2>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-sm sm:text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
             From time-honored classics to innovative fusion creations, discover the perfect sweet for every moment and
             celebration.
           </p>
         </motion.div>
 
         {/* Collections Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-8">
           {collections.map((collection, index) => {
             const IconComponent = collection.icon
             return (
@@ -83,7 +83,7 @@ export function CollectionsSection() {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
               >
-                <Card className="group hover:shadow-xl transition-all duration-300 border-0 overflow-hidden bg-gradient-to-br from-white to-gray-50">
+                <Card className="group hover:shadow-xl transition-all duration-300 border-0 overflow-hidden bg-gradient-to-br from-white to-gray-50 p-0">
                   <CardContent className="p-0">
                     {/* Image */}
                     <div className="relative h-48 overflow-hidden">
@@ -95,24 +95,24 @@ export function CollectionsSection() {
                         className="object-cover group-hover:scale-110 transition-transform duration-500"
                       />
                       <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-full p-2">
-                        <IconComponent className="h-5 w-5 text-[var(--roshogolpo-footer)]" />
+                        <IconComponent className="h-5 w-5 text-[var(--roshogolpo-gold)]" />
                       </div>
                     </div>
 
                     {/* Content */}
-                    <div className="p-6">
-                      <h3 className="text-xl font-bold text-[var(--roshogolpo-footer)] mb-2 font-playfair">
+                    <div className="p-2 sm:p-4 space-y-3">
+                      <h3 className="text-sm sm:text-lg font-bold text-[var(--roshogolpo-gold)] font-playfair line-clamp-1">
                         {collection.title}
                       </h3>
-                      <p className="text-gray-600 text-sm mb-4 leading-relaxed">{collection.description}</p>
+                      <p className="text-gray-600 text-xs sm:text-sm leading-relaxed line-clamp-2">{collection.description}</p>
 
                       {/* Items List */}
-                      <div className="mb-6">
+                      <div className="mb-4 hidden sm:block">
                         <div className="flex flex-wrap gap-1">
                           {collection.items.map((item, itemIndex) => (
                             <span
                               key={itemIndex}
-                              className="text-xs bg-[var(--roshogolpo-light)] text-[var(--roshogolpo-footer)] px-2 py-1 rounded-full"
+                              className="text-xs bg-[var(--roshogolpo-light)] text-[var(--roshogolpo-gold)] px-2 py-1 rounded-full"
                             >
                               {item}
                             </span>
@@ -123,7 +123,7 @@ export function CollectionsSection() {
                       {/* CTA Button */}
                       <Button
                         asChild
-                        className="w-full bg-[var(--roshogolpo-footer)] hover:bg-[var(--roshogolpo-hover)] text-white group/btn"
+                        className="w-full bg-[var(--roshogolpo-gold)] hover:bg-[var(--roshogolpo-hover)] text-white group/btn"
                       >
                         <Link href={collection.href}>
                           Explore Collection
@@ -150,7 +150,7 @@ export function CollectionsSection() {
             asChild
             variant="outline"
             size="lg"
-            className="border-[var(--roshogolpo-footer)] text-[var(--roshogolpo-footer)] hover:bg-[var(--roshogolpo-footer)] hover:text-white px-8 py-3 text-lg font-semibold group bg-transparent"
+            className="border-[var(--roshogolpo-gold)] text-[var(--roshogolpo-gold)] hover:bg-[var(--roshogolpo-gold)] hover:text-white px-8 py-3 text-sm sm:text-lg font-semibold group bg-transparent"
           >
             <Link href="/products">
               View All Products

@@ -86,7 +86,7 @@ export function ProductReviews({ productId }: ProductReviewsProps) {
         viewport={{ once: true }}
         className="mb-12"
       >
-        <h2 className="text-3xl lg:text-4xl font-bold text-[var(--roshogolpo-footer)] mb-8 font-playfair">
+        <h2 className="text-3xl lg:text-4xl font-bold text-[var(--roshogolpo-gold)] mb-8 font-playfair">
           Customer Reviews
         </h2>
 
@@ -94,7 +94,7 @@ export function ProductReviews({ productId }: ProductReviewsProps) {
         <div className="grid md:grid-cols-2 gap-8 mb-8">
           <div className="text-center md:text-left">
             <div className="flex items-center justify-center md:justify-start space-x-2 mb-2">
-              <span className="text-4xl font-bold text-[var(--roshogolpo-footer)]">{averageRating.toFixed(1)}</span>
+              <span className="text-4xl font-bold text-[var(--roshogolpo-gold)]">{averageRating.toFixed(1)}</span>
               <div className="flex space-x-1">
                 {[...Array(5)].map((_, i) => (
                   <Star
@@ -114,14 +114,14 @@ export function ProductReviews({ productId }: ProductReviewsProps) {
           <div className="space-y-2">
             {ratingDistribution.map(({ rating, count, percentage }) => (
               <div key={rating} className="flex items-center space-x-3">
-                <span className="text-sm w-8">{rating}★</span>
+                <span className="text-xs sm:text-sm w-8">{rating}★</span>
                 <div className="flex-1 bg-gray-200 rounded-full h-2">
                   <div
                     className="bg-[var(--roshogolpo-gold)] h-2 rounded-full transition-all duration-500"
                     style={{ width: `${percentage}%` }}
                   />
                 </div>
-                <span className="text-sm text-gray-600 w-8">{count}</span>
+                <span className="text-xs sm:text-sm text-gray-600 w-8">{count}</span>
               </div>
             ))}
           </div>
@@ -131,7 +131,7 @@ export function ProductReviews({ productId }: ProductReviewsProps) {
         <div className="mb-8">
           <Button
             onClick={() => setShowReviewForm(!showReviewForm)}
-            className="bg-[var(--roshogolpo-footer)] hover:bg-[var(--roshogolpo-hover)] text-white"
+            className="bg-[var(--roshogolpo-gold)] hover:bg-[var(--roshogolpo-hover)] text-white"
           >
             Write a Review
           </Button>
@@ -149,7 +149,7 @@ export function ProductReviews({ productId }: ProductReviewsProps) {
               <CardContent className="p-6">
                 <form onSubmit={handleSubmitReview} className="space-y-4">
                   <div>
-                    <label className="block text-sm font-medium mb-2">Your Name</label>
+                    <label className="block text-xs sm:text-sm font-medium mb-2">Your Name</label>
                     <Input
                       value={newReview.name}
                       onChange={(e) => setNewReview({ ...newReview, name: e.target.value })}
@@ -158,7 +158,7 @@ export function ProductReviews({ productId }: ProductReviewsProps) {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium mb-2">Rating</label>
+                    <label className="block text-xs sm:text-sm font-medium mb-2">Rating</label>
                     <div className="flex space-x-1">
                       {[1, 2, 3, 4, 5].map((rating) => (
                         <button
@@ -180,7 +180,7 @@ export function ProductReviews({ productId }: ProductReviewsProps) {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium mb-2">Your Review</label>
+                    <label className="block text-xs sm:text-sm font-medium mb-2">Your Review</label>
                     <Textarea
                       value={newReview.comment}
                       onChange={(e) => setNewReview({ ...newReview, comment: e.target.value })}
@@ -191,7 +191,7 @@ export function ProductReviews({ productId }: ProductReviewsProps) {
                   </div>
 
                   <div className="flex space-x-3">
-                    <Button type="submit" className="bg-[var(--roshogolpo-footer)] hover:bg-[var(--roshogolpo-hover)]">
+                    <Button type="submit" className="bg-[var(--roshogolpo-gold)] hover:bg-[var(--roshogolpo-hover)]">
                       Submit Review
                     </Button>
                     <Button type="button" variant="outline" onClick={() => setShowReviewForm(false)}>
@@ -219,12 +219,12 @@ export function ProductReviews({ productId }: ProductReviewsProps) {
               <CardContent className="p-6">
                 <div className="flex items-start space-x-4">
                   <div className="w-12 h-12 bg-[var(--roshogolpo-light)] rounded-full flex items-center justify-center">
-                    <User className="h-6 w-6 text-[var(--roshogolpo-footer)]" />
+                    <User className="h-6 w-6 text-[var(--roshogolpo-gold)]" />
                   </div>
                   <div className="flex-1">
                     <div className="flex items-center justify-between mb-2">
                       <div>
-                        <h4 className="font-semibold text-[var(--roshogolpo-footer)]">{review.name}</h4>
+                        <h4 className="font-semibold text-[var(--roshogolpo-gold)]">{review.name}</h4>
                         <div className="flex items-center space-x-2">
                           <div className="flex space-x-1">
                             {[...Array(5)].map((_, i) => (
@@ -238,13 +238,13 @@ export function ProductReviews({ productId }: ProductReviewsProps) {
                               />
                             ))}
                           </div>
-                          <span className="text-sm text-gray-600">{new Date(review.date).toLocaleDateString()}</span>
+                          <span className="text-xs sm:text-sm text-gray-600">{new Date(review.date).toLocaleDateString()}</span>
                         </div>
                       </div>
                     </div>
                     <p className="text-gray-700 mb-3 leading-relaxed">{review.comment}</p>
                     <div className="flex items-center space-x-4">
-                      <button className="flex items-center space-x-1 text-sm text-gray-600 hover:text-[var(--roshogolpo-footer)]">
+                      <button className="flex items-center space-x-1 text-xs sm:text-sm text-gray-600 hover:text-[var(--roshogolpo-gold)]">
                         <ThumbsUp className="h-4 w-4" />
                         <span>Helpful ({review.helpful})</span>
                       </button>

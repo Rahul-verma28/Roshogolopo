@@ -58,20 +58,20 @@ const testimonials = [
 
 export function TestimonialsSection() {
   return (
-    <section className="py-20 bg-white">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-5 sm:py-10 bg-white">
+      <div className="container mx-auto sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-6"
         >
-          <h2 className="text-4xl lg:text-5xl font-bold text-[var(--roshogolpo-footer)] mb-6 font-playfair">
+          <h2 className="text-2xl lg:text-4xl font-bold text-[var(--roshogolpo-gold)] mb-6 font-playfair">
             What Our Customers Say
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-sm sm:text-lg text-gray-600 max-w-2xl mx-auto">
             Don't just take our word for it. Here's what our sweet-loving
             community has to say about their Roshogolpo experience.
           </p>
@@ -86,11 +86,11 @@ export function TestimonialsSection() {
             }}
             className="w-full relative"
           >
-            <div className="absolute right-0 -top-5 flex">
-              <CarouselPrevious />
-              <CarouselNext />
+            <div className="absolute -top-2 right-10 flex sm:space-x-4">
+              <CarouselPrevious className="h-8 w-8 sm:h-10 sm:w-10" />
+              <CarouselNext className="h-8 w-8 sm:h-10 sm:w-10" />
             </div>
-            <CarouselContent className="ml-2">
+            <CarouselContent className="p-0">
               {testimonials.map((testimonial) => (
                 <CarouselItem
                   key={`${testimonial.name}-${testimonial.location}`}
@@ -120,22 +120,22 @@ export function TestimonialsSection() {
                         </div>
 
                         {/* Testimonial Text */}
-                        <blockquote className="text-gray-700 mb-6 leading-relaxed italic">
+                        <blockquote className="text-gray-700 mb-6 text-xs sm:text-md leading-relaxed italic">
                           "{testimonial.text}"
                         </blockquote>
 
                         {/* Customer Info */}
                         <div className="flex items-center space-x-4">
                           <div className="w-12 h-12 rounded-full bg-[var(--roshogolpo-light)] flex items-center justify-center">
-                            <span className="text-[var(--roshogolpo-footer)] font-semibold text-lg">
+                            <span className="text-[var(--roshogolpo-gold)] font-semibold text-sm sm:text-lg">
                               {testimonial.name.charAt(0)}
                             </span>
                           </div>
                           <div>
-                            <div className="font-semibold text-[var(--roshogolpo-footer)]">
+                            <div className="font-semibold text-[var(--roshogolpo-gold)]">
                               {testimonial.name}
                             </div>
-                            <div className="text-sm text-gray-600">
+                            <div className="text-xs sm:text-sm text-gray-600">
                               {testimonial.location}
                             </div>
                           </div>

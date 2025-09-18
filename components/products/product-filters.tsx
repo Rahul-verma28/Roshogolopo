@@ -43,8 +43,8 @@ export function ProductFilters() {
                 px-4 py-2 rounded-full font-medium transition-all duration-200 flex items-center space-x-2
                 ${
                   isActive
-                    ? "bg-[var(--roshogolpo-footer)] text-white hover:bg-[var(--roshogolpo-hover)]"
-                    : "border-[var(--roshogolpo-footer)] text-[var(--roshogolpo-footer)] hover:bg-[var(--roshogolpo-footer)] hover:text-white bg-transparent"
+                    ? "bg-[var(--roshogolpo-gold)] text-white hover:bg-[var(--roshogolpo-hover)]"
+                    : "border-[var(--roshogolpo-gold)] text-[var(--roshogolpo-gold)] hover:bg-[var(--roshogolpo-gold)] hover:text-white bg-transparent"
                 }
               `}
             >
@@ -54,7 +54,7 @@ export function ProductFilters() {
                 className={`
                   text-xs px-2 py-0.5 rounded-full
                   ${
-                    isActive ? "bg-white/20 text-white" : "bg-[var(--roshogolpo-light)] text-[var(--roshogolpo-footer)]"
+                    isActive ? "bg-white/20 text-white" : "bg-[var(--roshogolpo-light)] text-[var(--roshogolpo-gold)]"
                   }
                 `}
               >

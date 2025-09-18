@@ -57,7 +57,7 @@ export function ContactInfo() {
           className="space-y-8"
         >
           <div>
-            <h2 className="text-3xl font-bold text-[var(--roshogolpo-footer)] mb-6 font-playfair">
+            <h2 className="text-3xl font-bold text-[var(--roshogolpo-gold)] mb-6 font-playfair">
               Contact Information
             </h2>
             <p className="text-gray-600 mb-8">
@@ -82,13 +82,13 @@ export function ContactInfo() {
                     <CardContent className="p-6">
                       <div className="flex items-start space-x-4">
                         <div className="bg-[var(--roshogolpo-light)] rounded-full w-12 h-12 flex items-center justify-center flex-shrink-0">
-                          <IconComponent className="h-6 w-6 text-[var(--roshogolpo-footer)]" />
+                          <IconComponent className="h-6 w-6 text-[var(--roshogolpo-gold)]" />
                         </div>
                         <div>
-                          <h3 className="text-lg font-semibold text-[var(--roshogolpo-footer)] mb-2">{item.title}</h3>
+                          <h3 className="text-sm sm:text-lg font-semibold text-[var(--roshogolpo-gold)] mb-2">{item.title}</h3>
                           <div className="space-y-1">
                             {item.details.map((detail, detailIndex) => (
-                              <p key={detailIndex} className="text-gray-600 text-sm">
+                              <p key={detailIndex} className="text-gray-600 text-xs sm:text-sm">
                                 {detail}
                               </p>
                             ))}
@@ -104,7 +104,7 @@ export function ContactInfo() {
 
           {/* Services */}
           <div className="mt-12">
-            <h3 className="text-2xl font-bold text-[var(--roshogolpo-footer)] mb-6 font-playfair">Our Services</h3>
+            <h3 className="text-2xl font-bold text-[var(--roshogolpo-gold)] mb-6 font-playfair">Our Services</h3>
             <div className="space-y-4">
               {services.map((service, index) => {
                 const IconComponent = service.icon
@@ -119,10 +119,10 @@ export function ContactInfo() {
                     <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow duration-300 bg-white">
                       <CardContent className="p-4">
                         <div className="flex items-center space-x-3">
-                          <IconComponent className="h-5 w-5 text-[var(--roshogolpo-footer)]" />
+                          <IconComponent className="h-5 w-5 text-[var(--roshogolpo-gold)]" />
                           <div>
-                            <h4 className="font-semibold text-[var(--roshogolpo-footer)]">{service.title}</h4>
-                            <p className="text-sm text-gray-600">{service.description}</p>
+                            <h4 className="font-semibold text-[var(--roshogolpo-gold)]">{service.title}</h4>
+                            <p className="text-xs sm:text-sm text-gray-600">{service.description}</p>
                           </div>
                         </div>
                       </CardContent>

@@ -72,10 +72,10 @@ export function Footer() {
               />
             </div>
             <div>
-              <h3 className="text-xl font-bold font-playfair text-[var(--roshogolpo-footer)]">
+              <h3 className="text-xl font-bold font-playfair text-[var(--roshogolpo-gold)]">
                 ROSHOGOLPO
               </h3>
-              <p className="text-sm text-[var(--roshogolpo-hover)]/70 font-medium">
+              <p className="text-xs sm:text-sm text-[var(--roshogolpo-hover)]/70 font-medium">
                 রসগোল্প
               </p>
               <p className="text-xs text-[var(--roshogolpo-hover)]/60">
@@ -98,7 +98,7 @@ export function Footer() {
           {/* Navigation Sections */}
           {navigationLinks.map((section, index) => (
             <div key={index} className="space-y-4 pb-4 sm:pb-0">
-              <h4 className="text-lg font-semibold text-[var(--roshogolpo-footer)]">
+              <h4 className="text-sm sm:text-lg font-semibold text-[var(--roshogolpo-gold)]">
                 {section.title}
               </h4>
               <nav className="flex flex-col space-y-2">
@@ -106,7 +106,7 @@ export function Footer() {
                   <Link
                     key={linkIndex}
                     href={link.href}
-                    className="text-sm text-gray-700 hover:text-[var(--roshogolpo-hover)] transition-colors duration-200 w-fit relative after:content-[''] after:absolute after:w-full after:h-[2px] after:bg-[var(--roshogolpo-hover)] after:left-0 after:-bottom-1 after:rounded-full after:origin-left after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:ease-out"
+                    className="text-xs sm:text-sm text-gray-700 hover:text-[var(--roshogolpo-hover)] transition-colors duration-200 w-fit relative after:content-[''] after:absolute after:w-full after:h-[2px] after:bg-[var(--roshogolpo-hover)] after:left-0 after:-bottom-1 after:rounded-full after:origin-left after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:ease-out"
                   >
                     {link.label}
                   </Link>
@@ -117,7 +117,7 @@ export function Footer() {
 
           {/* Newsletter & Contact */}
           <div className="space-y-4">
-            <h4 className="text-lg font-semibold text-[var(--roshogolpo-footer)]">
+            <h4 className="text-sm sm:text-lg font-semibold text-[var(--roshogolpo-gold)]">
               We'd Be Happy To Assist You!
             </h4>
             <div className="space-y-3">
@@ -135,22 +135,22 @@ export function Footer() {
 
             <div className="grid grid-cols-2 gap-4 pt-4">
               <div>
-                <p className="text-md font-medium text-[var(--roshogolpo-footer)]">
+                <p className="text-md font-medium text-[var(--roshogolpo-gold)]">
                   Timing :
                 </p>
                 {timingInfo.map((time, index) => (
-                  <p key={index} className="text-sm text-gray-700">
+                  <p key={index} className="text-xs sm:text-sm text-gray-700">
                     {time}
                   </p>
                 ))}
               </div>
               <div>
-                <p className="text-md font-medium text-[var(--roshogolpo-footer)]">
+                <p className="text-md font-medium text-[var(--roshogolpo-gold)]">
                   Email :
                 </p>
                 <a
                   href={`mailto:${emailInfo}`}
-                  className="text-sm text-gray-700 transition-colors"
+                  className="text-xs sm:text-sm text-gray-700 transition-colors"
                 >
                   {emailInfo}
                 </a>
@@ -183,7 +183,7 @@ export function Footer() {
                 <a
                   key={index}
                   href={social.href}
-                  className="text-[var(--roshogolpo-footer)] hover:text-[#710014] transition-colors"
+                  className="text-[var(--roshogolpo-gold)] hover:text-[#710014] transition-colors"
                   aria-label={social.label}
                 >
                   <social.icon className="h-5 w-5" />
@@ -195,10 +195,10 @@ export function Footer() {
 
         {/* Copyright */}
         <div className="border-t border-[#b39402]/20 pt-6 flex flex-col md:flex-row justify-between items-center space-y-2 md:space-y-0">
-          <p className="text-sm text-[var(--roshogolpo-hover)]/70">
+          <p className="text-xs sm:text-sm text-[var(--roshogolpo-hover)]/70">
             © 2025 Copyright. Roshogolpo Sweet Shop LLP. All Rights Reserved
           </p>
-          <p className="text-sm text-[var(--roshogolpo-hover)]/70">
+          <p className="text-xs sm:text-sm text-[var(--roshogolpo-hover)]/70">
             Site By: <Link target="_blank" href="https://www.linkedin.com/in/rahul-verma-09227a263" className="font-medium hover:underline text-[var(--roshogolpo-hover)] transition-colors">Rahul Verma</Link>
           </p>
         </div>

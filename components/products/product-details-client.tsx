@@ -63,17 +63,17 @@ export function ProductDetailsClient({ product }: ProductDetailsClientProps) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="flex items-center space-x-2 text-sm text-gray-600 mb-8"
+          className="flex items-center space-x-2 text-xs sm:text-sm text-gray-600 mb-8"
         >
-          <Link href="/" className="hover:text-[var(--roshogolpo-footer)]">
+          <Link href="/" className="hover:text-[var(--roshogolpo-gold)]">
             Home
           </Link>
           <span>/</span>
-          <Link href="/products" className="hover:text-[var(--roshogolpo-footer)]">
+          <Link href="/products" className="hover:text-[var(--roshogolpo-gold)]">
             Products
           </Link>
           <span>/</span>
-          <span className="text-[var(--roshogolpo-footer)] font-medium">{product.name}</span>
+          <span className="text-[var(--roshogolpo-gold)] font-medium">{product.name}</span>
         </motion.div>
 
         {/* Back Button */}
@@ -86,7 +86,7 @@ export function ProductDetailsClient({ product }: ProductDetailsClientProps) {
           <Button
             variant="ghost"
             asChild
-            className="text-[var(--roshogolpo-footer)] hover:text-[var(--roshogolpo-hover)]"
+            className="text-[var(--roshogolpo-gold)] hover:text-[var(--roshogolpo-hover)]"
           >
             <Link href="/products">
               <ArrowLeft className="h-4 w-4 mr-2" />
@@ -127,7 +127,7 @@ export function ProductDetailsClient({ product }: ProductDetailsClientProps) {
                   onClick={() => setSelectedImage(index)}
                   className={`relative w-20 h-20 rounded-lg overflow-hidden border-2 transition-all ${
                     selectedImage === index
-                      ? "border-[var(--roshogolpo-footer)]"
+                      ? "border-[var(--roshogolpo-gold)]"
                       : "border-gray-200 hover:border-gray-300"
                   }`}
                 >
@@ -150,13 +150,13 @@ export function ProductDetailsClient({ product }: ProductDetailsClientProps) {
             className="space-y-6"
           >
             {/* Category Badge */}
-            <Badge className="bg-[var(--roshogolpo-light)] text-[var(--roshogolpo-footer)] hover:bg-[var(--roshogolpo-light)]">
+            <Badge className="bg-[var(--roshogolpo-light)] text-[var(--roshogolpo-gold)] hover:bg-[var(--roshogolpo-light)]">
               {product.category.charAt(0).toUpperCase() + product.category.slice(1)} Collection
             </Badge>
 
             {/* Title and Rating */}
             <div>
-              <h1 className="text-3xl lg:text-4xl font-bold text-[var(--roshogolpo-footer)] mb-3 font-playfair">
+              <h1 className="text-3xl lg:text-4xl font-bold text-[var(--roshogolpo-gold)] mb-3 font-playfair">
                 {product.name}
               </h1>
               {product.rating && (
@@ -173,14 +173,14 @@ export function ProductDetailsClient({ product }: ProductDetailsClientProps) {
                       />
                     ))}
                   </div>
-                  <span className="text-sm text-gray-600">({product.rating}) • 127 reviews</span>
+                  <span className="text-xs sm:text-sm text-gray-600">({product.rating}) • 127 reviews</span>
                 </div>
               )}
             </div>
 
             {/* Price */}
             <div className="flex items-center space-x-3">
-              <span className="text-3xl font-bold text-[var(--roshogolpo-footer)]">₹{product.price}</span>
+              <span className="text-3xl font-bold text-[var(--roshogolpo-gold)]">₹{product.price}</span>
               {product.originalPrice && (
                 <span className="text-xl text-gray-500 line-through">₹{product.originalPrice}</span>
               )}
@@ -192,33 +192,33 @@ export function ProductDetailsClient({ product }: ProductDetailsClientProps) {
             </div>
 
             {/* Description */}
-            <p className="text-gray-700 leading-relaxed text-lg">{product.description}</p>
+            <p className="text-gray-700 leading-relaxed text-sm sm:text-lg">{product.description}</p>
 
             {/* Product Details */}
             <div className="grid grid-cols-2 gap-4">
               {product.weight && (
                 <div className="flex items-center space-x-2">
-                  <Package className="h-5 w-5 text-[var(--roshogolpo-footer)]" />
+                  <Package className="h-5 w-5 text-[var(--roshogolpo-gold)]" />
                   <div>
-                    <div className="text-sm text-gray-600">Weight</div>
+                    <div className="text-xs sm:text-sm text-gray-600">Weight</div>
                     <div className="font-medium">{product.weight}</div>
                   </div>
                 </div>
               )}
               {product.shelfLife && (
                 <div className="flex items-center space-x-2">
-                  <Clock className="h-5 w-5 text-[var(--roshogolpo-footer)]" />
+                  <Clock className="h-5 w-5 text-[var(--roshogolpo-gold)]" />
                   <div>
-                    <div className="text-sm text-gray-600">Shelf Life</div>
+                    <div className="text-xs sm:text-sm text-gray-600">Shelf Life</div>
                     <div className="font-medium">{product.shelfLife}</div>
                   </div>
                 </div>
               )}
               {product.origin && (
                 <div className="flex items-center space-x-2 col-span-2">
-                  <MapPin className="h-5 w-5 text-[var(--roshogolpo-footer)]" />
+                  <MapPin className="h-5 w-5 text-[var(--roshogolpo-gold)]" />
                   <div>
-                    <div className="text-sm text-gray-600">Origin</div>
+                    <div className="text-xs sm:text-sm text-gray-600">Origin</div>
                     <div className="font-medium">{product.origin}</div>
                   </div>
                 </div>
@@ -228,13 +228,13 @@ export function ProductDetailsClient({ product }: ProductDetailsClientProps) {
             {/* Ingredients */}
             {product.ingredients && product.ingredients.length > 0 && (
               <div>
-                <h3 className="text-lg font-semibold text-[var(--roshogolpo-footer)] mb-3">Ingredients</h3>
+                <h3 className="text-sm sm:text-lg font-semibold text-[var(--roshogolpo-gold)] mb-3">Ingredients</h3>
                 <div className="flex flex-wrap gap-2">
                   {product.ingredients.map((ingredient, index) => (
                     <Badge
                       key={index}
                       variant="outline"
-                      className="border-[var(--roshogolpo-light)] text-[var(--roshogolpo-footer)]"
+                      className="border-[var(--roshogolpo-light)] text-[var(--roshogolpo-gold)]"
                     >
                       {ingredient}
                     </Badge>
@@ -248,7 +248,7 @@ export function ProductDetailsClient({ product }: ProductDetailsClientProps) {
             {/* Quantity and Add to Cart */}
             <div className="space-y-4">
               <div className="flex items-center space-x-4">
-                <span className="text-lg font-medium">Quantity:</span>
+                <span className="text-sm sm:text-lg font-medium">Quantity:</span>
                 <div className="flex items-center border border-gray-300 rounded-lg">
                   <Button
                     variant="ghost"
@@ -259,7 +259,7 @@ export function ProductDetailsClient({ product }: ProductDetailsClientProps) {
                   >
                     <Minus className="h-4 w-4" />
                   </Button>
-                  <span className="px-4 py-2 text-lg font-medium min-w-[3rem] text-center">{quantity}</span>
+                  <span className="px-4 py-2 text-sm sm:text-lg font-medium min-w-[3rem] text-center">{quantity}</span>
                   <Button
                     variant="ghost"
                     size="sm"
@@ -277,7 +277,7 @@ export function ProductDetailsClient({ product }: ProductDetailsClientProps) {
                   onClick={handleAddToCart}
                   disabled={!product.inStock}
                   size="lg"
-                  className="flex-1 bg-[var(--roshogolpo-footer)] hover:bg-[var(--roshogolpo-hover)] text-white py-3 text-lg font-semibold"
+                  className="flex-1 bg-[var(--roshogolpo-gold)] hover:bg-[var(--roshogolpo-hover)] text-white py-3 text-sm sm:text-lg font-semibold"
                 >
                   {isAddedToCart ? (
                     <>
@@ -300,7 +300,7 @@ export function ProductDetailsClient({ product }: ProductDetailsClientProps) {
               </div>
 
               {isInCart && (
-                <p className="text-sm text-green-600 flex items-center">
+                <p className="text-xs sm:text-sm text-green-600 flex items-center">
                   <Check className="h-4 w-4 mr-1" />
                   This item is already in your cart
                 </p>
@@ -310,8 +310,8 @@ export function ProductDetailsClient({ product }: ProductDetailsClientProps) {
             {/* Delivery Info */}
             <Card className="bg-[var(--roshogolpo-light)]/30 border-[var(--roshogolpo-light)]">
               <CardContent className="p-4">
-                <h4 className="font-semibold text-[var(--roshogolpo-footer)] mb-2">Delivery Information</h4>
-                <ul className="text-sm text-gray-600 space-y-1">
+                <h4 className="font-semibold text-[var(--roshogolpo-gold)] mb-2">Delivery Information</h4>
+                <ul className="text-xs sm:text-sm text-gray-600 space-y-1">
                   <li>• Free delivery on orders above ₹500</li>
                   <li>• Same day delivery available in Greater Noida</li>
                   <li>• Fresh sweets prepared daily</li>

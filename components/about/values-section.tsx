@@ -4,7 +4,7 @@ import { motion } from "framer-motion"
 
 export function ValuesSection() {
   return (
-    <section className="py-20 bg-gradient-to-br from-[var(--roshogolpo-footer)] to-[var(--roshogolpo-hover)] text-white relative overflow-hidden">
+    <section className="py-5 sm:py-10 bg-gradient-to-br from-[var(--roshogolpo-gold)] to-[var(--roshogolpo-hover)] text-white relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-10 left-10 w-32 h-32 rounded-full bg-white blur-3xl"></div>
@@ -19,7 +19,7 @@ export function ValuesSection() {
           viewport={{ once: true }}
           className="text-center max-w-4xl mx-auto"
         >
-          <h2 className="text-4xl lg:text-5xl font-bold mb-8 font-playfair">Let's Create Sweet Memories Together</h2>
+          <h2 className="text-2xl lg:text-4xl font-bold mb-8 font-playfair">Let's Create Sweet Memories Together</h2>
           <p className="text-xl mb-8 opacity-90 leading-relaxed">
             Because every sweet has a story, and we can't wait to hear yours!
           </p>

@@ -26,21 +26,14 @@ const collections = [
   {
     id: "snacks",
     title: "Morning & Evening Snacks",
-    image: "/bengali-snack-mix-traditional-package.jpg",
+    image: "/classic-roshogolla-bengali-sweet.jpg",
     href: "/products?category=snacks",
     productCount: 41,
   },
   {
     id: "packages",
     title: "Package Items",
-    image: "/nabadwip-ghee-traditional-package.jpg",
-    href: "/products?category=packages",
-    productCount: 15,
-  },
-  {
-    id: "packages",
-    title: "Package Items",
-    image: "/nabadwip-ghee-traditional-package.jpg",
+    image: "/traditional-sandesh-bengali-sweet.jpg",
     href: "/products?category=packages",
     productCount: 15,
   },
@@ -50,7 +43,9 @@ const CategoryGrid = () => {
   return (
     <section className="pb-10">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-4xl font-bold mb-12">Shop Our Range</h2>
+        <h2 className="text-2xl lg:text-4xl font-bold text-[var(--roshogolpo-gold)] mb-3 font-playfair">
+          Shop Our Range
+        </h2>
 
         <Carousel
           opts={{
@@ -77,11 +72,11 @@ const CategoryGrid = () => {
                     className="object-cover transition-transform duration-300 group-hover:scale-105 mb-20"
                   />
                   <div className="absolute inset-0 bg-black/20 transition-opacity group-hover:bg-black/30" />
-                  <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                    <h3 className="text-lg font-semibold">
+                  <div className="absolute bottom-0 left-0 right-0 p-2 sm:p-6 text-white">
+                    <h3 className="text-sm sm:text-lg font-semibold">
                       {collection.title}
                     </h3>
-                    <p className="text-sm mb-1">
+                    <p className="text-xs sm:text-sm ">
                       {collection.productCount} Products
                     </p>
                   </div>
@@ -89,8 +84,8 @@ const CategoryGrid = () => {
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious className="left-2" />
-          <CarouselNext className="right-2" />
+          <CarouselPrevious className="h-8 w-8 left-2" />
+          <CarouselNext className="h-8 w-8 right-2" />
         </Carousel>
       </div>
     </section>

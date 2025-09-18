@@ -28,10 +28,10 @@ export function RelatedProducts({ currentProduct }: RelatedProductsProps) {
         viewport={{ once: true }}
         className="text-center mb-12"
       >
-        <h2 className="text-3xl lg:text-4xl font-bold text-[var(--roshogolpo-footer)] mb-4 font-playfair">
+        <h2 className="text-3xl lg:text-4xl font-bold text-[var(--roshogolpo-gold)] mb-4 font-playfair">
           You Might Also Like
         </h2>
-        <p className="text-lg text-gray-600">More delicious treats from our {currentProduct.category} collection</p>
+        <p className="text-sm sm:text-lg text-gray-600">More delicious treats from our {currentProduct.category} collection</p>
       </motion.div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">

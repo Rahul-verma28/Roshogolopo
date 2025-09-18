@@ -51,7 +51,7 @@ export function ProductsClient() {
   if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[var(--roshogolpo-footer)]"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[var(--roshogolpo-gold)]"></div>
       </div>
     )
   }
@@ -65,10 +65,10 @@ export function ProductsClient() {
         transition={{ duration: 0.6 }}
         className="text-center mb-12"
       >
-        <h1 className="text-4xl lg:text-5xl font-bold text-[var(--roshogolpo-footer)] mb-4 font-playfair">
+        <h1 className="text-2xl lg:text-4xl font-bold text-[var(--roshogolpo-gold)] mb-4 font-playfair">
           Our Sweet Collection
         </h1>
-        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+        <p className="text-sm sm:text-lg text-gray-600 max-w-2xl mx-auto">
           Discover authentic Bengali sweets, fusion treats, traditional snacks, and curated packages crafted with love
           and tradition.
         </p>
@@ -92,14 +92,14 @@ export function ProductsClient() {
           {currentFilter !== "all" && (
             <span className="ml-1">
               in{" "}
-              <span className="font-semibold text-[var(--roshogolpo-footer)]">
+              <span className="font-semibold text-[var(--roshogolpo-gold)]">
                 {currentFilter.charAt(0).toUpperCase() + currentFilter.slice(1)}
               </span>
             </span>
           )}
           {searchQuery && (
             <span className="ml-1">
-              for "<span className="font-semibold text-[var(--roshogolpo-footer)]">{searchQuery}</span>"
+              for "<span className="font-semibold text-[var(--roshogolpo-gold)]">{searchQuery}</span>"
             </span>
           )}
         </p>
@@ -114,14 +114,14 @@ export function ProductsClient() {
       {filteredProducts.length === 0 && (
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center py-16">
           <div className="text-6xl mb-4">🍯</div>
-          <h3 className="text-2xl font-bold text-[var(--roshogolpo-footer)] mb-2">No sweets found</h3>
+          <h3 className="text-2xl font-bold text-[var(--roshogolpo-gold)] mb-2">No sweets found</h3>
           <p className="text-gray-600 mb-6">Try adjusting your search or filter to find the perfect sweet for you.</p>
           <button
             onClick={() => {
               dispatch(setFilter("all"))
               dispatch(setSearchQuery(""))
             }}
-            className="text-[var(--roshogolpo-footer)] hover:text-[var(--roshogolpo-hover)] font-semibold"
+            className="text-[var(--roshogolpo-gold)] hover:text-[var(--roshogolpo-hover)] font-semibold"
           >
             Clear all filters
           </button>

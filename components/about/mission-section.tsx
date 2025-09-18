@@ -33,7 +33,7 @@ const missions = [
 
 export function MissionSection() {
   return (
-    <section className="py-20 bg-white">
+    <section className="py-5 sm:py-10 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -42,10 +42,10 @@ export function MissionSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl lg:text-5xl font-bold text-[var(--roshogolpo-footer)] mb-6 font-playfair">
+          <h2 className="text-2xl lg:text-4xl font-bold text-[var(--roshogolpo-gold)] mb-6 font-playfair">
             Our Mission & Values
           </h2>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-sm sm:text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
             Guided by our commitment to authenticity, innovation, and the preservation of Bengali sweet heritage
           </p>
         </motion.div>
@@ -63,10 +63,10 @@ export function MissionSection() {
               >
                 <Card className="h-full border-0 shadow-lg hover:shadow-xl transition-all duration-300 text-center group">
                   <CardContent className="p-8">
-                    <div className="bg-[var(--roshogolpo-light)] rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-6 group-hover:bg-[var(--roshogolpo-footer)] transition-colors duration-300">
-                      <IconComponent className="h-8 w-8 text-[var(--roshogolpo-footer)] group-hover:text-white transition-colors duration-300" />
+                    <div className="bg-[var(--roshogolpo-light)] rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-6 group-hover:bg-[var(--roshogolpo-gold)] transition-colors duration-300">
+                      <IconComponent className="h-8 w-8 text-[var(--roshogolpo-gold)] group-hover:text-white transition-colors duration-300" />
                     </div>
-                    <h3 className="text-xl font-bold text-[var(--roshogolpo-footer)] mb-4 font-playfair">
+                    <h3 className="text-xl font-bold text-[var(--roshogolpo-gold)] mb-4 font-playfair">
                       {mission.title}
                     </h3>
                     <p className="text-gray-600 leading-relaxed">{mission.description}</p>

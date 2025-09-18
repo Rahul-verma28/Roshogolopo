@@ -19,10 +19,10 @@ export function LocationMap() {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl lg:text-4xl font-bold text-[var(--roshogolpo-footer)] mb-6 font-playfair">
+          <h2 className="text-3xl lg:text-4xl font-bold text-[var(--roshogolpo-gold)] mb-6 font-playfair">
             Find Us Here
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-sm sm:text-lg text-gray-600 max-w-2xl mx-auto">
             Located in the heart of Greater Noida at Spectrum@Metro, we're easily accessible and waiting to serve you
             the finest Bengali sweets.
           </p>
@@ -40,8 +40,8 @@ export function LocationMap() {
                 {/* Placeholder for map - in a real app, you'd use Google Maps or similar */}
                 <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-[var(--roshogolpo-light)] to-[var(--roshogolpo-cream)]">
                   <div className="text-center">
-                    <Navigation className="h-12 w-12 text-[var(--roshogolpo-footer)] mx-auto mb-4" />
-                    <h3 className="text-xl font-bold text-[var(--roshogolpo-footer)] mb-2">Interactive Map</h3>
+                    <Navigation className="h-12 w-12 text-[var(--roshogolpo-gold)] mx-auto mb-4" />
+                    <h3 className="text-xl font-bold text-[var(--roshogolpo-gold)] mb-2">Interactive Map</h3>
                     <p className="text-gray-600 mb-4">
                       Shop No EF-09, First Floor
                       <br />
@@ -50,7 +50,7 @@ export function LocationMap() {
                     <div className="flex flex-col sm:flex-row gap-3 justify-center">
                       <Button
                         asChild
-                        className="bg-[var(--roshogolpo-footer)] hover:bg-[var(--roshogolpo-hover)] text-white"
+                        className="bg-[var(--roshogolpo-gold)] hover:bg-[var(--roshogolpo-hover)] text-white"
                       >
                         <a
                           href="https://maps.google.com/?q=Spectrum+Metro+Phase+2+Noida+Sector+75"
@@ -64,7 +64,7 @@ export function LocationMap() {
                       <Button
                         asChild
                         variant="outline"
-                        className="border-[var(--roshogolpo-footer)] text-[var(--roshogolpo-footer)] hover:bg-[var(--roshogolpo-footer)] hover:text-white bg-transparent"
+                        className="border-[var(--roshogolpo-gold)] text-[var(--roshogolpo-gold)] hover:bg-[var(--roshogolpo-gold)] hover:text-white bg-transparent"
                       >
                         <a href="tel:+919899743002">Call for Directions</a>
                       </Button>
@@ -86,25 +86,25 @@ export function LocationMap() {
         >
           <Card className="border-0 shadow-lg bg-[var(--roshogolpo-light)]/30">
             <CardContent className="p-8">
-              <h3 className="text-2xl font-bold text-[var(--roshogolpo-footer)] mb-4 font-playfair">How to Reach Us</h3>
+              <h3 className="text-2xl font-bold text-[var(--roshogolpo-gold)] mb-4 font-playfair">How to Reach Us</h3>
               <div className="grid md:grid-cols-3 gap-6 text-left">
                 <div>
-                  <h4 className="font-semibold text-[var(--roshogolpo-footer)] mb-2">By Metro</h4>
-                  <p className="text-gray-600 text-sm">
+                  <h4 className="font-semibold text-[var(--roshogolpo-gold)] mb-2">By Metro</h4>
+                  <p className="text-gray-600 text-xs sm:text-sm">
                     Take the Blue Line to Sector 51 Metro Station. Spectrum@Metro is directly connected to the metro
                     station.
                   </p>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-[var(--roshogolpo-footer)] mb-2">By Car</h4>
-                  <p className="text-gray-600 text-sm">
+                  <h4 className="font-semibold text-[var(--roshogolpo-gold)] mb-2">By Car</h4>
+                  <p className="text-gray-600 text-xs sm:text-sm">
                     Ample parking available at Spectrum@Metro. Take the Noida-Greater Noida Expressway and exit at
                     Sector 75.
                   </p>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-[var(--roshogolpo-footer)] mb-2">By Bus</h4>
-                  <p className="text-gray-600 text-sm">
+                  <h4 className="font-semibold text-[var(--roshogolpo-gold)] mb-2">By Bus</h4>
+                  <p className="text-gray-600 text-xs sm:text-sm">
                     Multiple bus routes serve the area. Get off at Spectrum Metro bus stop and take the elevator to the
                     first floor.
                   </p>

@@ -14,7 +14,7 @@ const stats = [
 
 export function StorySection() {
   return (
-    <section className="py-20 bg-gradient-to-br from-[var(--roshogolpo-light)] to-[var(--roshogolpo-cream)]">
+    <section className="py-5 sm:py-10 bg-gradient-to-br from-[var(--roshogolpo-light)] to-[var(--roshogolpo-cream)]">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Content */}
@@ -31,10 +31,10 @@ export function StorySection() {
               viewport={{ once: true }}
               className="mb-6"
             >
-              <span className="text-[var(--roshogolpo-hover)] font-semibold text-sm uppercase tracking-wider">
+              <span className="text-[var(--roshogolpo-hover)] font-semibold text-xs sm:text-sm uppercase tracking-wider">
                 Our Story
               </span>
-              <h2 className="text-4xl lg:text-5xl font-bold text-[var(--roshogolpo-footer)] mt-2 mb-6 font-playfair leading-tight">
+              <h2 className="text-2xl lg:text-4xl font-bold text-[var(--roshogolpo-gold)] mt-2 mb-6 font-playfair leading-tight">
                 Every Sweet Tells a Story
               </h2>
             </motion.div>
@@ -46,7 +46,7 @@ export function StorySection() {
               viewport={{ once: true }}
               className="space-y-6 text-gray-700 leading-relaxed"
             >
-              <p className="text-lg">
+              <p className="text-sm sm:text-lg">
                 At Roshogolpo, we believe that every sweet tells a story. Rooted in the rich culinary heritage of
                 Bengal, our mission is to preserve, celebrate, and reinvent traditional Bengali sweets.
               </p>
@@ -75,10 +75,10 @@ export function StorySection() {
                 return (
                   <div key={index} className="text-center">
                     <div className="bg-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-3 shadow-lg">
-                      <IconComponent className="h-6 w-6 text-[var(--roshogolpo-footer)]" />
+                      <IconComponent className="h-6 w-6 text-[var(--roshogolpo-gold)]" />
                     </div>
-                    <div className="text-2xl font-bold text-[var(--roshogolpo-footer)]">{stat.value}</div>
-                    <div className="text-sm text-gray-600">{stat.label}</div>
+                    <div className="text-2xl font-bold text-[var(--roshogolpo-gold)]">{stat.value}</div>
+                    <div className="text-xs sm:text-sm text-gray-600">{stat.label}</div>
                   </div>
                 )
               })}
@@ -93,7 +93,7 @@ export function StorySection() {
               <Button
                 asChild
                 size="lg"
-                className="bg-[var(--roshogolpo-footer)] hover:bg-[var(--roshogolpo-hover)] text-white px-8 py-3 text-lg font-semibold group"
+                className="bg-[var(--roshogolpo-gold)] hover:bg-[var(--roshogolpo-hover)] text-white px-8 py-3 text-sm sm:text-lg font-semibold group"
               >
                 <Link href="/about">
                   Read Our Full Story
@@ -134,7 +134,7 @@ export function StorySection() {
                 viewport={{ once: true }}
                 className="absolute bottom-8 left-8 right-8 bg-white/95 backdrop-blur-sm rounded-2xl p-6 shadow-lg"
               >
-                <blockquote className="text-[var(--roshogolpo-footer)] font-playfair text-lg italic text-center">
+                <blockquote className="text-[var(--roshogolpo-gold)] font-playfair text-sm sm:text-lg italic text-center">
                   "Let's create sweet memories together – because every sweet has a story, and we can't wait to hear
                   yours!"
                 </blockquote>

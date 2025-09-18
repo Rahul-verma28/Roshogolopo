@@ -31,8 +31,8 @@ const FourPointSection = () => {
         {FourPoints.map((point, index) => (
           <div key={index}>
             <Image src={point.img} alt={point.title} width={60} height={60} className="mb-4 mx-auto" />
-            <h3 className="text-lg ">{point.title}</h3>
-            <p>{point.description}</p>
+            <h3 className="text-sm sm:text-lg ">{point.title}</h3>
+            <p className="text-xs sm:text-sm">{point.description}</p>
           </div>
         ))}
       </div>

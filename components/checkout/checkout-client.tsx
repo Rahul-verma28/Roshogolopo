@@ -62,7 +62,7 @@ export function CheckoutClient() {
       <div className="container mx-auto px-4 py-16 text-center">
         <h1 className="text-2xl font-bold text-gray-600 mb-4">Your cart is empty</h1>
         <p className="text-gray-500 mb-8">Add some delicious Bengali sweets to get started!</p>
-        <Button asChild className="bg-[var(--roshogolpo-footer)] hover:bg-[var(--roshogolpo-hover)]">
+        <Button asChild className="bg-[var(--roshogolpo-gold)] hover:bg-[var(--roshogolpo-hover)]">
           <a href="/products">Browse Products</a>
         </Button>
       </div>
@@ -82,7 +82,7 @@ export function CheckoutClient() {
           <p className="text-gray-600 mb-6">
             Thank you for your order! We'll contact you shortly to confirm delivery details.
           </p>
-          <p className="text-sm text-gray-500">Redirecting to home page in a few seconds...</p>
+          <p className="text-xs sm:text-sm text-gray-500">Redirecting to home page in a few seconds...</p>
         </motion.div>
       </div>
     )
@@ -91,7 +91,7 @@ export function CheckoutClient() {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="max-w-6xl mx-auto">
-        <h1 className="text-3xl font-bold text-[var(--roshogolpo-footer)] mb-8 font-playfair">Checkout</h1>
+        <h1 className="text-3xl font-bold text-[var(--roshogolpo-gold)] mb-8 font-playfair">Checkout</h1>
 
         <div className="grid lg:grid-cols-2 gap-8">
           {/* Order Form */}
@@ -106,28 +106,28 @@ export function CheckoutClient() {
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium mb-2">First Name *</label>
+                    <label className="block text-xs sm:text-sm font-medium mb-2">First Name *</label>
                     <Input name="firstName" required value={formData.firstName} onChange={handleInputChange} />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium mb-2">Last Name *</label>
+                    <label className="block text-xs sm:text-sm font-medium mb-2">Last Name *</label>
                     <Input name="lastName" required value={formData.lastName} onChange={handleInputChange} />
                   </div>
                 </div>
 
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium mb-2">Email *</label>
+                    <label className="block text-xs sm:text-sm font-medium mb-2">Email *</label>
                     <Input name="email" type="email" required value={formData.email} onChange={handleInputChange} />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium mb-2">Phone *</label>
+                    <label className="block text-xs sm:text-sm font-medium mb-2">Phone *</label>
                     <Input name="phone" type="tel" required value={formData.phone} onChange={handleInputChange} />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium mb-2">Address *</label>
+                  <label className="block text-xs sm:text-sm font-medium mb-2">Address *</label>
                   <Textarea
                     name="address"
                     required
@@ -139,17 +139,17 @@ export function CheckoutClient() {
 
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium mb-2">City *</label>
+                    <label className="block text-xs sm:text-sm font-medium mb-2">City *</label>
                     <Input name="city" required value={formData.city} onChange={handleInputChange} />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium mb-2">PIN Code *</label>
+                    <label className="block text-xs sm:text-sm font-medium mb-2">PIN Code *</label>
                     <Input name="pincode" required value={formData.pincode} onChange={handleInputChange} />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium mb-2">Special Instructions</label>
+                  <label className="block text-xs sm:text-sm font-medium mb-2">Special Instructions</label>
                   <Textarea
                     name="notes"
                     value={formData.notes}
@@ -161,7 +161,7 @@ export function CheckoutClient() {
                 <Button
                   type="submit"
                   disabled={isProcessing}
-                  className="w-full bg-[var(--roshogolpo-footer)] hover:bg-[var(--roshogolpo-hover)] text-white py-3"
+                  className="w-full bg-[var(--roshogolpo-gold)] hover:bg-[var(--roshogolpo-hover)] text-white py-3"
                 >
                   {isProcessing ? (
                     <>
@@ -189,7 +189,7 @@ export function CheckoutClient() {
                       <Image src={item.image || "/placeholder.svg"} alt={item.name} fill className="object-cover" />
                     </div>
                     <div className="flex-1">
-                      <h4 className="font-medium text-sm">{item.name}</h4>
+                      <h4 className="font-medium text-xs sm:text-sm">{item.name}</h4>
                       <p className="text-xs text-gray-500">Qty: {item.quantity}</p>
                     </div>
                     <p className="font-semibold">₹{(item.price * item.quantity).toFixed(2)}</p>
@@ -208,9 +208,9 @@ export function CheckoutClient() {
                     <span className="text-green-600">Free</span>
                   </div>
                   <Separator />
-                  <div className="flex justify-between text-lg font-bold">
+                  <div className="flex justify-between text-sm sm:text-lg font-bold">
                     <span>Total:</span>
-                    <span className="text-[var(--roshogolpo-footer)]">₹{total.toFixed(2)}</span>
+                    <span className="text-[var(--roshogolpo-gold)]">₹{total.toFixed(2)}</span>
                   </div>
                 </div>
               </CardContent>
@@ -222,15 +222,15 @@ export function CheckoutClient() {
                 <div className="space-y-3">
                   <div className="flex items-center gap-3">
                     <Shield className="h-5 w-5 text-green-500" />
-                    <span className="text-sm">Secure & Safe Payment</span>
+                    <span className="text-xs sm:text-sm">Secure & Safe Payment</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <Truck className="h-5 w-5 text-blue-500" />
-                    <span className="text-sm">Free Delivery in Greater Noida</span>
+                    <span className="text-xs sm:text-sm">Free Delivery in Greater Noida</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <CheckCircle className="h-5 w-5 text-green-500" />
-                    <span className="text-sm">Fresh & Quality Guaranteed</span>
+                    <span className="text-xs sm:text-sm">Fresh & Quality Guaranteed</span>
                   </div>
                 </div>
               </CardContent>

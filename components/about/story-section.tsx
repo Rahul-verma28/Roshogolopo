@@ -6,7 +6,7 @@ import { Card, CardContent } from "@/components/ui/card"
 
 export function StorySection() {
   return (
-    <section className="py-20 bg-white">
+    <section className="py-5 sm:py-10 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -15,10 +15,10 @@ export function StorySection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl lg:text-5xl font-bold text-[var(--roshogolpo-footer)] mb-6 font-playfair">
+          <h2 className="text-2xl lg:text-4xl font-bold text-[var(--roshogolpo-gold)] mb-6 font-playfair">
             The Roshogolpo Story
           </h2>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-sm sm:text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
             A journey of passion, tradition, and innovation in preserving Bengal's sweet heritage
           </p>
         </motion.div>
@@ -47,7 +47,7 @@ export function StorySection() {
             viewport={{ once: true }}
             className="space-y-6"
           >
-            <h3 className="text-2xl font-bold text-[var(--roshogolpo-footer)] font-playfair">
+            <h3 className="text-2xl font-bold text-[var(--roshogolpo-gold)] font-playfair">
               Preserving Heritage, Embracing Innovation
             </h3>
             <div className="space-y-4 text-gray-700 leading-relaxed">
@@ -102,7 +102,7 @@ export function StorySection() {
                     <Image src={item.image || "/placeholder.svg"} alt={item.title} fill className="object-cover" />
                   </div>
                   <div className="p-6">
-                    <h4 className="text-xl font-bold text-[var(--roshogolpo-footer)] mb-3 font-playfair">
+                    <h4 className="text-xl font-bold text-[var(--roshogolpo-gold)] mb-3 font-playfair">
                       {item.title}
                     </h4>
                     <p className="text-gray-600 leading-relaxed">{item.description}</p>

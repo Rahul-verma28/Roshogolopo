@@ -5,7 +5,7 @@ import { MapPin, Phone, Clock } from "lucide-react"
 
 export function ContactHero() {
   return (
-    <section className="py-20 bg-gradient-to-br from-[var(--roshogolpo-header)] via-[var(--roshogolpo-cream)] to-[var(--roshogolpo-light)]">
+    <section className="py-5 sm:py-10 bg-gradient-to-br from-[var(--roshogolpo-cream)] via-[var(--roshogolpo-cream)] to-[var(--roshogolpo-light)]">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -13,10 +13,10 @@ export function ContactHero() {
           transition={{ duration: 0.8 }}
           className="text-center mb-12"
         >
-          <h1 className="text-4xl lg:text-6xl font-bold text-[var(--roshogolpo-footer)] mb-6 font-playfair">
+          <h1 className="text-4xl lg:text-6xl font-bold text-[var(--roshogolpo-gold)] mb-6 font-playfair">
             Get in Touch
           </h1>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-sm sm:text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
             We'd love to hear from you! Visit our store, give us a call, or send us a message. Let's create sweet
             memories together.
           </p>
@@ -30,10 +30,10 @@ export function ContactHero() {
             className="text-center"
           >
             <div className="bg-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 shadow-lg">
-              <MapPin className="h-6 w-6 text-[var(--roshogolpo-footer)]" />
+              <MapPin className="h-6 w-6 text-[var(--roshogolpo-gold)]" />
             </div>
-            <h3 className="text-lg font-semibold text-[var(--roshogolpo-footer)] mb-2">Visit Our Store</h3>
-            <p className="text-gray-600 text-sm">
+            <h3 className="text-sm sm:text-lg font-semibold text-[var(--roshogolpo-gold)] mb-2">Visit Our Store</h3>
+            <p className="text-gray-600 text-xs sm:text-sm">
               Shop No EF-09, First Floor
               <br />
               Spectrum@Metro, Phase 2
@@ -49,15 +49,15 @@ export function ContactHero() {
             className="text-center"
           >
             <div className="bg-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 shadow-lg">
-              <Phone className="h-6 w-6 text-[var(--roshogolpo-footer)]" />
+              <Phone className="h-6 w-6 text-[var(--roshogolpo-gold)]" />
             </div>
-            <h3 className="text-lg font-semibold text-[var(--roshogolpo-footer)] mb-2">Call Us</h3>
-            <p className="text-gray-600 text-sm">
-              <a href="tel:+919899743002" className="hover:text-[var(--roshogolpo-footer)] transition-colors">
+            <h3 className="text-sm sm:text-lg font-semibold text-[var(--roshogolpo-gold)] mb-2">Call Us</h3>
+            <p className="text-gray-600 text-xs sm:text-sm">
+              <a href="tel:+919899743002" className="hover:text-[var(--roshogolpo-gold)] transition-colors">
                 +91 9899743002
               </a>
               <br />
-              <a href="tel:+918010245230" className="hover:text-[var(--roshogolpo-footer)] transition-colors">
+              <a href="tel:+918010245230" className="hover:text-[var(--roshogolpo-gold)] transition-colors">
                 +91 8010245230
               </a>
             </p>
@@ -70,10 +70,10 @@ export function ContactHero() {
             className="text-center"
           >
             <div className="bg-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 shadow-lg">
-              <Clock className="h-6 w-6 text-[var(--roshogolpo-footer)]" />
+              <Clock className="h-6 w-6 text-[var(--roshogolpo-gold)]" />
             </div>
-            <h3 className="text-lg font-semibold text-[var(--roshogolpo-footer)] mb-2">Business Hours</h3>
-            <p className="text-gray-600 text-sm">
+            <h3 className="text-sm sm:text-lg font-semibold text-[var(--roshogolpo-gold)] mb-2">Business Hours</h3>
+            <p className="text-gray-600 text-xs sm:text-sm">
               Monday - Sunday
               <br />
               9:00 AM - 9:00 PM

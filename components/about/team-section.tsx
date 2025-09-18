@@ -26,7 +26,7 @@ const teamMembers = [
 
 export function TeamSection() {
   return (
-    <section className="py-20 bg-gradient-to-br from-[var(--roshogolpo-light)] to-[var(--roshogolpo-cream)]">
+    <section className="py-5 sm:py-10 bg-gradient-to-br from-[var(--roshogolpo-light)] to-[var(--roshogolpo-cream)]">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -35,10 +35,10 @@ export function TeamSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl lg:text-5xl font-bold text-[var(--roshogolpo-footer)] mb-6 font-playfair">
+          <h2 className="text-2xl lg:text-4xl font-bold text-[var(--roshogolpo-gold)] mb-6 font-playfair">
             Meet the Team Behind Roshogolpo
           </h2>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-sm sm:text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
             The passionate founders who bring together culinary expertise and artistic vision to create sweet stories
           </p>
         </motion.div>
@@ -64,7 +64,7 @@ export function TeamSection() {
                       />
                     </div>
                     <div className="flex-1 text-center md:text-left">
-                      <h3 className="text-2xl font-bold text-[var(--roshogolpo-footer)] mb-2 font-playfair">
+                      <h3 className="text-2xl font-bold text-[var(--roshogolpo-gold)] mb-2 font-playfair">
                         {member.name}
                       </h3>
                       <p className="text-[var(--roshogolpo-hover)] font-semibold mb-4">{member.role}</p>
@@ -73,7 +73,7 @@ export function TeamSection() {
                         {member.expertise.map((skill, skillIndex) => (
                           <Badge
                             key={skillIndex}
-                            className="bg-[var(--roshogolpo-light)] text-[var(--roshogolpo-footer)] hover:bg-[var(--roshogolpo-light)]"
+                            className="bg-[var(--roshogolpo-light)] text-[var(--roshogolpo-gold)] hover:bg-[var(--roshogolpo-light)]"
                           >
                             {skill}
                           </Badge>
@@ -95,7 +95,7 @@ export function TeamSection() {
           viewport={{ once: true }}
           className="text-center"
         >
-          <h3 className="text-2xl font-bold text-[var(--roshogolpo-footer)] mb-6 font-playfair">Our Associates</h3>
+          <h3 className="text-2xl font-bold text-[var(--roshogolpo-gold)] mb-6 font-playfair">Our Associates</h3>
           <p className="text-gray-700 leading-relaxed max-w-4xl mx-auto">
             Supporting them is a diverse team of IIT and IIM alumni, media professionals, legal advisors, IT
             specialists, and hospitality experts. Together, they contribute to brand building, product development, and
