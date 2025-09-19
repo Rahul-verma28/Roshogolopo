@@ -16,7 +16,7 @@ import { OurSpeciality } from "@/components/home/our-speciality";
 
 export default function HomePage() {
   const breadcrumbSchema = generateBreadcrumbSchema([
-    { name: "Home", url: "https://roshogolpo.com" },
+    { name: "Home", url: "https://roshogolpo.in" },
   ]);
 
   return (
@@ -25,15 +25,15 @@ export default function HomePage() {
       <HeroSection />
       <MakingTrendy />
       <CategoryGrid />
-      <FourPointSection />
+      <TimelessTaste />
       <CollectionsSection />
       <OurSpeciality />
-      <TimelessTaste />
       <OurStory />
       {/* <StorySection /> */}
       <GuiltFreeRange />
       <TestimonialsSection />
       <TrustUs />
+      <FourPointSection />
       {/* <CTASection /> */}
     </div>
   );

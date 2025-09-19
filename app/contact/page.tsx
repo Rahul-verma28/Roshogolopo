@@ -16,8 +16,8 @@ export const metadata: Metadata = generateMetadata({
 
 export default function ContactPage() {
   const breadcrumbSchema = generateBreadcrumbSchema([
-    { name: "Home", url: "https://roshogolpo.com" },
-    { name: "Contact", url: "https://roshogolpo.com/contact" },
+    { name: "Home", url: "https://roshogolpo.in" },
+    { name: "Contact", url: "https://roshogolpo.in/contact" },
   ])
 
   return (

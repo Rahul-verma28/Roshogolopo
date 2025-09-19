@@ -14,8 +14,8 @@ export const metadata: Metadata = generateMetadata({
 
 export default function CheckoutPage() {
   const breadcrumbSchema = generateBreadcrumbSchema([
-    { name: "Home", url: "https://roshogolpo.com" },
-    { name: "Checkout", url: "https://roshogolpo.com/checkout" },
+    { name: "Home", url: "https://roshogolpo.in" },
+    { name: "Checkout", url: "https://roshogolpo.in/checkout" },
   ])
 
   return (

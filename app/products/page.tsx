@@ -13,8 +13,8 @@ export const metadata: Metadata = generateMetadata({
 
 export default function ProductsPage() {
   const breadcrumbSchema = generateBreadcrumbSchema([
-    { name: "Home", url: "https://roshogolpo.com" },
-    { name: "Products", url: "https://roshogolpo.com/products" },
+    { name: "Home", url: "https://roshogolpo.in" },
+    { name: "Products", url: "https://roshogolpo.in/products" },
   ])
 
   return (

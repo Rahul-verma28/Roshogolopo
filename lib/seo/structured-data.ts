@@ -7,11 +7,11 @@ export function generateOrganizationSchema() {
     name: "Roshogolpo",
     alternateName: "Roshogolpo Sweet Shop",
     description: "Authentic Bengali sweets and snacks from Kolkata, now in Greater Noida",
-    url: "https://roshogolpo.com",
-    logo: "https://roshogolpo.com/images/roshogolpo-logo.png",
-    image: "https://roshogolpo.com/images/roshogolpo-og.jpg",
+    url: "https://roshogolpo.in",
+    logo: "https://roshogolpo.in/images/roshogolpo-logo.png",
+    image: "https://roshogolpo.in/images/roshogolpo-og.jpg",
     telephone: "+91 9899743002",
-    email: "info@roshogolpo.com",
+    email: "info@roshogolpo.in",
     address: {
       "@type": "PostalAddress",
       streetAddress: "Shop No EF-09, First Floor, Spectrum@Metro, Phase 2",
@@ -45,12 +45,12 @@ export function generateLocalBusinessSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    "@id": "https://roshogolpo.com/#localbusiness",
+    "@id": "https://roshogolpo.in/#localbusiness",
     name: "Roshogolpo",
     description: "Authentic Bengali sweets and snacks from Kolkata, now in Greater Noida",
-    url: "https://roshogolpo.com",
+    url: "https://roshogolpo.in",
     telephone: "+91 9899743002",
-    email: "info@roshogolpo.com",
+    email: "info@roshogolpo.in",
     address: {
       "@type": "PostalAddress",
       streetAddress: "Shop No EF-09, First Floor, Spectrum@Metro, Phase 2",
@@ -76,7 +76,7 @@ export function generateProductSchema(product: Product) {
   return {
     "@context": "https://schema.org",
     "@type": "Product",
-    "@id": `https://roshogolpo.com/products/${product.id}#product`,
+    "@id": `https://roshogolpo.in/products/${product.id}#product`,
     name: product.name,
     description: product.description,
     image: product.images,
@@ -92,7 +92,7 @@ export function generateProductSchema(product: Product) {
     sku: product.id,
     offers: {
       "@type": "Offer",
-      url: `https://roshogolpo.com/products/${product.id}`,
+      url: `https://roshogolpo.in/products/${product.id}`,
       priceCurrency: "INR",
       price: product.price,
       availability: product.inStock ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
@@ -132,19 +132,19 @@ export function generateWebsiteSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "@id": "https://roshogolpo.com/#website",
-    url: "https://roshogolpo.com",
+    "@id": "https://roshogolpo.in/#website",
+    url: "https://roshogolpo.in",
     name: "Roshogolpo",
     description: "Authentic Bengali sweets and snacks from Kolkata, now in Greater Noida",
     publisher: {
-      "@id": "https://roshogolpo.com/#organization",
+      "@id": "https://roshogolpo.in/#organization",
     },
     potentialAction: [
       {
         "@type": "SearchAction",
         target: {
           "@type": "EntryPoint",
-          urlTemplate: "https://roshogolpo.com/products?search={search_term_string}",
+          urlTemplate: "https://roshogolpo.in/products?search={search_term_string}",
         },
         "query-input": "required name=search_term_string",
       },

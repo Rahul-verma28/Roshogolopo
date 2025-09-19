@@ -14,7 +14,7 @@ export function GuiltFreeRange() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="bg-brand-light rounded-lg sm:rounded-xl md:rounded-2xl mb-8 sm:mb-12 bg-[var(--roshogolpo-cream)] p-4 sm:p-6 md:p-8"
+          className="bg-brand-light rounded-lg sm:rounded-xl md:rounded-2xl bg-[var(--roshogolpo-cream)] p-4 sm:p-6 md:p-8"
         >
           <div className="flex flex-col md:flex-row gap-6 md:gap-8 items-center w-full">
             <div className="grid grid-cols-2 gap-3 sm:gap-4 w-full md:w-[60%]">

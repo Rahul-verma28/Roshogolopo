@@ -4,7 +4,7 @@ export const siteConfig = {
   name: "Roshogolpo - Kolkata's Timeless Sweets, Reimagined",
   description:
     "Authentic Bengali sweets and snacks from Kolkata, now in Greater Noida. Experience traditional Rasgulla, Sandesh, and innovative fusion sweets crafted with love and heritage.",
-  url: "https://roshogolpo.com",
+  url: "https://roshogolpo.in",
   ogImage: "/images/roshogolpo-og.jpg",
   keywords: [
     "Bengali sweets",

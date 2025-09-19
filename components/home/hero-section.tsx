@@ -8,7 +8,7 @@ import { ArrowRight, Star } from "lucide-react"
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden ">
+    <section className="relative flex items-center justify-center overflow-hidden ">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-10 left-10 w-32 h-32 rounded-full bg-[var(--roshogolpo-gold)] blur-3xl"></div>

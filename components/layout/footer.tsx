@@ -39,7 +39,7 @@ const navigationLinks = [
 ];
 
 const timingInfo = ["Monday To Sunday", "9:00 AM to 9:00 PM IST"];
-const emailInfo = "care@roshogolpo.com";
+const emailInfo = "@roshogolpo.in";
 
 const socialLinks = [
   { href: "#", icon: Facebook, label: "Facebook" },

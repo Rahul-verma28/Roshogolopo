@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: ["/api/", "/admin/", "/_next/"],
     },
-    sitemap: "https://roshogolpo.com/sitemap.xml",
+    sitemap: "https://roshogolpo.in/sitemap.xml",
   }
 }

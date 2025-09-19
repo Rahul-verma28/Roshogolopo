@@ -71,11 +71,17 @@ export function OurStory() {
             className="space-y-6 sm:space-y-8 md:space-y-10"
           >
             <div>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-4 sm:mb-6">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[var(--roshogolpo-gold)] mb-4 sm:mb-6">
                 Our Story
               </h2>
 
               <div className="space-y-3 sm:space-y-4 text-gray-600">
+                <p className="text-sm sm:text-base leading-relaxed">
+                  At Roshogolpo, we believe that every sweet tells a story.
+                  Rooted in the rich culinary heritage of Bengal, our mission is
+                  to preserve, celebrate, and reinvent traditional Bengali
+                  sweets.
+                </p>
                 <p className="text-sm sm:text-base leading-relaxed">
                   Roshogolpo's success stems from its blend of tradition,
                   innovation, and unwavering quality. Its dynamism is fueled by
