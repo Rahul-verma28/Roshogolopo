@@ -22,7 +22,7 @@ export function HeroSection() {
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
             className="text-center lg:text-left"
           >
             <motion.div
@@ -44,16 +44,16 @@ export function HeroSection() {
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.8 }}
+              transition={{ delay: 0.3, duration: 0.6 }}
               className="text-3xl sm:text-4xl lg:text-6xl font-bold text-[var(--roshogolpo-gold)] mb-6 font-playfair leading-tight"
             >
               Stories Wrapped in{" "}
-              <span className="text-[var(--roshogolpo-hover)] relative">
+              <span className="text-[var(--roshogolpo-active)] relative">
                 Sugar Syrup
                 <motion.div
                   initial={{ scaleX: 0 }}
                   animate={{ scaleX: 1 }}
-                  transition={{ delay: 1, duration: 0.8 }}
+                  transition={{ delay: 1, duration: 0.6 }}
                   className="absolute bottom-0 left-0 right-0 h-1 bg-[var(--roshogolpo-gold)] origin-left"
                 />
               </span>
@@ -72,7 +72,7 @@ export function HeroSection() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.7, duration: 0.6 }}
+              transition={{ delay: 0.5, duration: 0.6 }}
               className="grid grid-cols-2 gap-4 justify-center lg:justify-start"
             >
               <Button
@@ -120,14 +120,14 @@ export function HeroSection() {
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
             className="relative"
           >
             <div className="relative w-full h-[500px] lg:h-[600px]">
               <motion.div
                 initial={{ scale: 0.8, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
-                transition={{ delay: 0.4, duration: 0.8 }}
+                transition={{ delay: 0.2, duration: 0.6 }}
                 className="absolute inset-0 bg-gradient-to-br from-[var(--roshogolpo-gold)]/20 to-[var(--roshogolpo-hover)]/20 rounded-3xl"
               />
               <Image
@@ -146,7 +146,7 @@ export function HeroSection() {
                 className="absolute -top-4 -right-4 bg-white rounded-2xl p-4 shadow-lg border border-[var(--roshogolpo-light)]"
               >
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-[var(--roshogolpo-hover)]">50+</div>
+                  <div className="text-2xl font-bold text-[var(--roshogolpo-active)]">50+</div>
                   <div className="text-xs sm:text-sm text-gray-600">Sweet Varieties</div>
                 </div>
               </motion.div>
@@ -158,7 +158,7 @@ export function HeroSection() {
                 className="absolute -bottom-4 -left-4 bg-white rounded-2xl p-4 shadow-lg border border-[var(--roshogolpo-light)]"
               >
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-[var(--roshogolpo-hover)]">4.9★</div>
+                  <div className="text-2xl font-bold text-[var(--roshogolpo-active)]">4.9★</div>
                   <div className="text-xs sm:text-sm text-gray-600">Customer Rating</div>
                 </div>
               </motion.div>

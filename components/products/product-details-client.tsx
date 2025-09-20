@@ -86,7 +86,7 @@ export function ProductDetailsClient({ product }: ProductDetailsClientProps) {
           <Button
             variant="ghost"
             asChild
-            className="text-[var(--roshogolpo-gold)] hover:text-[var(--roshogolpo-hover)]"
+            className="text-[var(--roshogolpo-gold)] hover:text-[var(--roshogolpo-active)]"
           >
             <Link href="/products">
               <ArrowLeft className="h-4 w-4 mr-2" />

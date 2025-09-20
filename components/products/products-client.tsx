@@ -121,7 +121,7 @@ export function ProductsClient() {
               dispatch(setFilter("all"))
               dispatch(setSearchQuery(""))
             }}
-            className="text-[var(--roshogolpo-gold)] hover:text-[var(--roshogolpo-hover)] font-semibold"
+            className="text-[var(--roshogolpo-gold)] hover:text-[var(--roshogolpo-active)] font-semibold"
           >
             Clear all filters
           </button>
