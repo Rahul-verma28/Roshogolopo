@@ -73,7 +73,7 @@ export function StorySection() {
               {stats.map((stat, index) => {
                 const IconComponent = stat.icon
                 return (
-                  <div key={index} className="text-center">
+                  <div key={stat.label} className="text-center">
                     <div className="bg-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-3 shadow-lg">
                       <IconComponent className="h-6 w-6 text-[var(--roshogolpo-gold)]" />
                     </div>

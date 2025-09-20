@@ -39,7 +39,7 @@ const navigationLinks = [
 ];
 
 const timingInfo = ["Monday To Sunday", "9:00 AM to 9:00 PM IST"];
-const emailInfo = "@roshogolpo.in";
+const emailInfo = "support@roshogolpo.in";
 
 const socialLinks = [
   { href: "#", icon: Facebook, label: "Facebook" },
@@ -148,12 +148,12 @@ export function Footer() {
                 <p className="text-md font-medium text-[var(--roshogolpo-gold)]">
                   Email :
                 </p>
-                <a
+                <Link
                   href={`mailto:${emailInfo}`}
                   className="text-xs sm:text-sm text-gray-700 transition-colors"
                 >
                   {emailInfo}
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -180,14 +180,14 @@ export function Footer() {
             </p>
             <div className="flex items-center space-x-3">
               {socialLinks.map((social, index) => (
-                <a
-                  key={index}
+                <Link
+                  key={social.label}
                   href={social.href}
                   className="text-[var(--roshogolpo-gold)] hover:text-[#710014] transition-colors"
                   aria-label={social.label}
                 >
                   <social.icon className="h-5 w-5" />
-                </a>
+                </Link>
               ))}
             </div>
           </div>

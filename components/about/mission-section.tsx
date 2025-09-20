@@ -55,7 +55,7 @@ export function MissionSection() {
             const IconComponent = mission.icon
             return (
               <motion.div
-                key={index}
+                key={mission.title}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1, duration: 0.6 }}

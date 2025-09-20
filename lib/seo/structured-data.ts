@@ -9,9 +9,9 @@ export function generateOrganizationSchema() {
     description: "Authentic Bengali sweets and snacks from Kolkata, now in Greater Noida",
     url: "https://roshogolpo.in",
     logo: "https://roshogolpo.in/images/roshogolpo-logo.png",
-    image: "https://roshogolpo.in/images/roshogolpo-og.jpg",
+    image: "https://roshogolpo.in/images/roshogolpo-og.png",
     telephone: "+91 9899743002",
-    email: "info@roshogolpo.in",
+    email: "support@roshogolpo.in",
     address: {
       "@type": "PostalAddress",
       streetAddress: "Shop No EF-09, First Floor, Spectrum@Metro, Phase 2",
@@ -50,7 +50,7 @@ export function generateLocalBusinessSchema() {
     description: "Authentic Bengali sweets and snacks from Kolkata, now in Greater Noida",
     url: "https://roshogolpo.in",
     telephone: "+91 9899743002",
-    email: "info@roshogolpo.in",
+    email: "support@roshogolpo.in",
     address: {
       "@type": "PostalAddress",
       streetAddress: "Shop No EF-09, First Floor, Spectrum@Metro, Phase 2",

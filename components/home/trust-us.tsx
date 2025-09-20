@@ -45,7 +45,7 @@ function TrustUs() {
         </p>
 
         <h2 className="text-2xl lg:text-4xl font-bold text-[var(--roshogolpo-gold)] mb-6 font-playfair">
-          Clean, Authentic And Sustainable
+          Clean, Authentic & Sustainable
         </h2>
       </motion.div>
 

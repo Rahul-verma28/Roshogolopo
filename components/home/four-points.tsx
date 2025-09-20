@@ -29,7 +29,7 @@ const FourPointSection = () => {
     <section className="py-10 bg-[var(--roshogolpo-active)]">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-2 sm:grid-cols-4 gap-8 text-center text-white font-medium text-md">
         {FourPoints.map((point, index) => (
-          <div key={index}>
+          <div key={point.title} className="space-y-2">
             <Image src={point.img} alt={point.title} width={60} height={60} className="mb-4 mx-auto" />
             <h3 className="text-sm sm:text-lg ">{point.title}</h3>
             <p className="text-xs sm:text-sm">{point.description}</p>

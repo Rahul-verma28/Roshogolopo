@@ -103,7 +103,7 @@ export function ProductCard({ product }: ProductCardProps) {
               <div className="hidden sm:flex flex-wrap gap-1">
                 {product.ingredients.slice(0, 3).map((ingredient, index) => (
                   <span
-                    key={index}
+                    key={ingredient}
                     className="text-xs bg-[var(--roshogolpo-light)] text-[var(--roshogolpo-gold)] px-2 py-0.5 rounded-full"
                   >
                     {ingredient}

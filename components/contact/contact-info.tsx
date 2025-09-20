@@ -72,7 +72,7 @@ export function ContactInfo() {
               const IconComponent = item.icon
               return (
                 <motion.div
-                  key={index}
+                  key={item.title}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1, duration: 0.6 }}
@@ -110,7 +110,7 @@ export function ContactInfo() {
                 const IconComponent = service.icon
                 return (
                   <motion.div
-                    key={index}
+                    key={service.title}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.1, duration: 0.6 }}

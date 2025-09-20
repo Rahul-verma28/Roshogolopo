@@ -123,7 +123,7 @@ export function ProductDetailsClient({ product }: ProductDetailsClientProps) {
             <div className="flex space-x-3">
               {productImages.map((image, index) => (
                 <button
-                  key={index}
+                  key={image}
                   onClick={() => setSelectedImage(index)}
                   className={`relative w-20 h-20 rounded-lg overflow-hidden border-2 transition-all ${
                     selectedImage === index
@@ -230,9 +230,9 @@ export function ProductDetailsClient({ product }: ProductDetailsClientProps) {
               <div>
                 <h3 className="text-sm sm:text-lg font-semibold text-[var(--roshogolpo-gold)] mb-3">Ingredients</h3>
                 <div className="flex flex-wrap gap-2">
-                  {product.ingredients.map((ingredient, index) => (
+                  {product.ingredients.map((ingredient) => (
                     <Badge
-                      key={index}
+                      key={ingredient}
                       variant="outline"
                       className="border-[var(--roshogolpo-light)] text-[var(--roshogolpo-gold)]"
                     >

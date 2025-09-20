@@ -46,7 +46,7 @@ export function TeamSection() {
         <div className="grid lg:grid-cols-2 gap-12 mb-16">
           {teamMembers.map((member, index) => (
             <motion.div
-              key={index}
+              key={member.name}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.2, duration: 0.8 }}
