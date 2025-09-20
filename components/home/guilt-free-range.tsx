@@ -63,7 +63,7 @@ export function GuiltFreeRange() {
                   height={80}
                   className="object-cover w-16 sm:w-20 md:w-24 mb-4 sm:mb-6"
                 />
-                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[var(--roshogolpo-active)] mb-3 sm:mb-4">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[var(--roshogolpo-hover)] mb-3 sm:mb-4">
                   Guilt Free Range
                 </h2>
                 <p className="text-sm sm:text-base text-gray-600 leading-relaxed">

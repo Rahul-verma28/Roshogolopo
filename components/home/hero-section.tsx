@@ -48,7 +48,7 @@ export function HeroSection() {
               className="text-3xl sm:text-4xl lg:text-6xl font-bold text-[var(--roshogolpo-gold)] mb-6 font-playfair leading-tight"
             >
               Stories Wrapped in{" "}
-              <span className="text-[var(--roshogolpo-active)] relative">
+              <span className="text-[var(--roshogolpo-hover)] relative">
                 Sugar Syrup
                 <motion.div
                   initial={{ scaleX: 0 }}
@@ -146,7 +146,7 @@ export function HeroSection() {
                 className="absolute -top-4 -right-4 bg-white rounded-2xl p-4 shadow-lg border border-[var(--roshogolpo-light)]"
               >
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-[var(--roshogolpo-active)]">50+</div>
+                  <div className="text-2xl font-bold text-[var(--roshogolpo-hover)]">50+</div>
                   <div className="text-xs sm:text-sm text-gray-600">Sweet Varieties</div>
                 </div>
               </motion.div>
@@ -158,7 +158,7 @@ export function HeroSection() {
                 className="absolute -bottom-4 -left-4 bg-white rounded-2xl p-4 shadow-lg border border-[var(--roshogolpo-light)]"
               >
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-[var(--roshogolpo-active)]">4.9★</div>
+                  <div className="text-2xl font-bold text-[var(--roshogolpo-hover)]">4.9★</div>
                   <div className="text-xs sm:text-sm text-gray-600">Customer Rating</div>
                 </div>
               </motion.div>

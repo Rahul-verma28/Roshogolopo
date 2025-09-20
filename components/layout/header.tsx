@@ -47,7 +47,7 @@ export function Header() {
               <h1 className="text-xl sm:text-3xl font-bold text-[var(--roshogolpo-gold)] font-playfair">
                 Roshogolpo
               </h1>
-              <p className="text-[0.6rem] text-[var(--roshogolpo-active)] font-medium">
+              <p className="text-[0.6rem] text-[var(--roshogolpo-hover)] font-medium">
                 Stories Wrapped in Sugar Syrup
               </p>
             </div>
@@ -59,7 +59,7 @@ export function Header() {
               <Link
                 key={item.name}
                 href={item.href}
-                className="text-md font-medium hover:text-[var(--roshogolpo-active)] transition-colors duration-200 w-fit relative after:content-[''] after:absolute after:w-full after:h-[2px] after:bg-[var(--roshogolpo-hover)] after:left-0 after:-bottom-1 after:rounded-full after:origin-left after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:ease-out"
+                className="text-md font-medium hover:text-[var(--roshogolpo-hover)] transition-colors duration-200 w-fit relative after:content-[''] after:absolute after:w-full after:h-[2px] after:bg-[var(--roshogolpo-hover)] after:left-0 after:-bottom-1 after:rounded-full after:origin-left after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:ease-out"
               >
                 {item.name}
               </Link>
@@ -102,7 +102,7 @@ export function Header() {
                     variant="ghost"
                     size="sm"
                     onClick={() => setIsSearchOpen(true)}
-                    className="text-[var(--roshogolpo-gold)] hover:text-[var(--roshogolpo-active)] hover:cursor-pointer hover:bg-[var(--bg-roshogolpo-gold)]"
+                    className="text-[var(--roshogolpo-gold)] hover:text-[var(--roshogolpo-hover)] hover:cursor-pointer hover:bg-[var(--bg-roshogolpo-gold)]"
                   >
                     <Search className="size-md" />
                   </Button>
@@ -113,7 +113,7 @@ export function Header() {
             <Button
               variant="ghost"
               size="sm"
-              className="relative text-[var(--roshogolpo-gold)] hover:text-[var(--roshogolpo-active)] hover:cursor-pointer hover:bg-[var(--bg-roshogolpo-gold)]"
+              className="relative text-[var(--roshogolpo-gold)] hover:text-[var(--roshogolpo-hover)] hover:cursor-pointer hover:bg-[var(--bg-roshogolpo-gold)]"
             >
               <User className="size-md" />
             </Button>
@@ -121,7 +121,7 @@ export function Header() {
               <Button
                 variant="ghost"
                 size="sm"
-                className="relative text-[var(--roshogolpo-gold)] hover:text-[var(--roshogolpo-active)] hover:cursor-pointer hover:bg-[var(--bg-roshogolpo-gold)]"
+                className="relative text-[var(--roshogolpo-gold)] hover:text-[var(--roshogolpo-hover)] hover:cursor-pointer hover:bg-[var(--bg-roshogolpo-gold)]"
               >
                 <ShoppingCart className="size-md" />
               </Button>
@@ -131,7 +131,7 @@ export function Header() {
             <Button
               variant="ghost"
               size="sm"
-              className="md:hidden text-[var(--roshogolpo-gold)] hover:text-[var(--roshogolpo-active)] hover:cursor-pointer hover:bg-[var(--bg-roshogolpo-gold)]"
+              className="md:hidden text-[var(--roshogolpo-gold)] hover:text-[var(--roshogolpo-hover)] hover:cursor-pointer hover:bg-[var(--bg-roshogolpo-gold)]"
               onClick={() => dispatch(toggleMobileMenu())}
             >
               {isMobileMenuOpen ? (
@@ -158,7 +158,7 @@ export function Header() {
                   <Link
                     key={item.name}
                     href={item.href}
-                    className="text-xs sm:text-sm font-medium text-[var(--roshogolpo-gold)] hover:text-[var(--roshogolpo-active)] hover:cursor-pointer transition-colors duration-200"
+                    className="text-xs sm:text-sm font-medium text-[var(--roshogolpo-gold)] hover:text-[var(--roshogolpo-hover)] hover:cursor-pointer transition-colors duration-200"
                     onClick={() => dispatch(closeMobileMenu())}
                   >
                     {item.name}

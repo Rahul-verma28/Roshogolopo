@@ -102,7 +102,7 @@ export function StorySection() {
                     <Image src={item.image || "/placeholder.svg"} alt={item.title} fill className="object-cover" />
                   </div>
                   <div className="p-6">
-                    <h4 className="text-xl font-bold text-[var(--roshogolpo-active)] mb-3 font-playfair">
+                    <h4 className="text-xl font-bold text-[var(--roshogolpo-hover)] mb-3 font-playfair">
                       {item.title}
                     </h4>
                     <p className="text-gray-600 leading-relaxed">{item.description}</p>

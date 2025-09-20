@@ -49,7 +49,7 @@ const socialLinks = [
 
 export function Footer() {
   return (
-    <footer className="bg-[var(--roshogolpo-cream)] text-[var(--roshogolpo-active)] border-t border-[#b39402]/20 relative overflow-hidden">
+    <footer className="bg-[var(--roshogolpo-cream)] text-[var(--roshogolpo-hover)] border-t border-[#b39402]/20 relative overflow-hidden">
       <div className="absolute inset-0 pointer-events-none">
         <Image
           src="/footer/bird.png"
@@ -75,10 +75,10 @@ export function Footer() {
               <h3 className="text-xl font-bold font-playfair text-[var(--roshogolpo-gold)]">
                 ROSHOGOLPO
               </h3>
-              <p className="text-xs sm:text-sm text-[var(--roshogolpo-active)]/70 font-medium">
+              <p className="text-xs sm:text-sm text-[var(--roshogolpo-hover)]/70 font-medium">
                 রসগোল্প
               </p>
-              <p className="text-xs text-[var(--roshogolpo-active)]/60">
+              <p className="text-xs text-[var(--roshogolpo-hover)]/60">
                 Kolkata's Timeless Sweets, Reimagined...
               </p>
             </div>
@@ -106,7 +106,7 @@ export function Footer() {
                   <Link
                     key={linkIndex}
                     href={link.href}
-                    className="text-xs sm:text-sm text-gray-700 hover:text-[var(--roshogolpo-active)] transition-colors duration-200 w-fit relative after:content-[''] after:absolute after:w-full after:h-[2px] after:bg-[var(--roshogolpo-hover)] after:left-0 after:-bottom-1 after:rounded-full after:origin-left after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:ease-out"
+                    className="text-xs sm:text-sm text-gray-700 hover:text-[var(--roshogolpo-hover)] transition-colors duration-200 w-fit relative after:content-[''] after:absolute after:w-full after:h-[2px] after:bg-[var(--roshogolpo-hover)] after:left-0 after:-bottom-1 after:rounded-full after:origin-left after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:ease-out"
                   >
                     {link.label}
                   </Link>
@@ -125,7 +125,7 @@ export function Footer() {
                 <Input
                   type="email"
                   placeholder="Enter email address"
-                  className="flex-1 bg-white border-[#b39402]/30 text-[var(--roshogolpo-active)] placeholder:text-[var(--roshogolpo-active)]/50"
+                  className="flex-1 bg-white border-[#b39402]/30 text-[var(--roshogolpo-hover)] placeholder:text-[var(--roshogolpo-hover)]/50"
                 />
                 <Button className="bg-[#b39402] hover:bg-[#710014] text-white px-6">
                   Subscribe
@@ -162,7 +162,7 @@ export function Footer() {
         {/* Payment Methods and Social Media */}
         <div className="flex flex-col md:flex-row justify-between items-start lg:items-center space-y-6 lg:space-y-0 py-6 border-t border-[#b39402]/20">
           <div>
-            <p className="text-md font-medium text-[var(--roshogolpo-active)] mb-3">
+            <p className="text-md font-medium text-[var(--roshogolpo-hover)] mb-3">
               Payment Methods
             </p>
             <Image
@@ -175,7 +175,7 @@ export function Footer() {
           </div>
 
           <div>
-            <p className="text-md font-medium text-[var(--roshogolpo-active)] mb-3">
+            <p className="text-md font-medium text-[var(--roshogolpo-hover)] mb-3">
               Follow Us On
             </p>
             <div className="flex items-center space-x-3">
@@ -195,11 +195,11 @@ export function Footer() {
 
         {/* Copyright */}
         <div className="border-t border-[#b39402]/20 pt-6 flex flex-col md:flex-row justify-between items-center space-y-2 md:space-y-0">
-          <p className="text-xs sm:text-sm text-[var(--roshogolpo-active)]/70">
+          <p className="text-xs sm:text-sm text-[var(--roshogolpo-hover)]/70">
             © 2025 Copyright. Roshogolpo Sweet Shop LLP. All Rights Reserved
           </p>
-          <p className="text-xs sm:text-sm text-[var(--roshogolpo-active)]/70">
-            Site By: <Link target="_blank" href="https://www.linkedin.com/in/rahul-verma-09227a263" className="font-medium hover:underline text-[var(--roshogolpo-active)] transition-colors">Rahul Verma</Link>
+          <p className="text-xs sm:text-sm text-[var(--roshogolpo-hover)]/70">
+            Site By: <Link target="_blank" href="https://www.linkedin.com/in/rahul-verma-09227a263" className="font-medium hover:underline text-[var(--roshogolpo-hover)] transition-colors">Rahul Verma</Link>
           </p>
         </div>
       </div>

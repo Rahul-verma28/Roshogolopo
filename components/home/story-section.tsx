@@ -31,7 +31,7 @@ export function StorySection() {
               viewport={{ once: true }}
               className="mb-6"
             >
-              <span className="text-[var(--roshogolpo-active)] font-semibold text-xs sm:text-sm uppercase tracking-wider">
+              <span className="text-[var(--roshogolpo-hover)] font-semibold text-xs sm:text-sm uppercase tracking-wider">
                 Our Story
               </span>
               <h2 className="text-2xl lg:text-4xl font-bold text-[var(--roshogolpo-gold)] mt-2 mb-6 font-playfair leading-tight">

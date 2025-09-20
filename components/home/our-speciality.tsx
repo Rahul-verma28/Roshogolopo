@@ -64,7 +64,7 @@ export function OurSpeciality() {
               height={80}
               className="object-cover w-16 sm:w-20 md:w-24 lg:w-28"
             />
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[var(--roshogolpo-active)] mb-2 sm:mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[var(--roshogolpo-hover)] mb-2 sm:mb-4">
               Our Speciality
             </h2>
             <p className="text-sm sm:text-base text-gray-600">

@@ -67,7 +67,7 @@ export function TeamSection() {
                       <h3 className="text-2xl font-bold text-[var(--roshogolpo-gold)] mb-2 font-playfair">
                         {member.name}
                       </h3>
-                      <p className="text-[var(--roshogolpo-active)] font-semibold mb-4">{member.role}</p>
+                      <p className="text-[var(--roshogolpo-hover)] font-semibold mb-4">{member.role}</p>
                       <p className="text-gray-700 leading-relaxed mb-6">{member.description}</p>
                       <div className="flex flex-wrap gap-2 justify-center md:justify-start">
                         {member.expertise.map((skill, skillIndex) => (
