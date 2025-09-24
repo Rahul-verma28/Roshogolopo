@@ -4,9 +4,6 @@ import { Playfair_Display, Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { ReduxProvider } from "@/components/providers/redux-provider";
 import { CartHydration } from "@/components/providers/cart-hydration";
-import { Banner } from "@/components/layout/banner";
-import { Header } from "@/components/layout/header";
-import { Footer } from "@/components/layout/footer";
 import { StructuredData } from "@/components/seo/structured-data";
 import { generateMetadata as generateSEOMetadata } from "@/lib/seo/metadata";
 import {
@@ -56,10 +53,7 @@ export default function RootLayout({
           <CartHydration />
           <div className="min-h-screen flex flex-col">
             <Suspense fallback={<div>Loading...</div>}>
-              <Banner />
-              <Header />
-              <main className="flex-1">{children}</main>
-              <Footer />
+              {children}
             </Suspense>
           </div>
         </ReduxProvider>

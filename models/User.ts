@@ -1,4 +1,4 @@
-import mongoose, { Schema, model, models } from "mongoose";
+import mongoose, { Schema, model } from "mongoose";
 
 const AddressSchema = new Schema(
   {
@@ -15,18 +15,21 @@ const AddressSchema = new Schema(
   { _id: false }
 );
 
-const UserSchema = new Schema({
-  name: { type: String },
-  email: { type: String, required: true, unique: true },
-  phone: { type: String, unique: true },
-  password: { type: String },
-  googleId: { type: String },
-  addresses: [AddressSchema],
-  role: { type: String, default: "customer" }, // customer, admin, etc.
-  orderHistory: [{ type: mongoose.Schema.Types.ObjectId, ref: "Order" }],
-  rewards: { type: Number, default: 0 },
-  createdAt: { type: Date, default: Date.now },
-});
-// export default model("User", UserSchema);
-export default models.User || model("User", UserSchema);
+const UserSchema = new Schema(
+  {
+    name: { type: String },
+    email: { type: String, required: true, unique: true },
+    phone: { type: String, unique: true },
+    password: { type: String },
+    googleId: { type: String },
+    addresses: [AddressSchema],
+    role: { type: String, default: "customer" }, // customer, admin, etc.
+    orderHistory: [{ type: mongoose.Schema.Types.ObjectId, ref: "Order" }],
+    rewards: { type: Number, default: 0 },
+  },
+  {
+    timestamps: true,
+  }
+);
 
+export default mongoose.models.User || model("User", UserSchema);
