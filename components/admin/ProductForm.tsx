@@ -20,7 +20,6 @@ import {
 import { Switch } from "@/components/ui/switch";
 import { Plus, X, Save } from "lucide-react";
 import { toast } from "sonner";
-import { formatText } from "@/lib/helper";
 import type { Category } from "@/lib/types";
 
 interface WeightPrice {
@@ -287,11 +286,10 @@ export function ProductForm({ productId }: { productId?: string }) {
                       id="name"
                       value={formData.name}
                       onChange={(e) => {
-                        const formattedName = formatText(e.target.value);
                         setFormData({
                           ...formData,
-                          name: formattedName,
-                          slug: generateSlug(formattedName),
+                          name: e.target.value,
+                          slug: generateSlug(e.target.value),
                         });
                         // Clear error when user starts typing
                         if (errors.name) {

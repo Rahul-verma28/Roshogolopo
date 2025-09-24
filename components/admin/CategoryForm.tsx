@@ -19,7 +19,6 @@ import {
 import { toast } from "sonner"
 import { ArrowLeft, Save } from "lucide-react";
 import Link from "next/link";
-import { formatText } from "@/lib/helper";
 
 interface CategoryFormProps {
   categoryId?: string;
@@ -190,8 +189,8 @@ export function CategoryForm({ categoryId }: CategoryFormProps) {
                   onChange={(e) => {
                     setFormData({
                       ...formData,
-                      name: formatText(e.target.value),
-                      slug: generateSlug(formatText(e.target.value)),
+                      name: e.target.value,
+                      slug: generateSlug(e.target.value),
                     });
                     // Clear error when user starts typing
                     if (errors.name) {

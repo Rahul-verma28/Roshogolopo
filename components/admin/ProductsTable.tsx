@@ -1,14 +1,33 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
-import { Badge } from "@/components/ui/badge"
-import { Checkbox } from "@/components/ui/checkbox"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import { Badge } from "@/components/ui/badge";
+import { Checkbox } from "@/components/ui/checkbox";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import {
   Plus,
   Search,
@@ -19,8 +38,8 @@ import {
   Package,
   Pencil,
   Trash,
-} from "lucide-react"
-import type { Product } from "@/lib/types"
+} from "lucide-react";
+import type { Product } from "@/lib/types";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -32,43 +51,59 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 import { useRouter } from "next/navigation";
-import { toast } from "sonner"
+import { toast } from "sonner";
 
 interface ProductsResponse {
-  products: Product[]
+  products: Product[];
   pagination: {
-    page: number
-    limit: number
-    total: number
-    pages: number
-  }
+    page: number;
+    limit: number;
+    total: number;
+    pages: number;
+  };
 }
 
 export function ProductsTable() {
-  const router = useRouter()
-  const [products, setProducts] = useState<Product[]>([])
-  const [loading, setLoading] = useState(true)
-  const [search, setSearch] = useState("")
-  const [page, setPage] = useState(1)
-  const [selectedProducts, setSelectedProducts] = useState<string[]>([])
-  const [categoryFilter, setCategoryFilter] = useState("all")
-  const [statusFilter, setStatusFilter] = useState("all")
-  const [stockFilter, setStockFilter] = useState("all")
-  const [sortBy, setSortBy] = useState("createdAt")
-  const [sortOrder, setSortOrder] = useState("desc")
+  const router = useRouter();
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [search, setSearch] = useState("");
+  const [page, setPage] = useState(1);
+  const [selectedProducts, setSelectedProducts] = useState<string[]>([]);
+  const [categories, setCategories] = useState<{ _id: string; name: string }[]>(
+    []
+  );
+  const [categoryFilter, setCategoryFilter] = useState("all");
+  const [statusFilter, setStatusFilter] = useState("all");
+  const [stockFilter, setStockFilter] = useState("all");
+  const [sortBy, setSortBy] = useState("createdAt");
+  const [sortOrder, setSortOrder] = useState("desc");
   const [pagination, setPagination] = useState({
     page: 1,
     limit: 10,
     total: 0,
     pages: 0,
-  })
-    const [productToDelete, setProductToDelete] = useState<Product | null>(
-      null
-    );
+  });
+  const [productToDelete, setProductToDelete] = useState<Product | null>(null);
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await fetch("/api/admin/categories");
+        if (!response.ok) throw new Error("Failed to fetch categories");
+        const data = await response.json();
+        setCategories(data.categories);
+      } catch (error) {
+        console.error("Error fetching categories:", error);
+        toast.error("Failed to fetch categories");
+      }
+    };
+    fetchCategories();
+  }, []);
 
   const fetchProducts = async () => {
     try {
-      setLoading(true)
+      setLoading(true);
       const params = new URLSearchParams({
         page: page.toString(),
         limit: "10",
@@ -78,41 +113,41 @@ export function ProductsTable() {
         ...(categoryFilter !== "all" && { category: categoryFilter }),
         ...(statusFilter !== "all" && { status: statusFilter }),
         ...(stockFilter !== "all" && { stock: stockFilter }),
-      })
+      });
+      console.log("Fetching products with params:", params.toString());
+      const response = await fetch(`/api/admin/products?${params}`);
+      if (!response.ok) throw new Error("Failed to fetch products");
 
-      const response = await fetch(`/api/admin/products?${params}`)
-      if (!response.ok) throw new Error("Failed to fetch products")
-
-      const data: ProductsResponse = await response.json()
-      setProducts(data.products)
-      setPagination(data.pagination)
+      const data: ProductsResponse = await response.json();
+      setProducts(data.products);
+      setPagination(data.pagination);
     } catch (error) {
-      toast.error("Failed to load products")
+      toast.error("Failed to load products");
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   const handleDeleteProduct = async (id: string) => {
     try {
       const response = await fetch(`/api/admin/products/${id}`, {
         method: "DELETE",
-      })
+      });
 
-      if (!response.ok) throw new Error("Failed to delete product")
+      if (!response.ok) throw new Error("Failed to delete product");
 
-      toast.success("Product deleted successfully")
+      toast.success("Product deleted successfully");
 
-      fetchProducts()
+      fetchProducts();
     } catch (error) {
-      toast.error("Failed to delete product")
+      toast.error("Failed to delete product");
     }
-  }
+  };
 
   const handleBulkAction = async (action: string) => {
     if (selectedProducts.length === 0) {
-      toast.error("No products selected")
-      return
+      toast.error("No products selected");
+      return;
     }
 
     const confirmMessage = {
@@ -121,8 +156,7 @@ export function ProductsTable() {
       deactivate: "Are you sure you want to deactivate the selected products?",
       feature: "Are you sure you want to feature the selected products?",
       unfeature: "Are you sure you want to unfeature the selected products?",
-    }
-
+    };
 
     try {
       const response = await fetch("/api/admin/products/bulk", {
@@ -134,41 +168,49 @@ export function ProductsTable() {
           action,
           productIds: selectedProducts,
         }),
-      })
+      });
 
-      if (!response.ok) throw new Error("Failed to perform bulk action")
+      if (!response.ok) throw new Error("Failed to perform bulk action");
 
-      toast.success("Bulk action completed successfully")
+      toast.success("Bulk action completed successfully");
 
-      setSelectedProducts([])
-      fetchProducts()
+      setSelectedProducts([]);
+      fetchProducts();
     } catch (error) {
-      toast.error("Failed to perform bulk action")
+      toast.error("Failed to perform bulk action");
     }
-  }
+  };
 
   const handleSelectAll = (checked: boolean) => {
     if (checked) {
-      setSelectedProducts(products.map((p) => p._id.toString()))
+      setSelectedProducts(products.map((p) => p._id.toString()));
     } else {
-      setSelectedProducts([])
+      setSelectedProducts([]);
     }
-  }
+  };
 
   const handleSelectProduct = (productId: string, checked: boolean) => {
     if (checked) {
-      setSelectedProducts((prev) => [...prev, productId])
+      setSelectedProducts((prev) => [...prev, productId]);
     } else {
-      setSelectedProducts((prev) => prev.filter((id) => id !== productId))
+      setSelectedProducts((prev) => prev.filter((id) => id !== productId));
     }
-  }
+  };
 
   useEffect(() => {
-    fetchProducts()
-  }, [page, search, categoryFilter, statusFilter, stockFilter, sortBy, sortOrder])
+    fetchProducts();
+  }, [
+    page,
+    search,
+    categoryFilter,
+    statusFilter,
+    stockFilter,
+    sortBy,
+    sortOrder,
+  ]);
 
   if (loading) {
-    return <div className="flex justify-center py-8">Loading products...</div>
+    return <div className="flex justify-center py-8">Loading products...</div>;
   }
 
   return (
@@ -177,7 +219,9 @@ export function ProductsTable() {
         <div className="flex items-center justify-between">
           <div>
             <CardTitle>Products Management</CardTitle>
-            <CardDescription>Manage your sweet shop products with advanced features</CardDescription>
+            <CardDescription>
+              Manage your sweet shop products with advanced features
+            </CardDescription>
           </div>
           <div className="flex items-center gap-2">
             <Button variant="outline" size="sm">
@@ -215,9 +259,14 @@ export function ProductsTable() {
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="all">All Categories</SelectItem>
-                <SelectItem value="classic">Classic</SelectItem>
-                <SelectItem value="fusion">Fusion</SelectItem>
-                <SelectItem value="seasonal">Seasonal</SelectItem>
+                {categories.map((category) => (
+                  <SelectItem
+                    key={category._id.toString()}
+                    value={category._id.toString()}
+                  >
+                    {category.name}
+                  </SelectItem>
+                ))}
               </SelectContent>
             </Select>
             <Select value={statusFilter} onValueChange={setStatusFilter}>
@@ -243,9 +292,9 @@ export function ProductsTable() {
             <Select
               value={`${sortBy}-${sortOrder}`}
               onValueChange={(value) => {
-                const [field, order] = value.split("-")
-                setSortBy(field)
-                setSortOrder(order)
+                const [field, order] = value.split("-");
+                setSortBy(field);
+                setSortOrder(order);
               }}
             >
               <SelectTrigger className="w-40">
@@ -264,23 +313,44 @@ export function ProductsTable() {
           {selectedProducts.length > 0 && (
             <div className="flex items-center gap-2 p-3 bg-muted/50 rounded-lg">
               <span className="text-sm font-medium">
-                {selectedProducts.length} product{selectedProducts.length > 1 ? "s" : ""} selected
+                {selectedProducts.length} product
+                {selectedProducts.length > 1 ? "s" : ""} selected
               </span>
               <div className="flex items-center gap-2 ml-auto">
-                <Button size="sm" variant="outline" onClick={() => handleBulkAction("activate")}>
+                <Button
+                  size="sm"
+                  variant="outline"
+                  onClick={() => handleBulkAction("activate")}
+                >
                   Activate
                 </Button>
-                <Button size="sm" variant="outline" onClick={() => handleBulkAction("deactivate")}>
+                <Button
+                  size="sm"
+                  variant="outline"
+                  onClick={() => handleBulkAction("deactivate")}
+                >
                   Deactivate
                 </Button>
-                <Button size="sm" variant="outline" onClick={() => handleBulkAction("feature")}>
+                <Button
+                  size="sm"
+                  variant="outline"
+                  onClick={() => handleBulkAction("feature")}
+                >
                   <Star className="h-4 w-4 mr-1" />
                   Feature
                 </Button>
-                <Button size="sm" variant="outline" onClick={() => handleBulkAction("unfeature")}>
+                <Button
+                  size="sm"
+                  variant="outline"
+                  onClick={() => handleBulkAction("unfeature")}
+                >
                   Unfeature
                 </Button>
-                <Button size="sm" variant="destructive" onClick={() => handleBulkAction("delete")}>
+                <Button
+                  size="sm"
+                  variant="destructive"
+                  onClick={() => handleBulkAction("delete")}
+                >
                   <Trash2 className="h-4 w-4 mr-1" />
                   Delete
                 </Button>
@@ -295,7 +365,10 @@ export function ProductsTable() {
               <TableRow>
                 <TableHead className="w-12">
                   <Checkbox
-                    checked={selectedProducts.length === products.length && products.length > 0}
+                    checked={
+                      selectedProducts.length === products.length &&
+                      products.length > 0
+                    }
                     onCheckedChange={handleSelectAll}
                   />
                 </TableHead>
@@ -313,8 +386,15 @@ export function ProductsTable() {
                 <TableRow key={product._id.toString()}>
                   <TableCell>
                     <Checkbox
-                      checked={selectedProducts.includes(product._id.toString())}
-                      onCheckedChange={(checked) => handleSelectProduct(product._id.toString(), checked as boolean)}
+                      checked={selectedProducts.includes(
+                        product._id.toString()
+                      )}
+                      onCheckedChange={(checked) =>
+                        handleSelectProduct(
+                          product._id.toString(),
+                          checked as boolean
+                        )
+                      }
                     />
                   </TableCell>
                   <TableCell>
@@ -329,35 +409,53 @@ export function ProductsTable() {
                       <div>
                         <div className="font-medium flex items-center gap-2">
                           {product.name}
-                          {product.isFeatured && <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />}
+                          {product.isFeatured && (
+                            <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                          )}
                         </div>
-                        <div className="text-sm text-muted-foreground">{product.slug}</div>
+                        <div className="text-sm text-muted-foreground">
+                          {product.slug}
+                        </div>
                       </div>
                     </div>
                   </TableCell>
                   <TableCell>
                     <Badge variant="secondary">
-                      {typeof product.category === "object" ? product.category?.name :  "unknown"}
+                      {typeof product.category === "object"
+                        ? product.category?.name
+                        : "unknown"}
                     </Badge>
                   </TableCell>
                   <TableCell>
                     {product.weightPrices.length > 0 && (
                       <div className="text-sm">
-                        ₹{Math.min(...product.weightPrices.map((wp) => wp.price))} - ₹
-                        {Math.max(...product.weightPrices.map((wp) => wp.price))}
+                        ₹
+                        {Math.min(
+                          ...product.weightPrices.map((wp) => wp.price)
+                        )}{" "}
+                        - ₹
+                        {Math.max(
+                          ...product.weightPrices.map((wp) => wp.price)
+                        )}
                       </div>
                     )}
                   </TableCell>
                   <TableCell>
-                    <Badge variant={product.inStock ? "default" : "destructive"}>
+                    <Badge
+                      variant={product.inStock ? "default" : "destructive"}
+                    >
                       {product.inStock ? "In Stock" : "Out of Stock"}
                     </Badge>
                   </TableCell>
                   <TableCell>
                     <div className="flex items-center gap-1">
                       <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                      <span className="text-sm">{product.ratings.toFixed(1)}</span>
-                      <span className="text-xs text-muted-foreground">({product.numReviews})</span>
+                      <span className="text-sm">
+                        {product.ratings.toFixed(1)}
+                      </span>
+                      <span className="text-xs text-muted-foreground">
+                        ({product.numReviews})
+                      </span>
                     </div>
                   </TableCell>
                   <TableCell>
@@ -366,41 +464,7 @@ export function ProductsTable() {
                     </Badge>
                   </TableCell>
                   <TableCell className="text-right">
-                    {/* <DropdownMenu>
-                      <DropdownMenuTrigger asChild>
-                        <Button variant="ghost" size="sm">
-                          <MoreHorizontal className="h-4 w-4" />
-                        </Button>
-                      </DropdownMenuTrigger>
-                      <DropdownMenuContent align="end">
-                        <DropdownMenuItem asChild>
-                          <Link href={`/admin/products/${product._id}`}>
-                            <Eye className="h-4 w-4 mr-2" />
-                            View Details
-                          </Link>
-                        </DropdownMenuItem>
-                        <DropdownMenuItem asChild>
-                          <Link href={`/admin/products/${product._id}/edit`}>
-                            <Edit className="h-4 w-4 mr-2" />
-                            Edit
-                          </Link>
-                        </DropdownMenuItem>
-                        <DropdownMenuItem asChild>
-                          <Link href={`/admin/products/${product._id}/analytics`}>
-                            <TrendingUp className="h-4 w-4 mr-2" />
-                            Analytics
-                          </Link>
-                        </DropdownMenuItem>
-                        <DropdownMenuItem
-                          onClick={() => handleDelete(product._id.toString())}
-                          className="text-destructive"
-                        >
-                          <Trash2 className="h-4 w-4 mr-2" />
-                          Delete
-                        </DropdownMenuItem>
-                      </DropdownMenuContent>
-                    </DropdownMenu> */}
-                     <div className="flex justify-end space-x-2">
+                    <div className="flex justify-end space-x-2">
                       <Button
                         variant="ghost"
                         size="icon"
@@ -464,10 +528,16 @@ export function ProductsTable() {
           <div className="flex items-center justify-between mt-6">
             <div className="text-sm text-muted-foreground">
               Showing {(pagination.page - 1) * pagination.limit + 1} to{" "}
-              {Math.min(pagination.page * pagination.limit, pagination.total)} of {pagination.total} products
+              {Math.min(pagination.page * pagination.limit, pagination.total)}{" "}
+              of {pagination.total} products
             </div>
             <div className="flex items-center gap-2">
-              <Button variant="outline" size="sm" onClick={() => setPage(page - 1)} disabled={page === 1}>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setPage(page - 1)}
+                disabled={page === 1}
+              >
                 Previous
               </Button>
               <span className="text-sm px-3 py-1 bg-muted rounded">
@@ -486,5 +556,5 @@ export function ProductsTable() {
         )}
       </CardContent>
     </Card>
-  )
+  );
 }
