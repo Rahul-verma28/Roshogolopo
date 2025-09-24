@@ -6,13 +6,13 @@ import bcrypt from "bcryptjs"
 
 export async function GET(request: NextRequest) {
   try {
-    const user = await getAuthUser(request);
+    const user = await getAuthUser(request)
     if (!user || !isAdmin(user)) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
 
     await connectDB()
-    const adminUser = await User.findById(user.id).select("-password")
+    const adminUser = await User.findById(user.userId).select("-password")
 
     if (!adminUser) {
       return NextResponse.json({ error: "User not found" }, { status: 404 })
@@ -27,16 +27,16 @@ export async function GET(request: NextRequest) {
 
 export async function PUT(request: NextRequest) {
   try {
-    const user = await getAuthUser(request);
+    const user = await getAuthUser(request)
     if (!user || !isAdmin(user)) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
 
     const body = await request.json()
     const { name, email, phone, currentPassword, newPassword } = body
 
     await connectDB()
-    const adminUser = await User.findById(user.id)
+    const adminUser = await User.findById(user.userId)
 
     if (!adminUser) {
       return NextResponse.json({ error: "User not found" }, { status: 404 })
@@ -66,7 +66,7 @@ export async function PUT(request: NextRequest) {
     await adminUser.save()
 
     // Return user without password
-    const updatedUser = await User.findById(user.id).select("-password")
+    const updatedUser = await User.findById(user.userId).select("-password")
     return NextResponse.json(updatedUser)
   } catch (error) {
     console.error("Error updating profile:", error)

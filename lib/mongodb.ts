@@ -16,7 +16,7 @@ const dbConnect = async (): Promise<void> => {
 
   try {
     await mongoose.connect(process.env.MONGODB_URI, {
-      dbName: "roshogolpo",
+      dbName: "roshogolpo-admin",
     });
 
     isConnected = true;
