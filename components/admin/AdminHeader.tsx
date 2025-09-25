@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
-import { useAuth } from "@/contexts/AuthContext"
-import { Button } from "@/components/ui/button"
+import { useAuth } from "@/contexts/AuthContext";
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -9,13 +9,14 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { Avatar, AvatarFallback } from "@/components/ui/avatar"
-import { Bell, LogOut, Settings, User } from "lucide-react"
-import { AdminSidebar } from "./AdminSidebar"
+} from "@/components/ui/dropdown-menu";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Bell, LayoutDashboard, LogOut, Settings, User } from "lucide-react";
+import { AdminSidebar } from "./AdminSidebar";
+import Link from "next/link";
 
 export function AdminHeader() {
-  const { user, logout } = useAuth()
+  const { user, logout } = useAuth();
 
   const getInitials = (name?: string, email?: string) => {
     if (name) {
@@ -24,10 +25,10 @@ export function AdminHeader() {
         .map((n) => n[0])
         .join("")
         .toUpperCase()
-        .slice(0, 2)
+        .slice(0, 2);
     }
-    return email?.slice(0, 2).toUpperCase() || "AD"
-  }
+    return email?.slice(0, 2).toUpperCase() || "AD";
+  };
 
   return (
     <header className="sticky top-0 z-40 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -51,7 +52,7 @@ export function AdminHeader() {
 
           {/* User Menu */}
           <DropdownMenu>
-            <DropdownMenuTrigger asChild>
+            <DropdownMenuTrigger>
               <Button variant="ghost" className="relative h-9 w-9 rounded-full">
                 <Avatar className="h-9 w-9">
                   <AvatarFallback className="bg-primary/10 text-primary font-medium">
@@ -63,11 +64,21 @@ export function AdminHeader() {
             <DropdownMenuContent className="w-56" align="end" forceMount>
               <DropdownMenuLabel className="font-normal">
                 <div className="flex flex-col space-y-1">
-                  <p className="text-sm font-medium leading-none">{user?.name || "Admin"}</p>
-                  <p className="text-xs leading-none text-muted-foreground">{user?.email}</p>
+                  <p className="text-sm font-medium leading-none">
+                    {user?.name || "Admin"}
+                  </p>
+                  <p className="text-xs leading-none text-muted-foreground">
+                    {user?.email}
+                  </p>
                 </div>
               </DropdownMenuLabel>
               <DropdownMenuSeparator />
+              <DropdownMenuItem>
+                <Link href="/" className="flex items-center w-full">
+                  <LayoutDashboard className="mr-2 h-4 w-4" />
+                  <span>Website</span>
+                </Link>
+              </DropdownMenuItem>
               <DropdownMenuItem>
                 <User className="mr-2 h-4 w-4" />
                 <span>Profile</span>
@@ -86,5 +97,5 @@ export function AdminHeader() {
         </div>
       </div>
     </header>
-  )
+  );
 }

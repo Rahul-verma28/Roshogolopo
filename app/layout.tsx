@@ -13,6 +13,7 @@ import {
 } from "@/lib/seo/structured-data";
 import { Suspense } from "react";
 import "./globals.css";
+import { AuthProvider } from "@/contexts/AuthContext";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -53,7 +54,7 @@ export default function RootLayout({
           <CartHydration />
           <div className="min-h-screen flex flex-col">
             <Suspense fallback={<div>Loading...</div>}>
-              {children}
+              <AuthProvider>{children}</AuthProvider>
             </Suspense>
           </div>
         </ReduxProvider>

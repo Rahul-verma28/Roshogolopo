@@ -5,8 +5,7 @@ import User from "@/models/User";
 import { generateToken } from "@/lib/auth";
 
 // Force dynamic rendering
-export const dynamic = 'force-dynamic'
-
+export const dynamic = "force-dynamic";
 
 export async function POST(request: NextRequest) {
   try {
@@ -36,15 +35,15 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Check if user is admin
-    if (user.role !== "admin" && user.role !== "superadmin") {
-      return NextResponse.json(
-        { error: "Access denied. Admin privileges required." },
-        { status: 403 }
-      );
-    }
+    // // Check if user is admin
+    // if (user.role !== "admin" && user.role !== "superadmin") {
+    //   return NextResponse.json(
+    //     { error: "Access denied. Admin privileges required." },
+    //     { status: 403 }
+    //   );
+    // }
 
-    const token = generateToken(user);
+    const token = await generateToken(user);
 
     const response = NextResponse.json({
       message: "Login successful",
@@ -52,7 +51,10 @@ export async function POST(request: NextRequest) {
         id: user._id,
         email: user.email,
         name: user.name,
+        phone: user.phone,
         role: user.role,
+        orderHistory: user.orderHistory,
+        addresses: user.addresses,
       },
     });
 

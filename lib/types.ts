@@ -29,15 +29,15 @@ export interface Category {
 
 export interface User {
   _id: string;
-  name?: string;
+  name: string;
   email: string;
-  phone?: string;
-  password?: string;
-  googleId?: string;
+  phone: string;
+  password: string;
   addresses: Address[];
   role: string;
   orderHistory: string[];
-  rewards: number;
+  resetPasswordToken?: string;
+  resetPasswordExpires?: Date;
   createdAt: Date;
   updatedAt: Date;
 }

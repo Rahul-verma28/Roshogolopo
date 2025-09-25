@@ -38,7 +38,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const checkAuth = async () => {
     try {
-      const response = await fetch("/api/admin/auth/me")
+      const response = await fetch("/api/auth/me")
       if (response.ok) {
         const data = await response.json()
         setUser(data.user)
@@ -51,7 +51,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }
 
   const login = async (email: string, password: string) => {
-    const response = await fetch("/api/admin/auth/login", {
+    const response = await fetch("/api/auth/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -66,17 +66,21 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     const data = await response.json()
     setUser(data.user)
-    router.push("/admin")
+    if (data.user.role === "admin" || data.user.role === "superadmin") {
+      router.push("/admin")
+    } else {
+      router.push("/")
+    }
   }
 
   const logout = async () => {
     try {
-      await fetch("/api/admin/auth/logout", { method: "POST" })
+      await fetch("/api/auth/logout", { method: "POST" })
     } catch (error) {
       console.error("Logout error:", error)
     } finally {
       setUser(null)
-      router.push("/admin/login")
+      router.push("/auth/login")
     }
   }
 

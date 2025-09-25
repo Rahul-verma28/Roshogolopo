@@ -3,20 +3,16 @@ import connectDB from "@/lib/mongodb"
 import Review from "@/models/Review"
 import Product from "@/models/Product"
 import Order from "@/models/Order"
-import jwt from "jsonwebtoken"
+import { getAuthUser } from "@/lib/auth"
 
 export async function POST(request: NextRequest) {
   try {
     await connectDB()
 
-    const token = request.headers.get("authorization")?.replace("Bearer ", "")
-
-    if (!token) {
-      return NextResponse.json({ error: "No token provided" }, { status: 401 })
+    const user = await getAuthUser(request)
+    if (!user) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
-
-    // Verify token
-    const decoded = jwt.verify(token, process.env.JWT_SECRET!) as any
 
     const { productId, rating, comment, images } = await request.json()
 
@@ -36,7 +32,7 @@ export async function POST(request: NextRequest) {
 
     // Check if user has purchased this product
     const userOrders = await Order.find({
-      customer: decoded.userId,
+      customer: user._id,
       status: "delivered",
       "items.product": productId,
     })
@@ -47,7 +43,7 @@ export async function POST(request: NextRequest) {
 
     // Check if user has already reviewed this product
     const existingReview = await Review.findOne({
-      user: decoded.userId,
+      user: user._id,
       product: productId,
     })
 
@@ -57,7 +53,7 @@ export async function POST(request: NextRequest) {
 
     // Create review
     const review = await Review.create({
-      user: decoded.userId,
+      user: user._id,
       product: productId,
       rating,
       comment,
@@ -85,14 +81,10 @@ export async function GET(request: NextRequest) {
   try {
     await connectDB()
 
-    const token = request.headers.get("authorization")?.replace("Bearer ", "")
-
-    if (!token) {
-      return NextResponse.json({ error: "No token provided" }, { status: 401 })
+    const user = await getAuthUser(request)
+    if (!user) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
-
-    // Verify token
-    const decoded = jwt.verify(token, process.env.JWT_SECRET!) as any
 
     const { searchParams } = new URL(request.url)
     const page = Number.parseInt(searchParams.get("page") || "1")
@@ -102,7 +94,7 @@ export async function GET(request: NextRequest) {
     const skip = (page - 1) * limit
 
     // Get user's reviews
-    const reviews = await Review.find({ user: decoded.userId })
+    const reviews = await Review.find({ user: user._id })
       .populate("product", "name images")
       .sort({ createdAt: -1 })
       .skip(skip)
@@ -110,7 +102,7 @@ export async function GET(request: NextRequest) {
       .lean()
 
     // Get total count
-    const total = await Review.countDocuments({ user: decoded.userId })
+    const total = await Review.countDocuments({ user: user._id })
 
     // Calculate pagination info
     const totalPages = Math.ceil(total / limit)

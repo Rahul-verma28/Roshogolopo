@@ -19,13 +19,13 @@ const UserSchema = new Schema(
   {
     name: { type: String },
     email: { type: String, required: true, unique: true },
-    phone: { type: String, unique: true },
-    password: { type: String },
-    googleId: { type: String },
+    phone: { type: String, required: false, unique: true, sparse: true },
+    password: { type: String, required: true },
     addresses: [AddressSchema],
     role: { type: String, default: "customer" }, // customer, admin, etc.
     orderHistory: [{ type: mongoose.Schema.Types.ObjectId, ref: "Order" }],
-    rewards: { type: Number, default: 0 },
+    resetPasswordToken: { type: String, required: false },
+    resetPasswordExpires: { type: Date, required: false },
   },
   {
     timestamps: true,

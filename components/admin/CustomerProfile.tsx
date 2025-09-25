@@ -172,13 +172,13 @@ export function CustomerProfile({ customerId }: { customerId: string }) {
                   </div>
                   <span className="font-semibold">₹{customer.totalSpent.toLocaleString()}</span>
                 </div>
-                <div className="flex items-center justify-between">
+                {/* <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <TrendingUp className="h-4 w-4 text-muted-foreground" />
                     <span className="text-sm">Rewards Points</span>
                   </div>
                   <span className="font-semibold">{customer.rewards}</span>
-                </div>
+                </div> */}
               </div>
             </CardContent>
           </Card>

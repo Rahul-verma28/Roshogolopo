@@ -60,7 +60,7 @@ export default function SignupPage() {
     setIsLoading(true);
 
     try {
-      const response = await fetch("/api/admin/auth/signup", {
+      const response = await fetch("/api/auth/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -207,7 +207,7 @@ export default function SignupPage() {
 
             <div className="mt-6 text-center">
               <Link
-                href="/admin/login"
+                href="/auth/login"
                 className="inline-flex items-center text-sm text-muted-foreground hover:text-primary transition-colors"
               >
                 <ArrowLeft className="mr-1 h-4 w-4" />

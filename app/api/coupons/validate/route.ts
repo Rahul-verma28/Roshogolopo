@@ -7,6 +7,7 @@ export async function POST(request: NextRequest) {
     await connectDB()
 
     const { code, cartTotal } = await request.json()
+    
 
     if (!code) {
       return NextResponse.json({ error: "Coupon code is required" }, { status: 400 })

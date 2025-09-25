@@ -12,41 +12,45 @@ export async function POST(request: NextRequest) {
   try {
     await dbConnect();
 
-    const { name, email, password } = await request.json();
+    const { name, email, password, phone } = await request.json()
 
-    if (!name || !email || !password) {
-      return NextResponse.json(
-        { error: "Name, email and password are required" },
-        { status: 400 }
-      );
+    // Validate required fields
+    if (!name || !email || !password || !phone) {
+      return NextResponse.json({ error: "Name, email, password, and phone are required" }, { status: 400 })
     }
 
     // Check if user already exists
-    const existingUser = await User.findOne({
-      $or: [{ email }],
-    });
+    let query: any = { email: email }
+    if (phone?.trim()) {
+      query = { $or: [{ email: email }, { phone: phone }] }
+    }
+    const existingUser = await User.findOne(query)
 
     if (existingUser) {
-      return NextResponse.json(
-        { error: "User with this email already exists" },
-        { status: 409 }
-      );
+      return NextResponse.json({ error: "User already exists with this email or phone" }, { status: 400 })
     }
 
     // Hash password
     const saltRounds = 12;
     const hashedPassword = await bcrypt.hash(password, saltRounds);
 
-    // Create new admin user
-    const user = new User({
+    // Create new user
+    const userData: any = {
       name,
       email,
+      phone,
       password: hashedPassword,
-    });
+    }
+    
+    if (phone?.trim()) {
+      userData.phone = phone
+    }
+    
+    const user = new User(userData);
 
     await user.save();
 
-    const token = generateToken(user);
+    const token = await generateToken(user);
 
     const response = NextResponse.json({
       message: "Account created successfully",
@@ -55,6 +59,9 @@ export async function POST(request: NextRequest) {
         email: user.email,
         name: user.name,
         role: user.role,
+        phone: user.phone,
+        addresses: user.addresses,
+        orderHistory: user.orderHistory
       },
     });
 

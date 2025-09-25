@@ -17,7 +17,7 @@ export function ProtectedRoute({ children }: ProtectedRouteProps) {
 
   useEffect(() => {
     if (!loading && !user) {
-      router.push("/admin/login")
+      router.push("/auth/login")
     }
   }, [user, loading, router])
 

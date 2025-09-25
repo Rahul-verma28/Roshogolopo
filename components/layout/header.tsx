@@ -4,12 +4,34 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ShoppingCart, Search, User, ArrowRight } from "lucide-react";
+import {
+  Menu,
+  X,
+  ShoppingCart,
+  Search,
+  User,
+  ArrowRight,
+  LogOut,
+  Settings,
+  LayoutDashboard,
+  ChevronDown,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { CartDrawer } from "@/components/cart/cart-drawer";
 import { useAppSelector, useAppDispatch } from "@/lib/hooks";
 import { toggleMobileMenu, closeMobileMenu } from "@/lib/features/uiSlice";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { useAuth } from "@/contexts/AuthContext";
+import { Chevron } from "react-day-picker";
 
 const navigation = [
   { name: "Home", href: "/" },
@@ -23,6 +45,19 @@ export function Header() {
   const { itemCount } = useAppSelector((state) => state.cart);
   const { isMobileMenuOpen } = useAppSelector((state) => state.ui);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const { user, logout } = useAuth();
+
+  const getInitials = (name?: string, email?: string) => {
+    if (name) {
+      return name
+        .split(" ")
+        .map((n) => n[0])
+        .join("")
+        .toUpperCase()
+        .slice(0, 2);
+    }
+    return email?.slice(0, 2).toUpperCase() || "AD";
+  };
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-[var(--roshogolpo-header)] backdrop-blur supports-[backdrop-filter]:bg-[var(--roshogolpo-header)]/95">
@@ -110,13 +145,62 @@ export function Header() {
               </AnimatePresence>
             </div>
 
-            <Button
-              variant="ghost"
-              size="sm"
-              className="relative text-[var(--roshogolpo-gold)] hover:text-[var(--roshogolpo-hover)] hover:cursor-pointer hover:bg-[var(--bg-roshogolpo-gold)]"
-            >
-              <User className="size-md" />
-            </Button>
+            <DropdownMenu>
+              <DropdownMenuTrigger>
+                {user && (
+                  <Button
+                  variant="ghost"
+                  size="sm"
+                  className="relative text-[var(--roshogolpo-gold)] hover:text-[var(--roshogolpo-hover)] hover:cursor-pointer hover:bg-[var(--bg-roshogolpo-gold)] cursor-pointer"
+                >
+                  <User className="size-md" />
+                </Button>
+                ) }                {/* <Button
+                  variant="ghost"
+                  className="relative h-9 w-9 rounded-full"
+                >
+                  <Avatar className="h-9 w-9">
+                    <AvatarFallback className="bg-primary/10 text-primary font-medium">
+                      {getInitials(user?.name, user?.email)}
+                    </AvatarFallback>
+                  </Avatar>
+                </Button> */}
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="w-56" align="end" forceMount>
+                <DropdownMenuLabel className="font-normal">
+                  <div className="flex flex-col space-y-1">
+                    <p className="text-sm font-medium leading-none">
+                      {user?.name || "Admin"}
+                    </p>
+                    <p className="text-xs leading-none text-muted-foreground">
+                      {user?.email}
+                    </p>
+                  </div>
+                </DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                {user?.role === "admin" && (
+                  <DropdownMenuItem>
+                    <Link href="/admin" className="flex items-center w-full">
+                      <LayoutDashboard className="mr-2 h-4 w-4" />
+                      <span>Admin Dashboard</span>
+                    </Link>
+                  </DropdownMenuItem>
+                )}
+                <DropdownMenuItem>
+                  <User className="mr-2 h-4 w-4" />
+                  <span>Profile</span>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <Settings className="mr-2 h-4 w-4" />
+                  <span>Settings</span>                
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem onClick={logout}>
+                  <LogOut className="mr-2 h-4 w-4" />
+                  <span>Log out</span>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
             <CartDrawer>
               <Button
                 variant="ghost"
@@ -126,6 +210,14 @@ export function Header() {
                 <ShoppingCart className="size-md" />
               </Button>
             </CartDrawer>
+
+            {!user && (
+              <Link href="/auth/login">
+                <Button variant="ghost" size="sm">
+                  Log in
+                </Button>
+              </Link>
+            )}
 
             {/* Mobile menu button */}
             <Button
