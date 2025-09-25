@@ -6,6 +6,9 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button"
 import { ShoppingBag, Users, Star, TrendingUp, Plus, Eye } from "lucide-react"
 
+// Force dynamic rendering for admin pages
+export const dynamic = 'force-dynamic'
+
 export default function AdminDashboardPage() {
   return (
     <ProtectedRoute>

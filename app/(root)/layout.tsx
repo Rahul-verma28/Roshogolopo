@@ -3,11 +3,11 @@ import { Footer } from "@/components/layout/footer";
 import { Header } from "@/components/layout/header";
 import Banner from "@/components/layout/banner";
 
-export default function AdminLayout({
+export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   return (
     <>
       <Banner />

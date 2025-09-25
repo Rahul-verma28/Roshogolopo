@@ -237,6 +237,7 @@ export function generateMetadata({
   const metaUrl = url ? `${siteConfig.url}${url}` : siteConfig.url
 
   return {
+    metadataBase: new URL(siteConfig.url),
     title: metaTitle,
     description: metaDescription,
     keywords: siteConfig.keywords,

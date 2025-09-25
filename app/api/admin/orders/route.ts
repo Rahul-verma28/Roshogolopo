@@ -3,6 +3,9 @@ import dbConnect from "@/lib/mongodb"
 import Order from "@/models/Order"
 import { getAuthUser, isAdmin } from "@/lib/auth"
 
+// Force dynamic rendering
+export const dynamic = 'force-dynamic'
+
 export async function GET(request: NextRequest) {
   try {
     const user = await getAuthUser(request)

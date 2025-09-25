@@ -4,6 +4,10 @@ import dbConnect from "@/lib/mongodb";
 import User from "@/models/User";
 import { generateToken } from "@/lib/auth";
 
+// Force dynamic rendering
+export const dynamic = 'force-dynamic'
+
+
 export async function POST(request: NextRequest) {
   try {
     await dbConnect();

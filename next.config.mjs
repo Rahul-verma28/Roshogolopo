@@ -9,6 +9,10 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
+  // Ensure proper handling of dynamic routes
+  experimental: {
+    serverComponentsExternalPackages: ['mongoose', 'bcrypt', 'nodemailer'],
+  },
 }
 
 export default nextConfig

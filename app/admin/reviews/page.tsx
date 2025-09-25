@@ -3,6 +3,10 @@ import { AdminLayout } from "@/components/admin/AdminLayout"
 import { PageHeader } from "@/components/admin/PageHeader"
 import { ReviewsTable } from "@/components/admin/ReviewsTable"
 
+
+// Force dynamic rendering for admin pages
+export const dynamic = 'force-dynamic'
+
 export default function ReviewsPage() {
   return (
     <ProtectedRoute>

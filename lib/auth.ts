@@ -8,6 +8,7 @@ const JWT_SECRET = process.env.JWT_SECRET || "your-secret-key"
 export interface AuthUser {
   id: string
   email: string
+  name: string
   role: string
 }
 
@@ -22,6 +23,7 @@ export async function verifyToken(token: string): Promise<AuthUser | null> {
     return {
       id: user._id.toString(),
       email: user.email,
+      name: user.name,
       role: user.role,
     }
   } catch (error) {

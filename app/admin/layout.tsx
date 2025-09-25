@@ -1,16 +1,15 @@
 import type React from "react";
 import { AuthProvider } from "@/contexts/AuthContext";
-import ReduxProvider from "@/components/providers/ReduxProvider";
 import "@/styles/globals.css";
+// Force dynamic rendering for admin routes
+export const dynamic = 'force-dynamic'
 
 export default function AdminLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   return (
-    <ReduxProvider>
-      <AuthProvider>{children}</AuthProvider>
-    </ReduxProvider>
+    <AuthProvider>{children}</AuthProvider>
   );
 }

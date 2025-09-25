@@ -1,12 +1,16 @@
 import { type NextRequest, NextResponse } from "next/server"
 import connectDB from "@/lib/mongodb"
 import Product from "@/models/Product"
-import { verifyAdminToken } from "@/lib/auth"
+import { getAuthUser, isAdmin } from "@/lib/auth"
+
+// Force dynamic rendering
+export const dynamic = 'force-dynamic'
+
 
 export async function POST(request: NextRequest) {
   try {
-    const user = await verifyAdminToken(request)
-    if (!user) {
+    const user = await getAuthUser(request)
+    if (!user || !isAdmin(user)) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
 

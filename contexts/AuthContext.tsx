@@ -2,7 +2,7 @@
 
 import type React from "react"
 
-import { createContext, useContext, useEffect, useState } from "react"
+import { createContext, useContext, useEffect, useState, useMemo } from "react"
 import { useRouter } from "next/navigation"
 
 interface User {
@@ -27,7 +27,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const router = useRouter()
 
   useEffect(() => {
-    checkAuth()
+    // Only check auth on client-side
+    if (typeof window !== 'undefined') {
+      checkAuth()
+    } else {
+      // On server-side, just set loading to false
+      setLoading(false)
+    }
   }, [])
 
   const checkAuth = async () => {
@@ -38,7 +44,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         setUser(data.user)
       }
     } catch (error) {
-      console.error("Auth check failed:", error)
+      console.error("Auth check error:", error)
     } finally {
       setLoading(false)
     }
@@ -74,7 +80,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   }
 
-  return <AuthContext.Provider value={{ user, login, logout, loading }}>{children}</AuthContext.Provider>
+  const value = useMemo(() => ({ user, login, logout, loading }), [user, loading])
+
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }
 
 export function useAuth() {

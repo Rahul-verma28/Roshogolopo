@@ -2,12 +2,12 @@ import { type NextRequest, NextResponse } from "next/server"
 import connectDB from "@/lib/mongodb"
 import Product from "@/models/Product"
 import Review from "@/models/Review"
-import { verifyAdminToken } from "@/lib/auth"
+import { getAuthUser, isAdmin } from "@/lib/auth"
 
 export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
   try {
-    const user = await verifyAdminToken(request)
-    if (!user) {
+    const user = await getAuthUser(request)
+    if (!user || !isAdmin(user)) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
 

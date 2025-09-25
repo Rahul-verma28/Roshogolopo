@@ -3,6 +3,10 @@ import connectDB from "@/lib/mongodb"
 import Review from "@/models/Review"
 import { getAuthUser, isAdmin } from "@/lib/auth"
 
+// Force dynamic rendering
+export const dynamic = 'force-dynamic'
+
+
 export async function GET(request: NextRequest) {
   try {
     const user = await getAuthUser(request)

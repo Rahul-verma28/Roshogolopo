@@ -4,6 +4,10 @@ import User from "@/models/User"
 import { getAuthUser, isAdmin } from "@/lib/auth"
 import bcrypt from "bcryptjs"
 
+// Force dynamic rendering
+export const dynamic = 'force-dynamic'
+
+
 export async function GET(request: NextRequest) {
   try {
     const user = await getAuthUser(request)
