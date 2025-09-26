@@ -149,13 +149,14 @@ export function Header() {
               <DropdownMenuTrigger>
                 {user && (
                   <Button
-                  variant="ghost"
-                  size="sm"
-                  className="relative text-[var(--roshogolpo-gold)] hover:text-[var(--roshogolpo-hover)] hover:cursor-pointer hover:bg-[var(--bg-roshogolpo-gold)] cursor-pointer"
-                >
-                  <User className="size-md" />
-                </Button>
-                ) }                {/* <Button
+                    variant="ghost"
+                    size="sm"
+                    className="relative text-[var(--roshogolpo-gold)] hover:text-[var(--roshogolpo-hover)] hover:cursor-pointer hover:bg-[var(--bg-roshogolpo-gold)] cursor-pointer"
+                  >
+                    <User className="size-md" />
+                  </Button>
+                )}{" "}
+                {/* <Button
                   variant="ghost"
                   className="relative h-9 w-9 rounded-full"
                 >
@@ -192,7 +193,7 @@ export function Header() {
                 </DropdownMenuItem>
                 <DropdownMenuItem>
                   <Settings className="mr-2 h-4 w-4" />
-                  <span>Settings</span>                
+                  <span>Settings</span>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem onClick={logout}>
@@ -212,11 +213,15 @@ export function Header() {
             </CartDrawer>
 
             {!user && (
-              <Link href="/auth/login">
-                <Button variant="ghost" size="sm">
-                  Log in
-                </Button>
-              </Link>
+              <Button
+                asChild
+                size="lg"
+                className="bg-[var(--roshogolpo-active)] hover:bg-[var(--roshogolpo-gold)] text-white px-6 sm:px-8 py-2.5 sm:py-3 text-xs sm:text-sm font-semibold group transition-all duration-300 shadow-lg hover:shadow-xl ml-5"
+              >
+                <Link href="/auth/login" className="flex items-center gap-2">
+                  Login/Signup
+                </Link>
+              </Button>
             )}
 
             {/* Mobile menu button */}

@@ -14,6 +14,7 @@ import {
 import { Suspense } from "react";
 import "./globals.css";
 import { AuthProvider } from "@/contexts/AuthContext";
+import { Toaster } from "@/components/ui/sonner";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -59,6 +60,7 @@ export default function RootLayout({
           </div>
         </ReduxProvider>
         <Analytics />
+        <Toaster position="bottom-right" />
       </body>
     </html>
   );
