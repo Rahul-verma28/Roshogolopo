@@ -147,12 +147,12 @@ export function CategoriesTable() {
               {filteredCategories.map((category) => (
                 <TableRow key={category._id}>
                   <TableCell>
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-3 min-w-48 ">
                       {category.image && (
                         <img
                           src={category.image || "/placeholder.svg"}
                           alt=""
-                          className="w-8 h-8 rounded"
+                          className="w-12 h-12 rounded-lg object-cover"
                         />
                       )}
                       <div>

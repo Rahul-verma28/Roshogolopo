@@ -21,6 +21,8 @@ import { Switch } from "@/components/ui/switch";
 import { Plus, X, Save } from "lucide-react";
 import { toast } from "sonner";
 import type { Category } from "@/lib/types";
+import { Badge } from "@/components/ui/badge";
+import ImageUpload from "./ImageUpload";
 
 interface WeightPrice {
   weight: string;
@@ -60,13 +62,14 @@ export function ProductForm({ productId }: { productId?: string }) {
     slug: "",
     description: "",
     category: "",
-    images: [""],
+    images: [],
     weightPrices: [{ weight: "", price: 0 }],
-    ingredients: [""],
+    ingredients: [],
     isFeatured: false,
     isActive: true,
     inStock: true,
   });
+  const [newIngredient, setNewIngredient] = useState("");
 
   useEffect(() => {
     if (productId) {
@@ -80,19 +83,23 @@ export function ProductForm({ productId }: { productId?: string }) {
       if (!response.ok) {
         throw new Error("Failed to fetch product");
       }
-      
+
       const data = await response.json();
       // Handle both possible response structures
       const product = data.product || data;
-      
+
       setFormData({
         name: product.name || "",
         slug: product.slug || "",
         description: product.description || "",
         category: product.category?._id || product.category || "",
         images: product.images?.length > 0 ? product.images : [""],
-        weightPrices: product.weightPrices?.length > 0 ? product.weightPrices : [{ weight: "", price: 0 }],
-        ingredients: product.ingredients?.length > 0 ? product.ingredients : [""],
+        weightPrices:
+          product.weightPrices?.length > 0
+            ? product.weightPrices
+            : [{ weight: "", price: 0 }],
+        ingredients:
+          product.ingredients?.length > 0 ? product.ingredients : [""],
         isFeatured: product.isFeatured ?? false,
         isActive: product.isActive ?? true,
         inStock: product.inStock ?? true,
@@ -101,6 +108,22 @@ export function ProductForm({ productId }: { productId?: string }) {
       console.error("Error fetching product:", error);
       toast.error("Failed to fetch product details");
     }
+  };
+
+  const handleImageChange = (
+    field: string,
+    value: any | ((prev: any) => any)
+  ) => {
+    setFormData((prev) => {
+      const updatedValue =
+        typeof value === "function"
+          ? value(prev[field as keyof ProductFormData])
+          : value;
+
+      const updatedForm = { ...prev, [field]: updatedValue };
+
+      return updatedForm;
+    });
   };
 
   const fetchCategories = async () => {
@@ -226,26 +249,35 @@ export function ProductForm({ productId }: { productId?: string }) {
     });
   };
 
-  const addImage = () => {
-    setFormData({ ...formData, images: [...formData.images, ""] });
-  };
+  // const addIngredient = () => {
+  //   setFormData({ ...formData, ingredients: [...formData.ingredients, ""] });
+  // };
 
-  const removeImage = (index: number) => {
-    setFormData({
-      ...formData,
-      images: formData.images.filter((_, i) => i !== index),
-    });
-  };
+  // const removeIngredient = (index: number) => {
+  //   setFormData({
+  //     ...formData,
+  //     ingredients: formData.ingredients.filter((_, i) => i !== index),
+  //   });
+  // };
 
   const addIngredient = () => {
-    setFormData({ ...formData, ingredients: [...formData.ingredients, ""] });
+    const ingredientValue = newIngredient.trim();
+    if (ingredientValue && !formData.ingredients.includes(ingredientValue)) {
+      setFormData((prev) => ({
+        ...prev,
+        ingredients: [...prev.ingredients, ingredientValue],
+      }));
+      setNewIngredient("");
+    }
   };
 
-  const removeIngredient = (index: number) => {
-    setFormData({
-      ...formData,
-      ingredients: formData.ingredients.filter((_, i) => i !== index),
-    });
+  const removeIngredient = (ingredientToRemove: string) => {
+    setFormData((prev) => ({
+      ...prev,
+      ingredients: prev.ingredients.filter(
+        (ingredient) => ingredient !== ingredientToRemove
+      ),
+    }));
   };
 
   useEffect(() => {
@@ -271,105 +303,189 @@ export function ProductForm({ productId }: { productId?: string }) {
       />
 
       <form onSubmit={handleSubmit} className="space-y-6">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Main Information */}
-          <div className="lg:col-span-2 space-y-6">
-            <Card>
-              <CardHeader>
-                <CardTitle>Basic Information</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="name">Product Name *</Label>
-                    <Input
-                      id="name"
-                      value={formData.name}
-                      onChange={(e) => {
-                        setFormData({
-                          ...formData,
-                          name: e.target.value,
-                          slug: generateSlug(e.target.value),
-                        });
-                        // Clear error when user starts typing
-                        if (errors.name) {
-                          setErrors((prev) => ({
-                            ...prev,
-                            name: undefined,
-                            slug: undefined,
-                          }));
-                        }
-                      }}
-                      placeholder="Enter product name"
-                      className={errors.name ? "border-red-500" : ""}
-                    />
-                    {errors.name && (
-                      <p className="text-sm text-red-500">{errors.name}</p>
-                    )}
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="slug">Slug *</Label>
-                    <Input
-                      id="slug"
-                      value={formData.slug}
-                      onChange={(e) => {
-                        setFormData({ ...formData, slug: e.target.value });
-                        // Clear error when user starts typing
-                        if (errors.slug) {
-                          setErrors((prev) => ({ ...prev, slug: undefined }));
-                        }
-                      }}
-                      placeholder="product-slug"
-                      className={errors.slug ? "border-red-500" : ""}
-                    />
-                    {errors.slug && (
-                      <p className="text-sm text-red-500">{errors.slug}</p>
-                    )}
-                  </div>
-                </div>
+        <Card className="w-full">
+          <CardHeader>
+            <h1 className="text-2xl">Product Information</h1>
+          </CardHeader>
+          <CardContent className="space-y-8">
+            <div className="space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <Label htmlFor="description">Description *</Label>
-                  <Textarea
-                    id="description"
-                    value={formData.description}
+                  <Label htmlFor="name">
+                    Product Name <span className="text-red-500">*</span>
+                  </Label>
+                  <Input
+                    id="name"
+                    value={formData.name}
                     onChange={(e) => {
-                      setFormData({ ...formData, description: e.target.value });
+                      setFormData({
+                        ...formData,
+                        name: e.target.value,
+                        slug: generateSlug(e.target.value),
+                      });
                       // Clear error when user starts typing
-                      if (errors.description) {
+                      if (errors.name) {
                         setErrors((prev) => ({
                           ...prev,
-                          description: undefined,
+                          name: undefined,
+                          slug: undefined,
                         }));
                       }
                     }}
-                    placeholder="Enter product description"
-                    className={errors.description ? "border-red-500" : ""}
-                    rows={4}
+                    placeholder="Enter product name"
+                    className={errors.name ? "border-red-500" : ""}
                   />
-                  {errors.description && (
-                    <p className="text-sm text-red-500">{errors.description}</p>
+                  {errors.name && (
+                    <p className="text-sm text-red-500">{errors.name}</p>
                   )}
                 </div>
-              </CardContent>
-            </Card>
-
-            {/* Weight & Pricing */}
-            <Card>
-              <CardHeader>
-                <div className="flex items-center justify-between">
-                  <CardTitle>Weight & Pricing *</CardTitle>
-                  <Button
-                    type="button"
-                    variant="outline"
-                    size="sm"
-                    onClick={addWeightPrice}
-                  >
-                    <Plus className="h-4 w-4 mr-2" />
-                    Add Weight
-                  </Button>
+                <div className="space-y-2">
+                  <Label htmlFor="slug">
+                    Slug <span className="text-red-500">*</span>
+                  </Label>
+                  <Input
+                    id="slug"
+                    value={formData.slug}
+                    onChange={(e) => {
+                      setFormData({ ...formData, slug: e.target.value });
+                      // Clear error when user starts typing
+                      if (errors.slug) {
+                        setErrors((prev) => ({ ...prev, slug: undefined }));
+                      }
+                    }}
+                    placeholder="product-slug"
+                    className={errors.slug ? "border-red-500" : ""}
+                  />
+                  {errors.slug && (
+                    <p className="text-sm text-red-500">{errors.slug}</p>
+                  )}
                 </div>
-              </CardHeader>
-              <CardContent className="space-y-4">
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="description">
+                  Description <span className="text-red-500">*</span>
+                </Label>
+                <Textarea
+                  id="description"
+                  value={formData.description}
+                  onChange={(e) => {
+                    setFormData({ ...formData, description: e.target.value });
+                    // Clear error when user starts typing
+                    if (errors.description) {
+                      setErrors((prev) => ({
+                        ...prev,
+                        description: undefined,
+                      }));
+                    }
+                  }}
+                  placeholder="Enter product description"
+                  className={errors.description ? "border-red-500" : ""}
+                  rows={4}
+                />
+                {errors.description && (
+                  <p className="text-sm text-red-500">{errors.description}</p>
+                )}
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="space-y-2">
+                <Label>
+                  Category <span className="text-red-500">*</span>
+                </Label>
+                <Select
+                  value={formData.category}
+                  onValueChange={(value) => {
+                    setFormData({ ...formData, category: value });
+                    if (errors.category) {
+                      setErrors((prev) => ({ ...prev, category: undefined }));
+                    }
+                  }}
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select category" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {categories.map((category) => (
+                      <SelectItem
+                        key={category._id.toString()}
+                        value={category._id.toString()}
+                      >
+                        {category.name}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+                {errors.category && (
+                  <p className="text-sm text-red-500">{errors.category}</p>
+                )}
+              </div>
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <Label htmlFor="featured">Featured Product</Label>
+                  <Switch
+                    id="featured"
+                    checked={formData.isFeatured}
+                    onCheckedChange={(checked) =>
+                      setFormData({ ...formData, isFeatured: checked })
+                    }
+                  />
+                </div>
+                <div className="flex items-center justify-between">
+                  <Label htmlFor="active">Active</Label>
+                  <Switch
+                    id="active"
+                    checked={formData.isActive}
+                    onCheckedChange={(checked) =>
+                      setFormData({ ...formData, isActive: checked })
+                    }
+                  />
+                </div>
+                <div className="flex items-center justify-between">
+                  <Label htmlFor="instock">In Stock</Label>
+                  <Switch
+                    id="instock"
+                    checked={formData.inStock}
+                    onCheckedChange={(checked) =>
+                      setFormData({ ...formData, inStock: checked })
+                    }
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Product Images Section */}
+            <div className="space-y-4">
+              <Label>
+                  Product Images <span className="text-red-500">*</span>
+                </Label>
+              <ImageUpload
+                value={formData.images}
+                onChange={(images) => handleImageChange("images", images)}
+                multiple={true}
+              />
+              {errors.images && (
+                <p className="text-sm text-red-500">{errors.images}</p>
+              )}
+            </div>
+
+            {/* Weight & Pricing Section */}
+            <div className="space-y-4">
+              <div className="flex items-center justify-between">
+                <Label>
+                  Weight & Pricing <span className="text-red-500">*</span>
+                </Label>
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  onClick={addWeightPrice}
+                >
+                  <Plus className="h-4 w-4 mr-2" />
+                  Add Weight
+                </Button>
+              </div>
+              <div className="space-y-4">
                 {formData.weightPrices.map((wp, index) => (
                   <div key={index} className="flex items-center gap-4">
                     <div className="flex-1 space-y-2">
@@ -429,190 +545,58 @@ export function ProductForm({ productId }: { productId?: string }) {
                 {errors.weightPrices && (
                   <p className="text-sm text-red-500">{errors.weightPrices}</p>
                 )}
-              </CardContent>
-            </Card>
+              </div>
+            </div>
 
-            {/* Images */}
-            <Card>
-              <CardHeader>
-                <div className="flex items-center justify-between">
-                  <CardTitle>Product Images *</CardTitle>
-                  <Button
-                    type="button"
-                    variant="outline"
-                    size="sm"
-                    onClick={addImage}
+            {/* Ingredients Section */}
+            <div className="space-y-4">
+              {/* <h3 className="text-lg font-semibold text-muted-foreground border-b pb-2">
+                Ingredients
+              </h3> */}
+              <Label>
+                  Ingredients <span className="text-red-500">*</span>
+                </Label>
+              <div className="flex flex-wrap gap-2">
+                {formData.ingredients.map((ingredient) => (
+                  <Badge
+                    key={ingredient}
+                    variant="secondary"
+                    className="flex items-center gap-1"
                   >
-                    <Plus className="h-4 w-4 mr-2" />
-                    Add Image
-                  </Button>
-                </div>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                {formData.images.map((image, index) => (
-                  <div key={index} className="flex items-center gap-4">
-                    <div className="flex-1 space-y-2">
-                      <Input
-                        placeholder="Image URL"
-                        value={image}
-                        onChange={(e) => {
-                          const newImages = [...formData.images];
-                          newImages[index] = e.target.value;
-                          setFormData({ ...formData, images: newImages });
-                          if (errors.images) {
-                            setErrors((prev) => ({
-                              ...prev,
-                              images: undefined,
-                            }));
-                          }
-                        }}
-                        className={`${errors.images ? "border-red-500" : ""}`}
-                      />
-                    </div>
-                    {formData.images.length > 1 && (
-                      <Button
-                        type="button"
-                        variant="outline"
-                        size="icon"
-                        onClick={() => removeImage(index)}
-                      >
-                        <X className="h-4 w-4" />
-                      </Button>
-                    )}
-                  </div>
+                    {ingredient}
+                    <button
+                      type="button"
+                      className="h-auto p-0 text-muted-foreground hover:text-destructive"
+                      onClick={() => removeIngredient(ingredient)}
+                    >
+                      <X className="h-3 w-3" />
+                    </button>
+                  </Badge>
                 ))}
-                {errors.images && (
-                  <p className="text-sm text-red-500">{errors.images}</p>
-                )}
-              </CardContent>
-            </Card>
+              </div>
+              <div className="flex gap-2">
+                <Input
+                  type="text"
+                  value={newIngredient}
+                  onChange={(e) => setNewIngredient(e.target.value)}
+                  onKeyDown={(e) =>
+                    e.key === "Enter" && (e.preventDefault(), addIngredient())
+                  }
+                  placeholder="Add an ingredient"
+                  className="flex-1"
+                />
+                <Button type="button" variant="outline" onClick={addIngredient}>
+                  Add
+                </Button>
+              </div>
+            </div>
 
-            {/* Ingredients */}
-            <Card>
-              <CardHeader>
-                <div className="flex items-center justify-between">
-                  <CardTitle>Ingredients</CardTitle>
-                  <Button
-                    type="button"
-                    variant="outline"
-                    size="sm"
-                    onClick={addIngredient}
-                  >
-                    <Plus className="h-4 w-4 mr-2" />
-                    Add Ingredient
-                  </Button>
-                </div>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                {formData.ingredients.map((ingredient, index) => (
-                  <div key={index} className="flex items-center gap-4">
-                    <div className="flex-1 space-y-2">
-                      <Input
-                        placeholder="Ingredient name"
-                        value={ingredient}
-                        onChange={(e) => {
-                          const newIngredients = [...formData.ingredients];
-                          newIngredients[index] = e.target.value;
-                          setFormData({
-                            ...formData,
-                            ingredients: newIngredients,
-                          });
-                        }}
-                      />
-                    </div>
-                    {formData.ingredients.length > 1 && (
-                      <Button
-                        type="button"
-                        variant="outline"
-                        size="icon"
-                        onClick={() => removeIngredient(index)}
-                      >
-                        <X className="h-4 w-4" />
-                      </Button>
-                    )}
-                  </div>
-                ))}
-              </CardContent>
-            </Card>
-          </div>
-
-          {/* Sidebar */}
-          <div className="space-y-6">
-            <Card>
-              <CardHeader>
-                <CardTitle>Category & Status</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="space-y-2">
-                  <Label>Category *</Label>
-                  <Select
-                    value={formData.category}
-                    onValueChange={(value) => {
-                      setFormData({ ...formData, category: value });
-                      if (errors.category) {
-                        setErrors((prev) => ({ ...prev, category: undefined }));
-                      }
-                    }}
-                  >
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select category" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {categories.map((category) => (
-                        <SelectItem
-                          key={category._id.toString()}
-                          value={category._id.toString()}
-                        >
-                          {category.name}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                  {errors.category && (
-                    <p className="text-sm text-red-500">{errors.category}</p>
-                  )}
-                </div>
-
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between">
-                    <Label htmlFor="featured">Featured Product</Label>
-                    <Switch
-                      id="featured"
-                      checked={formData.isFeatured}
-                      onCheckedChange={(checked) =>
-                        setFormData({ ...formData, isFeatured: checked })
-                      }
-                    />
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <Label htmlFor="active">Active</Label>
-                    <Switch
-                      id="active"
-                      checked={formData.isActive}
-                      onCheckedChange={(checked) =>
-                        setFormData({ ...formData, isActive: checked })
-                      }
-                    />
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <Label htmlFor="instock">In Stock</Label>
-                    <Switch
-                      id="instock"
-                      checked={formData.inStock}
-                      onCheckedChange={(checked) =>
-                        setFormData({ ...formData, inStock: checked })
-                      }
-                    />
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            <div className="flex gap-2">
+            {/* Action Buttons */}
+            <div className="flex gap-3 w-fit">
               <Button
                 type="submit"
                 disabled={loading}
-                className="flex-1 space-y-2"
+                className="flex-1"
               >
                 <Save className="h-4 w-4 mr-2" />
                 {(() => {
@@ -628,8 +612,8 @@ export function ProductForm({ productId }: { productId?: string }) {
                 Cancel
               </Button>
             </div>
-          </div>
-        </div>
+          </CardContent>
+        </Card>
       </form>
     </>
   );

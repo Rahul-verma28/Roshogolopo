@@ -223,28 +223,18 @@ export function ProductsTable() {
               Manage your sweet shop products with advanced features
             </CardDescription>
           </div>
-          <div className="flex items-center gap-2">
-            <Button variant="outline" size="sm">
-              <Download className="h-4 w-4 mr-2" />
-              Export
-            </Button>
-            <Button variant="outline" size="sm">
-              <Upload className="h-4 w-4 mr-2" />
-              Import
-            </Button>
             <Button asChild>
               <Link href="/admin/products/new">
                 <Plus className="h-4 w-4 mr-2" />
                 Add Product
               </Link>
             </Button>
-          </div>
         </div>
       </CardHeader>
       <CardContent>
         <div className="flex flex-col gap-4 mb-6">
           <div className="flex items-center gap-4">
-            <div className="relative flex-1 max-w-sm">
+            <div className="relative flex-1 w-full">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <Input
                 placeholder="Search products..."

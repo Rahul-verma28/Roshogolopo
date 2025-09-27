@@ -1,27 +1,45 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import Link from "next/link"
-import { PageHeader } from "./PageHeader"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
-import { Badge } from "@/components/ui/badge"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
-import { Search, MoreHorizontal, Eye, Package, Truck } from "lucide-react"
-import type { Order } from "@/lib/types"
-import { toast } from "sonner"
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import { PageHeader } from "./PageHeader";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import { Badge } from "@/components/ui/badge";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Search, MoreHorizontal, Eye, Package, Truck } from "lucide-react";
+import type { Order } from "@/lib/types";
+import { toast } from "sonner";
 
 interface OrdersResponse {
-  orders: Order[]
+  orders: Order[];
   pagination: {
-    page: number
-    limit: number
-    total: number
-    pages: number
-  }
+    page: number;
+    limit: number;
+    total: number;
+    pages: number;
+  };
 }
 
 const statusColors = {
@@ -31,43 +49,43 @@ const statusColors = {
   Delivered: "bg-green-100 text-green-800",
   Cancelled: "bg-red-100 text-red-800",
   Refunded: "bg-gray-100 text-gray-800",
-}
+};
 
 export function OrdersTable() {
-  const [orders, setOrders] = useState<Order[]>([])
-  const [loading, setLoading] = useState(true)
-  const [search, setSearch] = useState("")
-  const [statusFilter, setStatusFilter] = useState("All Status")
-  const [page, setPage] = useState(1)
+  const [orders, setOrders] = useState<Order[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [search, setSearch] = useState("");
+  const [statusFilter, setStatusFilter] = useState("All Status");
+  const [page, setPage] = useState(1);
   const [pagination, setPagination] = useState({
     page: 1,
     limit: 10,
     total: 0,
     pages: 0,
-  })
+  });
 
   const fetchOrders = async () => {
     try {
-      setLoading(true)
+      setLoading(true);
       const params = new URLSearchParams({
         page: page.toString(),
         limit: "10",
         ...(search && { search }),
         ...(statusFilter !== "All Status" && { status: statusFilter }),
-      })
+      });
 
-      const response = await fetch(`/api/admin/orders?${params}`)
-      if (!response.ok) throw new Error("Failed to fetch orders")
+      const response = await fetch(`/api/admin/orders?${params}`);
+      if (!response.ok) throw new Error("Failed to fetch orders");
 
-      const data: OrdersResponse = await response.json()
-      setOrders(data.orders)
-      setPagination(data.pagination)
+      const data: OrdersResponse = await response.json();
+      setOrders(data.orders);
+      setPagination(data.pagination);
     } catch (error) {
-      toast.error("Failed to load orders")
+      toast.error("Failed to load orders");
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   const updateOrderStatus = async (orderId: string, newStatus: string) => {
     try {
@@ -75,21 +93,23 @@ export function OrdersTable() {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ orderStatus: newStatus }),
-      })
+      });
 
-      if (!response.ok) throw new Error("Failed to update order status")
+      if (!response.ok) throw new Error("Failed to update order status");
 
-      toast.success("Order status updated")
+      toast.success("Order status updated");
 
-      fetchOrders()
+      fetchOrders();
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Failed to update order status")
+      toast.error(
+        error instanceof Error ? error.message : "Failed to update order status"
+      );
     }
-  }
+  };
 
   useEffect(() => {
-    fetchOrders()
-  }, [page, search, statusFilter])
+    fetchOrders();
+  }, [page, search, statusFilter]);
 
   const formatDate = (date: Date) => {
     return new Date(date).toLocaleDateString("en-IN", {
@@ -98,14 +118,15 @@ export function OrdersTable() {
       day: "numeric",
       hour: "2-digit",
       minute: "2-digit",
-    })
-  }
-
-  const breadcrumbs = [{ label: "Dashboard", href: "/admin" }, { label: "Orders" }]
+    });
+  };
 
   return (
     <>
-      <PageHeader title="Orders" description="Manage customer orders and track deliveries" breadcrumbs={breadcrumbs} />
+      <PageHeader
+        title="Orders"
+        description="Manage customer orders and track deliveries"
+      />
 
       <Card>
         <CardHeader>
@@ -161,33 +182,49 @@ export function OrdersTable() {
                   {orders.map((order) => (
                     <TableRow key={order._id.toString()}>
                       <TableCell>
-                        <div className="font-mono text-sm">#{order._id.toString().slice(-8)}</div>
+                        <div className="font-mono text-sm">
+                          #{order._id.toString().slice(-8)}
+                        </div>
                       </TableCell>
                       <TableCell>
                         <div>
                           <div className="font-medium">
-                            {typeof order.user === "object" ? order.user.name || order.user.email : "Unknown"}
+                            {typeof order.user === "object"
+                              ? order.user.name || order.user.email
+                              : "Unknown"}
                           </div>
                           <div className="text-sm text-muted-foreground">
-                            {typeof order.user === "object" ? order.user.email : ""}
+                            {typeof order.user === "object"
+                              ? order.user.email
+                              : ""}
                           </div>
                         </div>
                       </TableCell>
                       <TableCell>
                         <div className="text-sm">
-                          {order.orderItems.length} item{order.orderItems.length > 1 ? "s" : ""}
+                          {order.orderItems.length} item
+                          {order.orderItems.length > 1 ? "s" : ""}
                         </div>
                       </TableCell>
                       <TableCell>
-                        <div className="font-medium">₹{order.totalPrice.toLocaleString()}</div>
+                        <div className="font-medium">
+                          ₹{order.totalPrice.toLocaleString()}
+                        </div>
                       </TableCell>
                       <TableCell>
-                        <Badge className={statusColors[order.orderStatus] || "bg-gray-100 text-gray-800"}>
+                        <Badge
+                          className={
+                            statusColors[order.orderStatus] ||
+                            "bg-gray-100 text-gray-800"
+                          }
+                        >
                           {order.orderStatus}
                         </Badge>
                       </TableCell>
                       <TableCell>
-                        <div className="text-sm">{formatDate(order.createdAt)}</div>
+                        <div className="text-sm">
+                          {formatDate(order.createdAt)}
+                        </div>
                       </TableCell>
                       <TableCell>
                         <DropdownMenu>
@@ -204,19 +241,40 @@ export function OrdersTable() {
                               </Link>
                             </DropdownMenuItem>
                             {order.orderStatus === "Pending" && (
-                              <DropdownMenuItem onClick={() => updateOrderStatus(order._id.toString(), "Processing")}>
+                              <DropdownMenuItem
+                                onClick={() =>
+                                  updateOrderStatus(
+                                    order._id.toString(),
+                                    "Processing"
+                                  )
+                                }
+                              >
                                 <Package className="h-4 w-4 mr-2" />
                                 Mark Processing
                               </DropdownMenuItem>
                             )}
                             {order.orderStatus === "Processing" && (
-                              <DropdownMenuItem onClick={() => updateOrderStatus(order._id.toString(), "Shipped")}>
+                              <DropdownMenuItem
+                                onClick={() =>
+                                  updateOrderStatus(
+                                    order._id.toString(),
+                                    "Shipped"
+                                  )
+                                }
+                              >
                                 <Truck className="h-4 w-4 mr-2" />
                                 Mark Shipped
                               </DropdownMenuItem>
                             )}
                             {order.orderStatus === "Shipped" && (
-                              <DropdownMenuItem onClick={() => updateOrderStatus(order._id.toString(), "Delivered")}>
+                              <DropdownMenuItem
+                                onClick={() =>
+                                  updateOrderStatus(
+                                    order._id.toString(),
+                                    "Delivered"
+                                  )
+                                }
+                              >
                                 <Package className="h-4 w-4 mr-2" />
                                 Mark Delivered
                               </DropdownMenuItem>
@@ -234,10 +292,19 @@ export function OrdersTable() {
                 <div className="flex items-center justify-between mt-4">
                   <div className="text-sm text-muted-foreground">
                     Showing {(pagination.page - 1) * pagination.limit + 1} to{" "}
-                    {Math.min(pagination.page * pagination.limit, pagination.total)} of {pagination.total} orders
+                    {Math.min(
+                      pagination.page * pagination.limit,
+                      pagination.total
+                    )}{" "}
+                    of {pagination.total} orders
                   </div>
                   <div className="flex items-center gap-2">
-                    <Button variant="outline" size="sm" onClick={() => setPage(page - 1)} disabled={page === 1}>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => setPage(page - 1)}
+                      disabled={page === 1}
+                    >
                       Previous
                     </Button>
                     <Button
@@ -256,5 +323,5 @@ export function OrdersTable() {
         </CardContent>
       </Card>
     </>
-  )
+  );
 }

@@ -24,7 +24,7 @@ export function PageHeader({ title, description, breadcrumbs, action }: PageHead
               <React.Fragment key={index}>
                 <BreadcrumbItem>
                   {crumb.href ? (
-                    <BreadcrumbLink href={crumb.href}>{crumb.label}</BreadcrumbLink>
+                    <BreadcrumbLink href={crumb.href} className="hover:underline">{crumb.label}</BreadcrumbLink>
                   ) : (
                     <span className="text-muted-foreground">{crumb.label}</span>
                   )}

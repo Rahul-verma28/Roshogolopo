@@ -112,8 +112,6 @@ export function AnalyticsDashboard() {
     )
   }
 
-  const breadcrumbs = [{ label: "Dashboard", href: "/admin" }, { label: "Analytics" }]
-
   // Prepare chart data
   const revenueChartData = data.revenueOverTime.map((item) => ({
     date: formatDate(item._id),
@@ -132,7 +130,6 @@ export function AnalyticsDashboard() {
       <PageHeader
         title="Analytics"
         description="Track your sweet shop's performance and growth"
-        breadcrumbs={breadcrumbs}
         action={
           <Select value={period} onValueChange={setPeriod}>
             <SelectTrigger className="w-40">

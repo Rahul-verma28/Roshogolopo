@@ -8,7 +8,7 @@ export function generateOrganizationSchema() {
     alternateName: "Roshogolpo Sweet Shop",
     description: "Authentic Bengali sweets and snacks from Kolkata, now in Greater Noida",
     url: "https://roshogolpo.in",
-    logo: "https://roshogolpo.in/images/roshogolpo-logo.png",
+    logo: "https://roshogolpo.in/images/favicon.ico",
     image: "https://roshogolpo.in/images/roshogolpo-og.png",
     telephone: "+91 9899743002",
     email: "support@roshogolpo.in",

@@ -121,11 +121,6 @@ export function CustomersTable() {
     return email?.slice(0, 2).toUpperCase() || "CU";
   };
 
-  const breadcrumbs = [
-    { label: "Dashboard", href: "/admin" },
-    { label: "Customers" },
-  ];
-
   const updateUserRole = async (userId: string, newRole: string) => {
     try {
       const response = await fetch(`/api/admin/customers/${userId}`, {
@@ -148,7 +143,6 @@ export function CustomersTable() {
       <PageHeader
         title="Customers"
         description="Manage your sweet shop customers and their accounts"
-        breadcrumbs={breadcrumbs}
       />
 
       <Card>
