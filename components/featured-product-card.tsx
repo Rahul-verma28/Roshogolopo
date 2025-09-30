@@ -4,23 +4,27 @@ import { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import { useAppDispatch } from "@/lib/hooks";
 import { addToCart } from "@/lib/features/cartSlice";
 import type { Product } from "@/lib/types/product";
 import { ShoppingCart } from "lucide-react";
 
 interface FeaturedProductCardProps {
-  product: Product;
+  readonly product: Product;
+}
+
+interface WeightOption {
+  weight: string;
+  price: number;
 }
 
 export function FeaturedProductCard({ product }: FeaturedProductCardProps) {
   const dispatch = useAppDispatch();
   const [selectedWeightIndex, setSelectedWeightIndex] = useState(0);
 
-  // Use weightPrices if available, otherwise fallback to single price
-  const weightOptions = product.weightPrices || [
-    { weight: product.weight || "500g", price: product.price },
+  // Create weight options with proper typing
+  const weightOptions: WeightOption[] = [
+    { weight: "500g", price: product.price },
   ];
   const selectedOption = weightOptions[selectedWeightIndex];
 
@@ -32,7 +36,6 @@ export function FeaturedProductCard({ product }: FeaturedProductCardProps) {
         price: selectedOption.price,
         image: product.image,
         category: product.category,
-        weight: selectedOption.weight,
       })
     );
   };
@@ -60,7 +63,7 @@ export function FeaturedProductCard({ product }: FeaturedProductCardProps) {
         {/* Price */}
         <div className="">
           <span className="sm:text-lg font-bold text-gray-900">
-            ₹ {selectedOption.price.toFixed(2)}
+            ₹ {selectedOption?.price ? selectedOption.price.toFixed(2) : '0.00'}
           </span>
         </div>
 

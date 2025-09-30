@@ -130,7 +130,7 @@ export function CartDrawer({ children }: CartDrawerProps) {
               <div className="border-t pt-4 space-y-4">
                 <div className="flex justify-between items-center">
                   <span className="text-sm sm:text-lg font-semibold">Total:</span>
-                  <span className="text-xl font-bold text-[var(--roshogolpo-gold)]">₹{total.toFixed(2)}</span>
+                  <span className="text-xl font-bold text-[var(--roshogolpo-gold)]">₹{(total || 0).toFixed(2)}</span>
                 </div>
 
                 <div className="space-y-2">

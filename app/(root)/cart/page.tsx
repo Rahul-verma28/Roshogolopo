@@ -78,7 +78,7 @@ export default function ClientCartPage() {
                   </Button>
                 </div>
               </div>
-              <div className="text-right font-semibold">₹{(item.price * item.quantity).toFixed(2)}</div>
+              <div className="text-right font-semibold">₹{((item.price || 0) * item.quantity).toFixed(2)}</div>
             </div>
           ))}
           <Separator className="my-4" />
@@ -91,7 +91,7 @@ export default function ClientCartPage() {
           <h2 className="text-xl font-semibold">Order Summary</h2>
           <div className="mt-4 flex items-center justify-between">
             <span>Total</span>
-            <span className="text-2xl font-bold">₹{total.toFixed(2)}</span>
+            <span className="text-2xl font-bold">₹{(total || 0).toFixed(2)}</span>
           </div>
           <Button asChild className="w-full mt-6">
             <Link href="/checkout">Proceed to Checkout</Link>

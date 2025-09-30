@@ -34,7 +34,7 @@ const cartSlice = createSlice({
         state.items.push({ ...action.payload, quantity: 1 })
       }
 
-      state.total = state.items.reduce((sum, item) => sum + item.price * item.quantity, 0)
+      state.total = state.items.reduce((sum, item) => sum + (item.price || 0) * item.quantity, 0)
       state.itemCount = state.items.reduce((sum, item) => sum + item.quantity, 0)
 
       if (typeof window !== "undefined") {
@@ -43,7 +43,7 @@ const cartSlice = createSlice({
     },
     removeFromCart: (state, action: PayloadAction<string>) => {
       state.items = state.items.filter((item) => item.id !== action.payload)
-      state.total = state.items.reduce((sum, item) => sum + item.price * item.quantity, 0)
+      state.total = state.items.reduce((sum, item) => sum + (item.price || 0) * item.quantity, 0)
       state.itemCount = state.items.reduce((sum, item) => sum + item.quantity, 0)
 
       if (typeof window !== "undefined") {
@@ -58,7 +58,7 @@ const cartSlice = createSlice({
           state.items = state.items.filter((i) => i.id !== action.payload.id)
         }
       }
-      state.total = state.items.reduce((sum, item) => sum + item.price * item.quantity, 0)
+      state.total = state.items.reduce((sum, item) => sum + (item.price || 0) * item.quantity, 0)
       state.itemCount = state.items.reduce((sum, item) => sum + item.quantity, 0)
 
       if (typeof window !== "undefined") {

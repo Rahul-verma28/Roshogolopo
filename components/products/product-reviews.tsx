@@ -94,7 +94,7 @@ export function ProductReviews({ productId }: ProductReviewsProps) {
         <div className="grid md:grid-cols-2 gap-8 mb-8">
           <div className="text-center md:text-left">
             <div className="flex items-center justify-center md:justify-start space-x-2 mb-2">
-              <span className="text-4xl font-bold text-[var(--roshogolpo-gold)]">{averageRating.toFixed(1)}</span>
+              <span className="text-4xl font-bold text-[var(--roshogolpo-gold)]">{(averageRating || 0).toFixed(1)}</span>
               <div className="flex space-x-1">
                 {[...Array(5)].map((_, i) => (
                   <Star

@@ -169,7 +169,7 @@ export function CheckoutClient() {
                       Processing Order...
                     </>
                   ) : (
-                    `Place Order - ₹${total.toFixed(2)}`
+                    `Place Order - ₹${(total || 0).toFixed(2)}`
                   )}
                 </Button>
               </form>
@@ -192,7 +192,7 @@ export function CheckoutClient() {
                       <h4 className="font-medium text-xs sm:text-sm">{item.name}</h4>
                       <p className="text-xs text-gray-500">Qty: {item.quantity}</p>
                     </div>
-                    <p className="font-semibold">₹{(item.price * item.quantity).toFixed(2)}</p>
+                    <p className="font-semibold">₹{((item.price || 0) * item.quantity).toFixed(2)}</p>
                   </div>
                 ))}
 
@@ -201,7 +201,7 @@ export function CheckoutClient() {
                 <div className="space-y-2">
                   <div className="flex justify-between">
                     <span>Subtotal:</span>
-                    <span>₹{total.toFixed(2)}</span>
+                    <span>₹{(total || 0).toFixed(2)}</span>
                   </div>
                   <div className="flex justify-between">
                     <span>Delivery:</span>
@@ -210,7 +210,7 @@ export function CheckoutClient() {
                   <Separator />
                   <div className="flex justify-between text-sm sm:text-lg font-bold">
                     <span>Total:</span>
-                    <span className="text-[var(--roshogolpo-gold)]">₹{total.toFixed(2)}</span>
+                    <span className="text-[var(--roshogolpo-gold)]">₹{(total || 0).toFixed(2)}</span>
                   </div>
                 </div>
               </CardContent>

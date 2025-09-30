@@ -114,7 +114,7 @@ export function ProductAnalytics({ productId }: ProductAnalyticsProps) {
             <div className="text-right">
               <div className="flex items-center gap-1 mb-1">
                 <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                <span className="font-medium">{product.ratings.toFixed(1)}</span>
+                <span className="font-medium">{(product.ratings || 0).toFixed(1)}</span>
               </div>
               <p className="text-sm text-muted-foreground">{product.numReviews} reviews</p>
             </div>
@@ -163,8 +163,8 @@ export function ProductAnalytics({ productId }: ProductAnalyticsProps) {
             <Users className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{analytics.conversionRate.toFixed(1)}%</div>
-            <p className="text-xs text-muted-foreground">Avg. order: ₹{analytics.averageOrderValue.toFixed(0)}</p>
+            <div className="text-2xl font-bold">{(analytics.conversionRate || 0).toFixed(1)}%</div>
+            <p className="text-xs text-muted-foreground">Avg. order: ₹{(analytics.averageOrderValue || 0).toFixed(0)}</p>
           </CardContent>
         </Card>
       </div>
@@ -188,7 +188,7 @@ export function ProductAnalytics({ productId }: ProductAnalyticsProps) {
             <div className="flex items-center justify-between p-3 bg-muted/50 rounded-lg">
               <div>
                 <p className="font-medium">Average Order Value</p>
-                <p className="text-sm text-muted-foreground">₹{analytics.averageOrderValue.toFixed(0)}</p>
+                <p className="text-sm text-muted-foreground">₹{(analytics.averageOrderValue || 0).toFixed(0)}</p>
               </div>
               <TrendingUp className="h-5 w-5 text-green-500" />
             </div>
@@ -196,7 +196,7 @@ export function ProductAnalytics({ productId }: ProductAnalyticsProps) {
             <div className="flex items-center justify-between p-3 bg-muted/50 rounded-lg">
               <div>
                 <p className="font-medium">Customer Rating</p>
-                <p className="text-sm text-muted-foreground">{product.ratings.toFixed(1)}/5.0 stars</p>
+                <p className="text-sm text-muted-foreground">{(product.ratings || 0).toFixed(1)}/5.0 stars</p>
               </div>
               <Star className="h-5 w-5 text-yellow-500" />
             </div>
