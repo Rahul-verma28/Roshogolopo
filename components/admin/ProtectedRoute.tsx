@@ -6,6 +6,7 @@ import { useAuth } from "@/contexts/AuthContext"
 import { useRouter } from "next/navigation"
 import { useEffect } from "react"
 import { Loader2 } from "lucide-react"
+import { PageLoading } from "@/components/ui/loading";
 
 interface ProtectedRouteProps {
   children: React.ReactNode
@@ -26,7 +27,7 @@ export function ProtectedRoute({ children }: ProtectedRouteProps) {
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <Loader2 className="h-8 w-8 animate-spin mx-auto mb-4 text-primary" />
-          <p className="text-muted-foreground">Loading...</p>
+          <p className="text-muted-foreground"><PageLoading /></p>
         </div>
       </div>
     )

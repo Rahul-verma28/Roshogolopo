@@ -2,7 +2,7 @@ import type React from "react";
 import type { Metadata } from "next";
 import { Playfair_Display, Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
-import { ReduxProvider } from "@/components/providers/redux-provider";
+import ReduxProvider from "@/components/providers/ReduxProvider";
 import { CartHydration } from "@/components/providers/cart-hydration";
 import { StructuredData } from "@/components/seo/structured-data";
 import { generateMetadata as generateSEOMetadata } from "@/lib/seo/metadata";
@@ -15,6 +15,7 @@ import { Suspense } from "react";
 import "./globals.css";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { Toaster } from "@/components/ui/sonner";
+import { PageLoading } from "@/components/ui/loading";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -54,7 +55,7 @@ export default function RootLayout({
         <ReduxProvider>
           <CartHydration />
           <div className="min-h-screen flex flex-col">
-            <Suspense fallback={<div>Loading...</div>}>
+            <Suspense fallback={<PageLoading />}>
               <AuthProvider>{children}</AuthProvider>
             </Suspense>
           </div>

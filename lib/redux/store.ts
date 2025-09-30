@@ -9,6 +9,7 @@ import categoriesSlice from "./slices/categoriesSlice"
 import ordersSlice from "./slices/ordersSlice"
 import reviewsSlice from "./slices/reviewsSlice"
 import couponSlice from "./slices/couponSlice"
+import uiSlice from "./slices/uiSlice"
 
 const persistConfig = {
   key: "root",
@@ -24,6 +25,7 @@ const rootReducer = combineReducers({
   orders: ordersSlice,
   reviews: reviewsSlice,
   coupon: couponSlice,
+  ui: uiSlice,
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

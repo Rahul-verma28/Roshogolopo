@@ -5,14 +5,15 @@ import { TestimonialsSection } from "@/components/home/testimonials-section";
 import { CTASection } from "@/components/home/cta-section";
 import { StructuredData } from "@/components/seo/structured-data";
 import { generateBreadcrumbSchema } from "@/lib/seo/structured-data";
-import MakingTrendy from "@/components/ui/component/makingTrendy";
+import MakingTrendy from "@/components/makingTrendy";
 import FourPointSection from "@/components/home/four-points";
 import TimelessTaste from "@/components/home/timeless-taste";
 import TrustUs from "@/components/home/trust-us";
-import CategoryGrid from "@/components/ui/component/CategoryGrid";
+import CategoryGrid from "@/components/CategoryGrid";
 import { GuiltFreeRange } from "@/components/home/guilt-free-range";
 import { OurStory } from "@/components/home/our-story";
 import { OurSpeciality } from "@/components/home/our-speciality";
+import { FeaturedProductsCarousel } from "@/components/featured-products-carousel";
 
 export default function HomePage() {
   const breadcrumbSchema = generateBreadcrumbSchema([
@@ -27,6 +28,7 @@ export default function HomePage() {
       <CategoryGrid />
       <TimelessTaste />
       <CollectionsSection />
+      <FeaturedProductsCarousel />
       <OurSpeciality />
       <OurStory />
       {/* <StorySection /> */}

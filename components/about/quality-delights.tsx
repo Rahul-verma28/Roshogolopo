@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import MakingTrendy from "../ui/component/makingTrendy";
+import MakingTrendy from "@/components/makingTrendy";
 
 const QualityDelights = () => {
   return (

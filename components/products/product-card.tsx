@@ -46,7 +46,7 @@ export function ProductCard({ product }: ProductCardProps) {
           />
 
           {/* Overlay Actions */}
-          <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center space-x-3">
+          {/* <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center space-x-3">
             <Button
               asChild
               size="sm"
@@ -65,7 +65,7 @@ export function ProductCard({ product }: ProductCardProps) {
               <ShoppingCart className="h-4 w-4 mr-1" />
               Add
             </Button>
-          </div>
+          </div> */}
 
           {/* Category Badge */}
           <div className="absolute top-3 left-3">
