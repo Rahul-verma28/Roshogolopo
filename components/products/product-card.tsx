@@ -145,7 +145,6 @@
 //   );
 // }
 
-
 "use client";
 
 import type React from "react";
@@ -168,7 +167,7 @@ export function ProductCard({ product: rawProduct }: { product: Product }) {
 
   // Validate and normalize product data
   const product = validateProduct(rawProduct);
-  
+
   // Ensure the product is valid for display
   if (!isValidProduct(product)) {
     return null;
@@ -181,7 +180,7 @@ export function ProductCard({ product: rawProduct }: { product: Product }) {
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    
+
     if (!product.inStock || !selectedWeight) {
       toast.error("This item is currently out of stock");
       return;
@@ -195,38 +194,46 @@ export function ProductCard({ product: rawProduct }: { product: Product }) {
           image: primaryImage,
           weightOption: selectedWeight.weight,
           price: selectedWeight.price,
+          category: product.category?.name || product.category,
           quantity: 1,
           maxQuantity: 10, // Default max quantity, could be fetched from API
         })
       );
 
-      toast.success(`Added ${product.name} (${selectedWeight.weight}) to cart!`, {
-        description: `₹${selectedWeight.price} - Continue shopping or view cart`,
-        action: {
-          label: "View Cart",
-          onClick: () => {
-            // This could open cart drawer or navigate to cart page
-            window.location.href = "/cart";
+      toast.success(
+        `Added ${product.name} (${selectedWeight.weight}) to cart!`,
+        {
+          description: `₹${selectedWeight.price} - Continue shopping or view cart`,
+          action: {
+            label: "View Cart",
+            onClick: () => {
+              // This could open cart drawer or navigate to cart page
+              window.location.href = "/cart";
+            },
           },
-        },
-      });
+        }
+      );
     } catch (error) {
       console.error("Error adding item to cart:", error);
       toast.error("Failed to add item to cart. Please try again.");
     }
   };
 
-  console.log('Rendering ProductCard for:', product.name, product);
+  console.log("Rendering ProductCard for:", product.name, product);
 
   return (
-    <Card 
+    <Card
       className="group hover:shadow-xl transition-all duration-300 border-0 overflow-hidden bg-white p-0"
       itemScope
       itemType="https://schema.org/Product"
     >
       <CardContent className="p-0">
         {/* Product Link Wrapper */}
-        <Link href={`/products/${product.slug}`} className="block" title={`View ${product.name} details`}>
+        <Link
+          href={`/products/${product.slug}`}
+          className="block"
+          title={`View ${product.name} details`}
+        >
           {/* Image */}
           <div className="relative h-48 overflow-hidden">
             <Image
@@ -242,7 +249,10 @@ export function ProductCard({ product: rawProduct }: { product: Product }) {
             {/* Category Badge */}
             <div className="absolute top-3 left-3 hidden group-hover:block">
               <Badge className="bg-[var(--roshogolpo-active)]">
-                {product.category?.name ? (product.category.name.charAt(0).toUpperCase() + product.category.name.slice(1)) : product.category}
+                {product.category?.name
+                  ? product.category.name.charAt(0).toUpperCase() +
+                    product.category.name.slice(1)
+                  : product.category}
               </Badge>
             </div>
 
@@ -250,7 +260,9 @@ export function ProductCard({ product: rawProduct }: { product: Product }) {
             {product.ratings > 0 && (
               <div className="absolute top-3 right-3 bg-white/90 rounded-full px-2 py-1 flex items-center space-x-1">
                 <Star className="h-3 w-3 fill-[var(--roshogolpo-gold)] text-[var(--roshogolpo-gold)]" />
-                <span className="text-xs font-medium">{product.ratings.toFixed(1)}</span>
+                <span className="text-xs font-medium">
+                  {product.ratings.toFixed(1)}
+                </span>
               </div>
             )}
 
@@ -277,7 +289,7 @@ export function ProductCard({ product: rawProduct }: { product: Product }) {
             </h3>
           </Link>
 
-          <p 
+          <p
             className="text-gray-600 text-xs sm:text-sm mb-3 line-clamp-2 leading-relaxed"
             itemProp="description"
           >
@@ -332,21 +344,33 @@ export function ProductCard({ product: rawProduct }: { product: Product }) {
 
           {/* Price and Actions */}
           <div className="flex items-center justify-between">
-            <div className="flex flex-col" itemProp="offers" itemScope itemType="https://schema.org/Offer">
-              <span 
+            <div
+              className="flex flex-col"
+              itemProp="offers"
+              itemScope
+              itemType="https://schema.org/Offer"
+            >
+              <p
                 className="text-xl font-bold text-[var(--roshogolpo-gold)]"
                 itemProp="price"
                 content={selectedWeight?.price.toString() || "0"}
               >
                 ₹{selectedWeight?.price || 0}
-              </span>
+                {selectedWeight && (
+                  <span className="pl-2 text-xs text-gray-500" itemProp="weight">
+                    {selectedWeight.weight}
+                  </span>
+                )}
+              </p>
               <meta itemProp="priceCurrency" content="INR" />
-              <meta itemProp="availability" content={product.inStock ? "https://schema.org/InStock" : "https://schema.org/OutOfStock"} />
-              {selectedWeight && (
-                <span className="text-xs text-gray-500" itemProp="weight">
-                  {selectedWeight.weight}
-                </span>
-              )}
+              <meta
+                itemProp="availability"
+                content={
+                  product.inStock
+                    ? "https://schema.org/InStock"
+                    : "https://schema.org/OutOfStock"
+                }
+              />
             </div>
 
             <motion.button
@@ -354,8 +378,12 @@ export function ProductCard({ product: rawProduct }: { product: Product }) {
               onClick={handleAddToCart}
               disabled={!product.inStock}
               className="bg-[var(--roshogolpo-gold)] hover:bg-[var(--roshogolpo-active)] disabled:bg-gray-400 disabled:cursor-not-allowed text-white p-2 rounded-full transition-colors duration-200"
-              aria-label={`Add ${product.name} to cart - ₹${selectedWeight?.price || 0} for ${selectedWeight?.weight || 'default'}`}
-              title={product.inStock ? `Add ${product.name} to cart` : 'Out of stock'}
+              aria-label={`Add ${product.name} to cart - ₹${
+                selectedWeight?.price || 0
+              } for ${selectedWeight?.weight || "default"}`}
+              title={
+                product.inStock ? `Add ${product.name} to cart` : "Out of stock"
+              }
             >
               <ShoppingCart className="h-4 w-4" />
             </motion.button>
@@ -363,17 +391,24 @@ export function ProductCard({ product: rawProduct }: { product: Product }) {
 
           {/* Reviews Count */}
           {product.numReviews > 0 && (
-            <div 
+            <div
               className="mt-2 text-xs text-gray-500"
               itemProp="aggregateRating"
               itemScope
               itemType="https://schema.org/AggregateRating"
             >
-              <meta itemProp="ratingValue" content={product.ratings.toString()} />
-              <meta itemProp="reviewCount" content={product.numReviews.toString()} />
+              <meta
+                itemProp="ratingValue"
+                content={product.ratings.toString()}
+              />
+              <meta
+                itemProp="reviewCount"
+                content={product.numReviews.toString()}
+              />
               <meta itemProp="bestRating" content="5" />
               <meta itemProp="worstRating" content="1" />
-              Based on {product.numReviews} review{product.numReviews !== 1 ? 's' : ''}
+              Based on {product.numReviews} review
+              {product.numReviews !== 1 ? "s" : ""}
             </div>
           )}
 
@@ -384,7 +419,11 @@ export function ProductCard({ product: rawProduct }: { product: Product }) {
             <meta itemProp="manufacturer" content="Roshogolpo" />
             <meta itemProp="sku" content={product._id} />
             {product.ingredients?.map((ingredient) => (
-              <meta key={ingredient} itemProp="ingredient" content={ingredient} />
+              <meta
+                key={ingredient}
+                itemProp="ingredient"
+                content={ingredient}
+              />
             ))}
           </div>
         </div>

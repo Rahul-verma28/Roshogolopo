@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
 
 interface Coupon {
   code: string
-  type: "percentage" | "fixed"
+  type: "percent" | "fixed"
   value: number
   discount: number
   description: string
