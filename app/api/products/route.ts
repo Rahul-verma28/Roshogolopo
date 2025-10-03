@@ -24,7 +24,25 @@ export async function GET(request: NextRequest) {
     const filter: any = { isActive: true }
 
     if (category) {
-      filter.category = category
+      // Category is always a slug, find the category first
+      const Category = (await import("@/models/Category")).default
+      const categoryDoc = await Category.findOne({ slug: category, isActive: true })
+      if (categoryDoc) {
+        filter.category = categoryDoc._id
+      } else {
+        // If category slug not found, return empty results
+        return NextResponse.json({
+          products: [],
+          pagination: {
+            currentPage: page,
+            totalPages: 0,
+            totalProducts: 0,
+            hasNextPage: false,
+            hasPrevPage: false,
+            limit,
+          },
+        })
+      }
     }
 
     if (search) {

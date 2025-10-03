@@ -6,7 +6,7 @@ export interface Product {
   category: string;
   images: string[];
   weightPrices: { weight: string; price: number }[];
-  ingredients: string[];
+  ingredients?: string[] | null;
   isFeatured: boolean;
   isActive: boolean;
   inStock: boolean;
