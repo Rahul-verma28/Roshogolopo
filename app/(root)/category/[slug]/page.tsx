@@ -28,7 +28,7 @@ export function generateMetadata({ params }: { params: { slug: CategorySlug } })
   }
 }
 
-export default function CategoryPage({ params }: { params: { slug: CategorySlug } }) {
+export default function CategoryPage({ params }: Readonly<{ params: { slug: CategorySlug } }>) {
   const valid: CategorySlug[] = ["classic", "fusion", "snacks", "packages"]
   if (!valid.includes(params.slug)) {
     notFound()

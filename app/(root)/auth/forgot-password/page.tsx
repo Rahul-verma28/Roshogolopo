@@ -152,7 +152,7 @@ export default function ForgotPasswordPage() {
                   <Input
                     id="email"
                     type="email"
-                    placeholder="admin@roshogolpo.com"
+                    placeholder="admin@roshogolpo.in"
                     value={email}
                     onChange={handleEmailChange}
                     className={`h-11 transition-all duration-200 ${

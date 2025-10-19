@@ -1,59 +1,148 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { motion } from "framer-motion"
-import Image from "next/image"
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { Card, CardContent } from "@/components/ui/card"
-import { Separator } from "@/components/ui/separator"
-import { ShoppingCart, Heart, Share2, Star, ArrowLeft, Package, Clock, MapPin, Minus, Plus, Check } from "lucide-react"
-import { useAppDispatch, useAppSelector } from "@/lib/hooks"
-import { addToCart } from "@/lib/features/cartSlice"
-import { RelatedProducts } from "./related-products"
-import { ProductReviews } from "./product-reviews"
-import type { Product } from "@/lib/types/product"
+import { useState } from "react";
+import { motion } from "framer-motion";
+import Image from "next/image";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
+  ShoppingCart,
+  Share2,
+  Star,
+  ArrowLeft,
+  Package,
+  Clock,
+  Minus,
+  Plus,
+  Check,
+} from "lucide-react";
+import { useAppDispatch, useAppSelector } from "@/lib/hooks";
+import { addToCart } from "@/lib/redux/slices/cartSlice";
+import { RelatedProducts } from "./related-products";
+import { ProductReviews } from "./product-reviews";
+import type { Product } from "@/lib/types";
+import { toast } from "sonner";
+import { BreadcrumbNav } from "../layout/breadcrumb";
 
 interface ProductDetailsClientProps {
-  product: Product
+  product: Product;
 }
 
 export function ProductDetailsClient({ product }: ProductDetailsClientProps) {
-  const dispatch = useAppDispatch()
-  const { items } = useAppSelector((state) => state.cart)
-  const [quantity, setQuantity] = useState(1)
-  const [isAddedToCart, setIsAddedToCart] = useState(false)
-  const [selectedImage, setSelectedImage] = useState(0)
+  const dispatch = useAppDispatch();
+  const { items } = useAppSelector((state) => state.cart);
+  const [quantity, setQuantity] = useState(1);
+  const [isAddedToCart, setIsAddedToCart] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(0);
+  const [selectedWeightIndex, setSelectedWeightIndex] = useState(0);
 
-  const isInCart = items.some((item) => item.id === product.id)
+  // Get the currently selected weight option
+  const selectedWeight = product.weightPrices?.[selectedWeightIndex] ||
+    product.weightPrices?.[0] || { weight: "500g", price: 0 };
+  const primaryImage = product.images[0] || "/placeholder.svg";
 
-  const handleAddToCart = () => {
-    for (let i = 0; i < quantity; i++) {
+  // Check if item is in cart with current weight option
+  const isInCart = items.some(
+    (item) =>
+      item.productId === product._id &&
+      item.weightOption === selectedWeight.weight
+  );
+
+  const handleAddToCart = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    if (!product.inStock || !selectedWeight) {
+      toast.error("This item is currently out of stock");
+      return;
+    }
+    try {
       dispatch(
         addToCart({
-          id: product.id,
+          productId: product._id,
           name: product.name,
-          price: product.price,
-          image: product.image,
-          category: product.category,
-        }),
-      )
+          image: primaryImage,
+          weightOption: selectedWeight.weight,
+          price: selectedWeight.price,
+          category:
+            typeof product.category === "object"
+              ? product.category.name
+              : product.category,
+          quantity: quantity,
+          maxQuantity: 1000, // Default max quantity, could be fetched from API
+        })
+      );
+
+      setIsAddedToCart(true);
+      setTimeout(() => setIsAddedToCart(false), 2000);
+
+      toast.success(
+        `Added ${product.name} (${selectedWeight.weight}) to cart!`,
+        {
+          description: `₹${selectedWeight.price} × ${quantity} - Continue shopping or view cart`,
+          action: {
+            label: "View Cart",
+            onClick: () => {
+              // This could trigger cart drawer open
+              console.log("Open cart drawer");
+            },
+          },
+        }
+      );
+    } catch (error) {
+      console.error("Error adding item to cart:", error);
+      toast.error("Failed to add item to cart. Please try again.");
     }
-    setIsAddedToCart(true)
-    setTimeout(() => setIsAddedToCart(false), 2000)
-  }
+  };
 
   const handleQuantityChange = (change: number) => {
-    setQuantity(Math.max(1, Math.min(10, quantity + change)))
-  }
+    setQuantity(Math.max(1, Math.min(10, quantity + change)));
+  };
 
-  // Mock additional images for gallery
-  const productImages = [
-    product.image,
-    product.image, // In a real app, these would be different angles
-    product.image,
-  ]
+    const handleShare = async () => {
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: product.name,
+          text: product.description,
+          url: window.location.href,
+        });
+      } catch (err) {
+        console.log("Error sharing:", err);
+      }
+    } else {
+      // Fallback to copying URL
+      navigator.clipboard.writeText(window.location.href);
+    }
+  };
+
+  // Use actual product images
+  const productImages =
+    product.images && product.images.length > 0
+      ? product.images
+      : ["/placeholder.svg"];
+
+  console.log(product.images, productImages);
+
+  const breadcrumbs = [
+    { label: "Home", href: "/" },
+    { label: "Products", href: "/products" },
+    {
+      label: product.category?.name,
+      href: `/category/${product.category?.slug}`,
+    },
+    { label: product.name },
+  ];
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -63,17 +152,9 @@ export function ProductDetailsClient({ product }: ProductDetailsClientProps) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="flex items-center space-x-2 text-xs sm:text-sm text-gray-600 mb-8"
+          className="flex items-center space-x-2 text-xs sm:text-sm text-gray-600"
         >
-          <Link href="/" className="hover:text-[var(--roshogolpo-gold)]">
-            Home
-          </Link>
-          <span>/</span>
-          <Link href="/products" className="hover:text-[var(--roshogolpo-gold)]">
-            Products
-          </Link>
-          <span>/</span>
-          <span className="text-[var(--roshogolpo-gold)] font-medium">{product.name}</span>
+          <BreadcrumbNav breadcrumbs={breadcrumbs} />
         </motion.div>
 
         {/* Back Button */}
@@ -104,7 +185,7 @@ export function ProductDetailsClient({ product }: ProductDetailsClientProps) {
             className="space-y-4"
           >
             {/* Main Image */}
-            <div className="relative aspect-square rounded-2xl overflow-hidden bg-white shadow-lg">
+            <div className="relative aspect-square rounded-2xl overflow-hidden bg-white shadow-lg h-130 w-full">
               <Image
                 src={productImages[selectedImage] || "/placeholder.svg"}
                 alt={product.name}
@@ -114,32 +195,37 @@ export function ProductDetailsClient({ product }: ProductDetailsClientProps) {
               />
               {!product.inStock && (
                 <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-                  <span className="text-white text-xl font-bold">Out of Stock</span>
+                  <span className="text-white text-xl font-bold">
+                    Out of Stock
+                  </span>
                 </div>
               )}
             </div>
 
-            {/* Image Thumbnails */}
-            <div className="flex space-x-3">
-              {productImages.map((image, index) => (
-                <button
-                  key={image}
-                  onClick={() => setSelectedImage(index)}
-                  className={`relative w-20 h-20 rounded-lg overflow-hidden border-2 transition-all ${
-                    selectedImage === index
-                      ? "border-[var(--roshogolpo-gold)]"
-                      : "border-gray-200 hover:border-gray-300"
-                  }`}
-                >
-                  <Image
-                    src={image || "/placeholder.svg"}
-                    alt={`${product.name} view ${index + 1}`}
-                    fill
-                    className="object-cover"
-                  />
-                </button>
-              ))}
-            </div>
+            {/* Image Thumbnails - Only show if multiple images */}
+            {productImages.length > 1 && (
+              <div className="flex space-x-3 overflow-x-auto">
+                {productImages.map((image, index) => (
+                  <button
+                    key={`${image}-${index}`}
+                    onClick={() => setSelectedImage(index)}
+                    className={`relative w-20 h-20 rounded-lg overflow-hidden border-2 transition-all flex-shrink-0 ${
+                      selectedImage === index
+                        ? "border-[var(--roshogolpo-gold)]"
+                        : "border-gray-200 hover:border-gray-300"
+                    }`}
+                  >
+                    <Image
+                      src={image || "/placeholder.svg"}
+                      alt={`${product.name} view ${index + 1}`}
+                      fill
+                      className="object-cover"
+                      sizes="80px"
+                    />
+                  </button>
+                ))}
+              </div>
+            )}
           </motion.div>
 
           {/* Product Info */}
@@ -147,11 +233,14 @@ export function ProductDetailsClient({ product }: ProductDetailsClientProps) {
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="space-y-6"
+            className="space-y-4"
           >
             {/* Category Badge */}
             <Badge className="bg-[var(--roshogolpo-light)] text-[var(--roshogolpo-gold)] hover:bg-[var(--roshogolpo-light)]">
-              {product.category.charAt(0).toUpperCase() + product.category.slice(1)} Collection
+              {typeof product.category === "string"
+                ? product.category
+                : product.category?.name || "Bengali Sweets"}{" "}
+              Collection
             </Badge>
 
             {/* Title and Rating */}
@@ -159,96 +248,137 @@ export function ProductDetailsClient({ product }: ProductDetailsClientProps) {
               <h1 className="text-3xl lg:text-4xl font-bold text-[var(--roshogolpo-gold)] mb-3 font-playfair">
                 {product.name}
               </h1>
-              {product.rating && (
+              {((product.avgRating ?? 0) > 0 || product.ratings > 0) && (
                 <div className="flex items-center space-x-2">
                   <div className="flex space-x-1">
                     {[...Array(5)].map((_, i) => (
                       <Star
                         key={i}
                         className={`h-5 w-5 ${
-                          i < Math.floor(product.rating!)
+                          i <
+                          Math.floor(product.avgRating || product.ratings || 0)
                             ? "fill-[var(--roshogolpo-gold)] text-[var(--roshogolpo-gold)]"
                             : "text-gray-300"
                         }`}
                       />
                     ))}
                   </div>
-                  <span className="text-xs sm:text-sm text-gray-600">({product.rating}) • 127 reviews</span>
+                  <span className="text-xs sm:text-sm text-gray-600">
+                    ({(product.avgRating || product.ratings || 0).toFixed(1)}) •{" "}
+                    {product.reviewCount || 0} reviews
+                  </span>
                 </div>
               )}
             </div>
+
+            {/* Weight Selection */}
+            {product.weightPrices && product.weightPrices.length > 1 && (
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-gray-700">
+                  Weight Option:
+                </label>
+                <Select
+                  value={selectedWeightIndex.toString()}
+                  onValueChange={(value) =>
+                    setSelectedWeightIndex(parseInt(value))
+                  }
+                >
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="Select weight" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {product.weightPrices.map((weightPrice, index) => (
+                      <SelectItem key={index} value={index.toString()}>
+                        {weightPrice.weight} - ₹{weightPrice.price}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+            )}
 
             {/* Price */}
             <div className="flex items-center space-x-3">
-              <span className="text-3xl font-bold text-[var(--roshogolpo-gold)]">₹{product.price}</span>
-              {product.originalPrice && (
-                <span className="text-xl text-gray-500 line-through">₹{product.originalPrice}</span>
-              )}
-              {product.originalPrice && (
-                <Badge className="bg-green-100 text-green-800 hover:bg-green-100">
-                  Save ₹{product.originalPrice - product.price}
-                </Badge>
-              )}
+              <span className="text-3xl font-bold text-[var(--roshogolpo-gold)]">
+                ₹{selectedWeight.price}
+              </span>
+              <span className="text-lg text-gray-600">
+                for {selectedWeight.weight}
+              </span>
             </div>
 
             {/* Description */}
-            <p className="text-gray-700 leading-relaxed text-sm sm:text-lg">{product.description}</p>
+            <p className="text-gray-700 leading-relaxed text-sm sm:text-lg">
+              {product.description}
+            </p>
 
             {/* Product Details */}
             <div className="grid grid-cols-2 gap-4">
-              {product.weight && (
-                <div className="flex items-center space-x-2">
-                  <Package className="h-5 w-5 text-[var(--roshogolpo-gold)]" />
-                  <div>
-                    <div className="text-xs sm:text-sm text-gray-600">Weight</div>
-                    <div className="font-medium">{product.weight}</div>
+              <div className="flex items-center space-x-2">
+                <Package className="h-5 w-5 text-[var(--roshogolpo-gold)]" />
+                <div>
+                  <div className="text-xs sm:text-sm text-gray-600">Weight</div>
+                  <div className="font-medium">{selectedWeight.weight}</div>
+                </div>
+              </div>
+              <div className="flex items-center space-x-2">
+                <Clock className="h-5 w-5 text-[var(--roshogolpo-gold)]" />
+                <div>
+                  <div className="text-xs sm:text-sm text-gray-600">
+                    Stock Status
+                  </div>
+                  <div className="font-medium">
+                    {product.inStock ? "In Stock" : "Out of Stock"}
                   </div>
                 </div>
-              )}
-              {product.shelfLife && (
-                <div className="flex items-center space-x-2">
-                  <Clock className="h-5 w-5 text-[var(--roshogolpo-gold)]" />
-                  <div>
-                    <div className="text-xs sm:text-sm text-gray-600">Shelf Life</div>
-                    <div className="font-medium">{product.shelfLife}</div>
-                  </div>
-                </div>
-              )}
-              {product.origin && (
+              </div>
+              {product.isFeatured && (
                 <div className="flex items-center space-x-2 col-span-2">
-                  <MapPin className="h-5 w-5 text-[var(--roshogolpo-gold)]" />
+                  <Star className="h-5 w-5 text-[var(--roshogolpo-gold)]" />
                   <div>
-                    <div className="text-xs sm:text-sm text-gray-600">Origin</div>
-                    <div className="font-medium">{product.origin}</div>
+                    <div className="text-xs sm:text-sm text-gray-600">
+                      Special
+                    </div>
+                    <div className="font-medium">Featured Product</div>
                   </div>
                 </div>
               )}
             </div>
 
             {/* Ingredients */}
-            {product.ingredients && product.ingredients.length > 0 && (
-              <div>
-                <h3 className="text-sm sm:text-lg font-semibold text-[var(--roshogolpo-gold)] mb-3">Ingredients</h3>
-                <div className="flex flex-wrap gap-2">
-                  {product.ingredients.map((ingredient) => (
-                    <Badge
-                      key={ingredient}
-                      variant="outline"
-                      className="border-[var(--roshogolpo-light)] text-[var(--roshogolpo-gold)]"
-                    >
-                      {ingredient}
-                    </Badge>
-                  ))}
+            {product.ingredients &&
+              Array.isArray(product.ingredients) &&
+              product.ingredients.length > 0 && (
+                <div>
+                  <h3 className="text-sm sm:text-lg font-semibold text-[var(--roshogolpo-gold)] mb-3">
+                    Ingredients
+                  </h3>
+                  <div className="flex flex-wrap gap-2">
+                    {product.ingredients
+                      .filter(
+                        (ingredient) => ingredient && ingredient.trim() !== ""
+                      )
+                      .map((ingredient, index) => (
+                        <Badge
+                          key={index}
+                          variant="outline"
+                          className="border-[var(--roshogolpo-light)] text-[var(--roshogolpo-gold)]"
+                        >
+                          {ingredient}
+                        </Badge>
+                      ))}
+                  </div>
                 </div>
-              </div>
-            )}
+              )}
 
             <Separator />
 
             {/* Quantity and Add to Cart */}
             <div className="space-y-4">
               <div className="flex items-center space-x-4">
-                <span className="text-sm sm:text-lg font-medium">Quantity:</span>
+                <span className="text-sm sm:text-lg font-medium">
+                  Quantity:
+                </span>
                 <div className="flex items-center border border-gray-300 rounded-lg">
                   <Button
                     variant="ghost"
@@ -259,7 +389,9 @@ export function ProductDetailsClient({ product }: ProductDetailsClientProps) {
                   >
                     <Minus className="h-4 w-4" />
                   </Button>
-                  <span className="px-4 py-2 text-sm sm:text-lg font-medium min-w-[3rem] text-center">{quantity}</span>
+                  <span className="px-4 py-2 text-sm sm:text-lg font-medium min-w-[3rem] text-center">
+                    {quantity}
+                  </span>
                   <Button
                     variant="ghost"
                     size="sm"
@@ -291,10 +423,12 @@ export function ProductDetailsClient({ product }: ProductDetailsClientProps) {
                     </>
                   )}
                 </Button>
-                <Button variant="outline" size="lg" className="p-3 bg-transparent">
-                  <Heart className="h-5 w-5" />
-                </Button>
-                <Button variant="outline" size="lg" className="p-3 bg-transparent">
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="p-3 bg-transparent"
+                  onClick={handleShare}
+                >
                   <Share2 className="h-5 w-5" />
                 </Button>
               </div>
@@ -310,7 +444,9 @@ export function ProductDetailsClient({ product }: ProductDetailsClientProps) {
             {/* Delivery Info */}
             <Card className="bg-[var(--roshogolpo-light)]/30 border-[var(--roshogolpo-light)]">
               <CardContent className="p-4">
-                <h4 className="font-semibold text-[var(--roshogolpo-gold)] mb-2">Delivery Information</h4>
+                <h4 className="font-semibold text-[var(--roshogolpo-gold)] mb-2">
+                  Delivery Information
+                </h4>
                 <ul className="text-xs sm:text-sm text-gray-600 space-y-1">
                   <li>• Free delivery on orders above ₹500</li>
                   <li>• Same day delivery available in Greater Noida</li>
@@ -323,11 +459,11 @@ export function ProductDetailsClient({ product }: ProductDetailsClientProps) {
         </div>
 
         {/* Product Reviews */}
-        <ProductReviews productId={product.id} />
+        <ProductReviews productId={product._id} />
 
         {/* Related Products */}
         <RelatedProducts currentProduct={product} />
       </div>
     </div>
-  )
+  );
 }

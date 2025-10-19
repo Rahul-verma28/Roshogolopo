@@ -39,7 +39,7 @@ export default function ProfilePage() {
           <CardContent className="space-y-3">
             <div className="text-sm">
               <div className="font-medium">Email</div>
-              <div className="text-muted-foreground">guest@roshogolpo.com</div>
+              <div className="text-muted-foreground">guest@roshogolpo.in</div>
             </div>
             <div className="text-sm">
               <div className="font-medium">Default Address</div>

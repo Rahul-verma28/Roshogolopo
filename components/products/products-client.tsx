@@ -10,7 +10,6 @@ import { ProductSorting } from "./product-sorting";
 import { useAppSelector, useAppDispatch } from "@/lib/hooks";
 import { setFilter, setSearchQuery } from "@/lib/redux/slices/uiSlice";
 import { fetchProducts, clearFilters } from "@/lib/redux/slices/productsSlice";
-import { is } from "date-fns/locale";
 
 export function ProductsClient() {
   const dispatch = useAppDispatch();
@@ -150,6 +149,7 @@ export function ProductsClient() {
   };
 
   if (error) {
+    console.error("Error fetching products:", error);
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">

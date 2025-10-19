@@ -275,7 +275,7 @@ export default function SignupPage() {
                     id="email"
                     name="email"
                     type="email"
-                    placeholder="user@roshogolpo.com"
+                    placeholder="user@roshogolpo.in"
                     value={formData.email}
                     onChange={handleInputChange}
                     className={`h-11 transition-all duration-200 ${

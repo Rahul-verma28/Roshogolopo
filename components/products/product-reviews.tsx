@@ -84,7 +84,7 @@ export function ProductReviews({ productId }: ProductReviewsProps) {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
         viewport={{ once: true }}
-        className="mb-12"
+        className="mb-12 max-w-6xl mx-auto px-4"
       >
         <h2 className="text-3xl lg:text-4xl font-bold text-[var(--roshogolpo-gold)] mb-8 font-playfair">
           Customer Reviews
@@ -206,7 +206,7 @@ export function ProductReviews({ productId }: ProductReviewsProps) {
       </motion.div>
 
       {/* Reviews List */}
-      <div className="space-y-6">
+      <div className="space-y-6 max-w-6xl mx-auto px-4">
         {reviews.map((review, index) => (
           <motion.div
             key={review.id}

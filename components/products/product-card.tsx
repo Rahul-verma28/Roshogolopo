@@ -161,7 +161,7 @@ import type { Product } from "@/lib/types";
 import { toast } from "sonner";
 import { validateProduct, isValidProduct } from "@/lib/product-utils";
 
-export function ProductCard({ product: rawProduct }: { product: Product }) {
+export function ProductCard({ product: rawProduct }: { readonly product: Product }) {
   const dispatch = useAppDispatch();
   const [selectedWeightIndex, setSelectedWeightIndex] = useState(0);
 
@@ -174,7 +174,7 @@ export function ProductCard({ product: rawProduct }: { product: Product }) {
   }
 
   // Get the selected weight option (default to first one)
-  const selectedWeight = product.weightPrices[selectedWeightIndex];
+  const selectedWeight = product.weightPrices[selectedWeightIndex] || product.weightPrices?.[0] || { weight: "500g", price: 0 }
   const primaryImage = product.images[0] || "/placeholder.svg";
 
   const handleAddToCart = (e: React.MouseEvent) => {
@@ -196,14 +196,13 @@ export function ProductCard({ product: rawProduct }: { product: Product }) {
           price: selectedWeight.price,
           category: product.category?.name || product.category,
           quantity: 1,
-          maxQuantity: 10, // Default max quantity, could be fetched from API
+          maxQuantity: 1000, // Default max quantity, could be fetched from API
         })
       );
 
       toast.success(
         `Added ${product.name} (${selectedWeight.weight}) to cart!`,
         {
-          description: `₹${selectedWeight.price} - Continue shopping or view cart`,
           action: {
             label: "View Cart",
             onClick: () => {
@@ -219,7 +218,15 @@ export function ProductCard({ product: rawProduct }: { product: Product }) {
     }
   };
 
-  console.log("Rendering ProductCard for:", product.name, product);
+  // Extract category label for badge
+  let categoryLabel = "";
+  if (typeof product.category === "object" && product.category.name) {
+    categoryLabel =
+      product.category.name.charAt(0).toUpperCase() +
+      product.category.name.slice(1);
+  } else if (typeof product.category === "string") {
+    categoryLabel = product.category;
+  }
 
   return (
     <Card
@@ -249,10 +256,7 @@ export function ProductCard({ product: rawProduct }: { product: Product }) {
             {/* Category Badge */}
             <div className="absolute top-3 left-3 hidden group-hover:block">
               <Badge className="bg-[var(--roshogolpo-active)]">
-                {product.category?.name
-                  ? product.category.name.charAt(0).toUpperCase() +
-                    product.category.name.slice(1)
-                  : product.category}
+                {categoryLabel}
               </Badge>
             </div>
 

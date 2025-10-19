@@ -6,7 +6,7 @@ import { Search, X } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { useAppSelector, useAppDispatch } from "@/lib/hooks"
-import { setSearchQuery } from "@/lib/features/uiSlice"
+import { setSearchQuery } from "@/lib/redux/slices/uiSlice"
 
 export function ProductSearch() {
   const dispatch = useAppDispatch()

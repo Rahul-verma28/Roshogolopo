@@ -3,7 +3,7 @@ export interface Product {
   name: string;
   slug: string;
   description: string;
-  category: string;
+  category: { _id: string; name: string; slug: string } | string;
   images: string[];
   weightPrices: { weight: string; price: number }[];
   ingredients?: string[] | null;
@@ -11,7 +11,8 @@ export interface Product {
   isActive: boolean;
   inStock: boolean;
   ratings: number;
-  numReviews: number;
+  avgRating?: number;
+  reviewCount: number;
   createdAt: Date;
   updatedAt: Date;
 }

@@ -3,15 +3,15 @@ import connectDB from "@/lib/mongodb"
 import Product from "@/models/Product"
 import Review from "@/models/Review"
 
-export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
+export async function GET(request: NextRequest, { params }: { params: { slug: string } }) {
   try {
     await connectDB()
 
-    const { id } = params
+    const { slug } = params
 
-    // Find product by ID or slug
+    // Find product by slug
     const product = await Product.findOne({
-      $or: [{ _id: id }, { slug: id }],
+      slug: slug,
       isActive: true,
     })
       .populate("category", "name slug")

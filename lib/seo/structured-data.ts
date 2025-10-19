@@ -1,4 +1,4 @@
-import type { Product } from "@/lib/types/product"
+import type { Product } from "@/lib/types"
 
 export function generateOrganizationSchema() {
   return {
@@ -76,7 +76,7 @@ export function generateProductSchema(product: Product) {
   return {
     "@context": "https://schema.org",
     "@type": "Product",
-    "@id": `https://roshogolpo.in/products/${product.id}#product`,
+    "@id": `https://roshogolpo.in/products/${product.slug}#product`,
     name: product.name,
     description: product.description,
     image: product.images,
@@ -89,12 +89,12 @@ export function generateProductSchema(product: Product) {
       name: "Roshogolpo",
     },
     category: product.category,
-    sku: product.id,
+    sku: product._id,
     offers: {
       "@type": "Offer",
-      url: `https://roshogolpo.in/products/${product.id}`,
+      url: `https://roshogolpo.in/products/${product.slug}`,
       priceCurrency: "INR",
-      price: product.price,
+      price: product.weightPrices?.[0]?.price || "0",
       availability: product.inStock ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
       seller: {
         "@type": "Organization",
@@ -103,14 +103,10 @@ export function generateProductSchema(product: Product) {
     },
     aggregateRating: {
       "@type": "AggregateRating",
-      ratingValue: product.rating,
+      ratingValue: product.ratings,
       reviewCount: product.reviewCount,
       bestRating: 5,
       worstRating: 1,
-    },
-    nutrition: {
-      "@type": "NutritionInformation",
-      calories: `${product.nutrition?.calories || "N/A"} calories`,
     },
   }
 }

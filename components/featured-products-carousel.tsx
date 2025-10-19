@@ -7,8 +7,8 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
+  // CarouselNext,
+  // CarouselPrevious,
   type CarouselApi,
 } from "@/components/ui/carousel"
 import Autoplay from "embla-carousel-autoplay"
