@@ -1,6 +1,7 @@
 import { type NextRequest, NextResponse } from "next/server"
 import connectDB from "@/lib/mongodb"
 import Product from "@/models/Product"
+import Category from "@/models/Category"
 
 // Force dynamic rendering
 export const dynamic = 'force-dynamic'
@@ -25,7 +26,6 @@ export async function GET(request: NextRequest) {
 
     if (category) {
       // Category is always a slug, find the category first
-      const Category = (await import("@/models/Category")).default
       const categoryDoc = await Category.findOne({ slug: category, isActive: true })
       if (categoryDoc) {
         filter.category = categoryDoc._id

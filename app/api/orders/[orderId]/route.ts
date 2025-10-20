@@ -1,6 +1,7 @@
 import { type NextRequest, NextResponse } from "next/server"
 import connectDB from "@/lib/mongodb"
 import Order from "@/models/Order"
+import Product from "@/models/Product"
 import jwt from "jsonwebtoken"
 
 export async function GET(request: NextRequest, { params }: { params: { orderId: string } }) {
@@ -75,7 +76,6 @@ export async function PUT(request: NextRequest, { params }: { params: { orderId:
         order.cancelledAt = new Date()
 
         // Restore product inventory
-        const Product = (await import("@/models/Product")).default
         for (const item of order.items) {
           await Product.findByIdAndUpdate(item.product, {
             $inc: { "inventory.quantity": item.quantity },

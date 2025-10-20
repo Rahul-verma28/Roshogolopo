@@ -1,19 +1,21 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { AdminHeader } from "./AdminHeader"
-import { AdminSidebar } from "./AdminSidebar"
+import { AdminHeader } from "./AdminHeader";
+import { AdminSidebar } from "./AdminSidebar";
 
 interface AdminLayoutProps {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
 export function AdminLayout({ children }: AdminLayoutProps) {
   return (
     <div className="min-h-screen bg-background">
       {/* Sidebar */}
-      <AdminSidebar />
+      <div className="hidden lg:block">
+        <AdminSidebar />
+      </div>
 
       {/* Main Content */}
       <div className="lg:pl-64">
@@ -23,5 +25,5 @@ export function AdminLayout({ children }: AdminLayoutProps) {
         </main>
       </div>
     </div>
-  )
+  );
 }

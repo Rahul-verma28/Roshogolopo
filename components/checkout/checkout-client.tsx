@@ -249,7 +249,7 @@ import type React from "react";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useAppSelector, useAppDispatch } from "@/lib/hooks";
-import { clearCart } from "@/lib/features/cartSlice";
+import { clearCart } from "@/lib/redux/slices/cartSlice";
 import { createOrder } from "@/lib/redux/slices/ordersSlice";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";

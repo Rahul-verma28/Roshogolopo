@@ -3,6 +3,7 @@ import connectDB from "@/lib/mongodb"
 import Order from "@/models/Order"
 import Product from "@/models/Product"
 import User from "@/models/User"
+import Coupon from "@/models/Coupon"
 import jwt from "jsonwebtoken"
 
 export async function POST(request: NextRequest) {
@@ -68,7 +69,6 @@ export async function POST(request: NextRequest) {
     let appliedCoupon = null
 
     if (couponCode) {
-      const Coupon = (await import("@/models/Coupon")).default
       const coupon = await Coupon.findOne({
         code: couponCode,
         isActive: true,

@@ -671,7 +671,7 @@ export function ProductsTable() {
   const fetchProductStats = async () => {
     try {
       // Fetch all products without pagination to get accurate stats
-      const response = await fetch('/api/admin/products?limit=1000&page=1');
+      const response = await fetch('/api/admin/products?limit=20&page=1');
       if (!response.ok) throw new Error("Failed to fetch product stats");
       
       const data: ProductsResponse = await response.json();

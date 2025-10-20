@@ -14,6 +14,7 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Bell, LayoutDashboard, LogOut, Settings, User } from "lucide-react";
 import { AdminSidebar } from "./AdminSidebar";
 import Link from "next/link";
+import Image from "next/image";
 
 export function AdminHeader() {
   const { user, logout } = useAuth();
@@ -32,11 +33,30 @@ export function AdminHeader() {
 
   return (
     <header className="sticky top-0 z-40 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="flex h-16 items-center gap-4 px-4 lg:px-6">
-        {/* Mobile Menu */}
-        {/* <AdminSidebar /> */}
-
+      <div className="flex h-18 items-center gap-4 px-4 lg:px-6">
         {/* Spacer */}
+        <div className="flex items-center gap-3 py-4 lg:hidden">
+          <div className="">
+            <Image
+              src="/images/roshogolpo-logo.png"
+              alt="Logo"
+              width={40}
+              height={40}
+              className="object-contain"
+            />
+          </div>
+          <div>
+            <h2 className="text-lg font-semibold text-sidebar-foreground">
+              Roshogolpo
+            </h2>
+            <p className="text-[0.6rem] text-[var(--roshogolpo-hover)] font-medium">
+              Stories Wrapped in Sugar Syrup
+            </p>
+          </div>
+        </div>
+        <h2 className="hidden lg:block text-lg font-semibold text-sidebar-foreground">
+          Admin Panel
+        </h2>
         <div className="flex-1" />
 
         {/* Right side actions */}
@@ -94,6 +114,9 @@ export function AdminHeader() {
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
+          <div className="lg:hidden">
+            <AdminSidebar />
+          </div>
         </div>
       </div>
     </header>

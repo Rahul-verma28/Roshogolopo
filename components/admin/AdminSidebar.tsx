@@ -1,36 +1,39 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useState } from "react"
-import Link from "next/link"
-import { usePathname } from "next/navigation"
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
-import { ScrollArea } from "@/components/ui/scroll-area"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import { useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import {
-  Cake,
   LayoutDashboard,
   Package,
   ShoppingBag,
   Users,
   Star,
   Tag,
-  ImageIcon,
   Settings,
   Menu,
   ChevronDown,
   BarChart3,
   Gift,
-} from "lucide-react"
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
+} from "lucide-react";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible";
+import Image from "next/image";
 
 interface NavItem {
-  title: string
-  href?: string
-  icon: React.ComponentType<{ className?: string }>
-  children?: NavItem[]
+  title: string;
+  href?: string;
+  icon: React.ComponentType<{ className?: string }>;
+  children?: NavItem[];
 }
 
 const navItems: NavItem[] = [
@@ -88,16 +91,22 @@ const navItems: NavItem[] = [
     href: "/admin/settings",
     icon: Settings,
   },
-]
+];
 
 interface SidebarProps {
-  className?: string
+  className?: string;
 }
 
-function NavItemComponent({ item, level = 0 }: { item: NavItem; level?: number }) {
-  const pathname = usePathname()
-  const [isOpen, setIsOpen] = useState(false)
-  const hasChildren = item.children && item.children.length > 0
+function NavItemComponent({
+  item,
+  level = 0,
+}: {
+  item: NavItem;
+  level?: number;
+}) {
+  const pathname = usePathname();
+  const [isOpen, setIsOpen] = useState(false);
+  const hasChildren = item.children && item.children.length > 0;
 
   if (hasChildren) {
     return (
@@ -108,12 +117,17 @@ function NavItemComponent({ item, level = 0 }: { item: NavItem; level?: number }
             className={cn(
               "w-full justify-start gap-3 h-10 px-3",
               level > 0 && "pl-6",
-              "hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
+              "hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
             )}
           >
             <item.icon className="h-4 w-4 shrink-0" />
             <span className="flex-1 text-left">{item.title}</span>
-            <ChevronDown className={cn("h-4 w-4 transition-transform", isOpen && "rotate-180")} />
+            <ChevronDown
+              className={cn(
+                "h-4 w-4 transition-transform",
+                isOpen && "rotate-180"
+              )}
+            />
           </Button>
         </CollapsibleTrigger>
         <CollapsibleContent className="space-y-1">
@@ -122,10 +136,10 @@ function NavItemComponent({ item, level = 0 }: { item: NavItem; level?: number }
           ))}
         </CollapsibleContent>
       </Collapsible>
-    )
+    );
   }
 
-  const isActive = pathname === item.href
+  const isActive = pathname === item.href;
 
   return (
     <Button
@@ -134,8 +148,8 @@ function NavItemComponent({ item, level = 0 }: { item: NavItem; level?: number }
         "w-full justify-start gap-3 h-10 px-3",
         level > 0 && "pl-6",
         isActive
-          ? "bg-sidebar-primary text-sidebar-primary-foreground hover:bg-sidebar-primary/90"
-          : "hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
+          ? "bg-sidebar-primary text-sidebar-primary-foreground hover:bg-sidebar-primary/90 hover:text-white"
+          : "hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
       )}
       asChild
     >
@@ -144,7 +158,7 @@ function NavItemComponent({ item, level = 0 }: { item: NavItem; level?: number }
         <span>{item.title}</span>
       </Link>
     </Button>
-  )
+  );
 }
 
 function SidebarContent({ className }: SidebarProps) {
@@ -152,12 +166,22 @@ function SidebarContent({ className }: SidebarProps) {
     <div className={cn("flex h-full flex-col bg-sidebar", className)}>
       {/* Logo */}
       <div className="flex items-center gap-3 px-6 py-4 border-b border-sidebar-border">
-        <div className="bg-sidebar-primary/10 p-2 rounded-lg">
-          <Cake className="h-6 w-6 text-sidebar-primary" />
+        <div className="">
+          <Image
+            src="/images/roshogolpo-logo.png"
+            alt="Logo"
+            width={40}
+            height={40}
+            className="object-contain"
+          />
         </div>
         <div>
-          <h2 className="text-lg font-semibold text-sidebar-foreground">Roshogolpo</h2>
-          <p className="text-xs text-sidebar-foreground/60">Admin Dashboard</p>
+          <h2 className="text-lg font-semibold text-sidebar-foreground">
+            Roshogolpo
+          </h2>
+          <p className="text-[0.6rem] text-[var(--roshogolpo-hover)] font-medium">
+            Stories Wrapped in Sugar Syrup
+          </p>
         </div>
       </div>
 
@@ -170,7 +194,7 @@ function SidebarContent({ className }: SidebarProps) {
         </nav>
       </ScrollArea>
     </div>
-  )
+  );
 }
 
 export function AdminSidebar() {
@@ -194,5 +218,5 @@ export function AdminSidebar() {
         </SheetContent>
       </Sheet>
     </>
-  )
+  );
 }
